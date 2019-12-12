@@ -1,0 +1,7 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1>Détail du toubib</h1>
+    <a href="{% url 'toubibs:update' %}">Éditer ce toubib</a>
+    <a href="{% url 'toubibs:list' %}">Retour à la liste des toubibs</a>
+{% endblock content %}

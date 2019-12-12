@@ -1,0 +1,7 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1>Détail du billet</h1>
+    <a href="{% url 'billets:update' %}">Éditer ce billet</a>
+    <a href="{% url 'billets:list' %}">Retour à la liste des billets</a>
+{% endblock content %}

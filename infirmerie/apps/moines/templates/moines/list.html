@@ -1,1 +1,9 @@
 {% extends 'main.html' %}
+
+{% block content %}
+    <h1>Liste des moines</h1>
+    <ul>
+        <li><a href="{% url 'moines:detail' %}">Moine détail</a></li>
+    </ul>
+    <a href="{% url 'moines:create' %}">Nouveau moine</a>
+{% endblock content %}

@@ -1,0 +1,7 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1>Détail du moine</h1>
+    <a href="{% url 'moines:update' %}">Éditer ce moine</a>
+    <a href="{% url 'moines:list' %}">Retour à la liste des moines</a>
+{% endblock content %}
