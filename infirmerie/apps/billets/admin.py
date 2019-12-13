@@ -1,6 +1,4 @@
 from django.contrib import admin
-from .models import *
+from .models import Billet
 
-admin.site.register(Moine)
-admin.site.register(Toubib)
 admin.site.register(Billet)
