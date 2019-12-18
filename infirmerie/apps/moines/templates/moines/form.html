@@ -127,8 +127,37 @@
                     {% endif %}
                 </td>
             </tr>
+
+            <tr class='form-group'>
+                <td>{{ form.date_naissance.label_tag }}</td>
+                <td>
+                    {% if form.is_bound %}
+                        {% if form.date_naissance.errors %}
+                            {% render_field form.date_naissance class='is-invalid' %}
+                            {% for error in form.date_naissance.errors %}
+                                <div class='invalid-feedback'>
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.date_naissance class='is-valid' %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.date_naissance %}
+                    {% endif %}
+                    {% if form.date_naissance.help_text %}
+                        <small class='form-text text-muted'>
+                            {{ form.date_naissance.help_text }}
+                        </small>
+                    {% endif %}
+                </td>
+            </tr>
         </table>
 
         <button type="submit" class="btn btn-success">Valider</button>
     </form>
 {% endblock content %}
+
+{% block javascript %}
+    {{ form.media }}
+{% endblock javascript %}

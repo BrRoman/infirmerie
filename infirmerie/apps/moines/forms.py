@@ -1,6 +1,7 @@
 """ apps/moines/forms.py """
 
 from django import forms
+from tempus_dominus.widgets import DatePicker
 
 from .models import Moine
 
@@ -29,7 +30,12 @@ class MoineForm(forms.ModelForm):
     nom_civil = forms.CharField(
         label='Nom civil :',
     )
+    date_naissance = forms.DateField(
+        label='Date de naissance :',
+        widget=DatePicker(),
+    )
 
     class Meta:
         model = Moine
-        fields = ['titre', 'nom_religieux', 'prenom_civil', 'nom_civil']
+        fields = ['titre', 'nom_religieux',
+                  'prenom_civil', 'nom_civil', 'date_naissance']
