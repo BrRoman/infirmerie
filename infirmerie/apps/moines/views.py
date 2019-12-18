@@ -15,7 +15,7 @@ class MoineListView(ListView):  # pylint: disable=too-many-ancestors
     paginate_by = 4
 
     def get_queryset(self):
-        return Moine.objects.order_by('-nom_religieux')[:5]
+        return Moine.objects.order_by('date_naissance', 'nom_religieux', 'prenom_civil')
 
 
 class MoineCreateView(CreateView):
