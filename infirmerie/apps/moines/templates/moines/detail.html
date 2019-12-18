@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{% url 'moines:list' %}">Moines</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'moines:list' 1 %}">Moines</a></li>
     <li class="breadcrumb-item active">{{ moine }}</li>
 {% endblock breadcrumbs %}
 

@@ -12,6 +12,7 @@ from .forms import MoineForm
 class MoineListView(ListView):  # pylint: disable=too-many-ancestors
     """ List of Moines. """
     template_name = 'moines/list.html'
+    paginate_by = 4
 
     def get_queryset(self):
         return Moine.objects.order_by('-nom_religieux')[:5]
@@ -22,7 +23,7 @@ class MoineCreateView(CreateView):
     model = Moine
     form_class = MoineForm
     template_name = 'moines/form.html'
-    success_url = reverse_lazy('moines:list')
+    success_url = reverse_lazy('moines:list', args=[1])
 
 
 class MoineDetailView(DetailView):
@@ -37,4 +38,4 @@ class MoineUpdateView(UpdateView):
     model = Moine
     form_class = MoineForm
     template_name = 'moines/form.html'
-    success_url = reverse_lazy('moines:list')
+    success_url = reverse_lazy('moines:list', args=[1])

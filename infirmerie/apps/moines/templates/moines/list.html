@@ -29,5 +29,7 @@
         </tbody>
     </table>
 
+    {% include 'pagination.html' %}
+
     <a href="{% url 'moines:create' %}"><button class="btn btn-primary">Ajouter un moine</button></a>
 {% endblock content %}
