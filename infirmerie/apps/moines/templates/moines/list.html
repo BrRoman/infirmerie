@@ -1,9 +1,31 @@
 {% extends 'main.html' %}
 
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">Moines</li>
+{% endblock breadcrumbs %}
+
 {% block content %}
     <h1>Liste des moines</h1>
-    <ul>
-        <li><a href="{% url 'moines:detail' %}">Moine détail</a></li>
-    </ul>
-    <a href="{% url 'moines:create' %}">Nouveau moine</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Moine</th>
+                <th>Vaccin</th>
+                <th>Dentiste</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for moine in object_list %}
+                <tr>
+                    <td><a href="{% url 'moines:detail' moine.id %}">{{ moine }}</a></td>
+                    <td>Date</td>
+                    <td>Date</td>
+                <tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'moines:create' %}"><button class="btn btn-primary">Ajouter un moine</button></a>
 {% endblock content %}
