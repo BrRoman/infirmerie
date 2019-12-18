@@ -1,11 +1,13 @@
+""" apps/moines/urls.py """
+
 from django.urls import path
 
-from . import views
+from .views import MoineCreateView, MoineDetailView, MoineListView, MoineUpdateView
 
 app_name = 'moines'
 urlpatterns = [
-    path('', views.list, name='list'),
-    path('create', views.create, name='create'),
-    path('detail', views.detail, name='detail'),
-    path('update', views.update, name='update')
+    path('', MoineListView.as_view(), name='list'),
+    path('create', MoineCreateView.as_view(), name='create'),
+    path('<int:pk>/detail', MoineDetailView.as_view(), name='detail'),
+    path('<int:pk>/update', MoineUpdateView.as_view(), name='update'),
 ]

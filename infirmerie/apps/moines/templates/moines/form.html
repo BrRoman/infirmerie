@@ -1,6 +1,134 @@
-{% extends 'main.html' %}
+{% extends "main.html" %}
+
+{% load widget_tweaks %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url "moines:list" %}">Moines</a></li>
+    {% if object %}
+        <li class="breadcrumb-item"><a href="{% url "moines:detail" moine.id %}">{{ moine }}</a></li>
+        <li class="breadcrumb-item active">Modifier</li>
+    {% else %}
+        <li class="breadcrumb-item active">Créer</li>
+    {% endif %}
+{% endblock breadcrumbs %}
 
 {% block content %}
-    <h1>Formulaire pour moine</h1>
-    <a href="{% url 'moines:list' %}">Retour à la liste des moines</a>
+    {% if object %}
+        <h1>Modifier un moine</h1>
+    {% else %}
+        <h1>Créer un nouveau moine</h1>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <table>
+            <!-- Qualité -->
+            <tr class="form-group">
+                <td>{{ form.titre.label_tag }}</td>
+                <td>
+                    {% if form.is_bound %}
+                        {% if form.titre.errors %}
+                            {% render_field form.titre class="is-invalid" %}
+                            {% for error in form.titre.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.titre class="is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.titre %}
+                    {% endif %}
+                    
+                    {% if form.titre.help_text %}
+                        <small class="form-text text-muted">
+                            {{ form.titre.help_text }}
+                        </small>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Nom religieux -->
+            <tr class="form-group">
+                <td>{{ form.nom_religieux.label_tag }}</td>
+                <td>
+                    {% if form.is_bound %}
+                        {% if form.nom_religieux.errors %}
+                            {% render_field form.nom_religieux class="is-invalid" %}
+                            {% for error in form.nom_religieux.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.nom_religieux class="is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.nom_religieux %}
+                    {% endif %}
+                    {% if form.nom_religieux.help_text %}
+                        <small class="form-text text-muted">
+                            {{ form.nom_religieux.help_text }}
+                        </small>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Prénom civil -->
+            <tr class="form-group">
+                <td>{{ form.prenom_civil.label_tag }}</td>
+                <td>
+                    {% if form.is_bound %}
+                        {% if form.prenom_civil.errors %}
+                            {% render_field form.prenom_civil class="is-invalid" %}
+                            {% for error in form.prenom_civil.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.prenom_civil class="is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.prenom_civil %}
+                    {% endif %}
+                    {% if form.prenom_civil.help_text %}
+                        <small class="form-text text-muted">
+                            {{ form.prenom_civil.help_text }}
+                        </small>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Nom civil -->
+            <tr class="form-group">
+                <td>{{ form.nom_civil.label_tag }}</td>
+                <td>
+                    {% if form.is_bound %}
+                        {% if form.nom_civil.errors %}
+                            {% render_field form.nom_civil class="is-invalid" %}
+                            {% for error in form.nom_civil.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.nom_civil class="is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.nom_civil %}
+                    {% endif %}
+                    {% if form.nom_civil.help_text %}
+                        <small class="form-text text-muted">
+                            {{ form.nom_civil.help_text }}
+                        </small>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+
+        <button type="submit" class="btn btn-success">Valider</button>
+    </form>
 {% endblock content %}

@@ -1,19 +1,17 @@
-from django.db import models
+""" apps/moines/models.py """
 
-PERE = 'Père'
-FRERE = 'Frère'
+from django.db import models
+from django.urls import reverse
 
 
 class Moine(models.Model):
+    """ Moine model. """
     titre = models.CharField(
-        max_length=5,
-        choices=[
-            (PERE, 'P. '),
-            (FRERE, 'Fr. '),
-        ]
+        max_length=25,
     )
     nom_religieux = models.CharField(
         max_length=255,
+        blank=True
     )
     prenom_civil = models.CharField(
         max_length=255,
@@ -21,8 +19,30 @@ class Moine(models.Model):
     nom_civil = models.CharField(
         max_length=255,
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
+    date_naissance = models.DateField(
+        null=True,
+        blank=True
+    )
+    date_vaccin = models.DateField(
+        null=True,
+        blank=True
+    )
+    date_dentiste = models.DateField(
+        null=True,
+        blank=True,
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+    last_modified = models.DateTimeField(
+        auto_now=True
+    )
 
     def __str__(self):
-        return (self.titre + " " if self.titre != "" else "") + self.nom_religieux
+        return (self.titre + ' ' if self.titre != '' else '') \
+            + (self.nom_religieux if self.nom_religieux != '' else self.prenom_civil) \
+            + (' Marie' if self.nom_religieux != '' else '')
+
+    def get_absolute_url(self):
+        """ Return absolute url. """
+        return reverse('moines:detail', kwargs={'pk': self.pk})
