@@ -35,4 +35,4 @@ class Moine(models.Model):
 
     def get_absolute_url(self):
         """ Return absolute url. """
-        return reverse('moines:detail', kwargs={'pk': self.pk})
+        return reverse('moines:detail', args=[self.pk])
