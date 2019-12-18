@@ -10,8 +10,8 @@
     <h4>{{ moine.prenom_civil }} {{ moine.nom_civil }}</h4>
 
     <p>Date de naissance : {{ moine.date_naissance }}</p>
-    <p>Vaccin : date</p>
-    <p>Dentiste : date</p>
+    <p>Vaccin : {{ moine.date_vaccin }}</p>
+    <p>Dentiste : {{ moine.date_dentiste }}</p>
 
     <a href="{% url 'moines:update' moine.id %}"><button class="btn btn-primary">Éditer ce moine</button></a>
 {% endblock content %}

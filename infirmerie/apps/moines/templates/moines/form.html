@@ -128,6 +128,7 @@
                 </td>
             </tr>
 
+            <!-- Date de naissance -->
             <tr class='form-group'>
                 <td>{{ form.date_naissance.label_tag }}</td>
                 <td>
@@ -148,6 +149,58 @@
                     {% if form.date_naissance.help_text %}
                         <small class='form-text text-muted'>
                             {{ form.date_naissance.help_text }}
+                        </small>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Date du dernier vaccin -->
+            <tr class='form-group'>
+                <td>{{ form.date_vaccin.label_tag }}</td>
+                <td>
+                    {% if form.is_bound %}
+                        {% if form.date_vaccin.errors %}
+                            {% render_field form.date_vaccin class='is-invalid' %}
+                            {% for error in form.date_vaccin.errors %}
+                                <div class='invalid-feedback'>
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.date_vaccin class='is-valid' %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.date_vaccin %}
+                    {% endif %}
+                    {% if form.date_vaccin.help_text %}
+                        <small class='form-text text-muted'>
+                            {{ form.date_vaccin.help_text }}
+                        </small>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Date du denier rendez-vous chez le dentiste -->
+            <tr class='form-group'>
+                <td>{{ form.date_dentiste.label_tag }}</td>
+                <td>
+                    {% if form.is_bound %}
+                        {% if form.date_dentiste.errors %}
+                            {% render_field form.date_dentiste class='is-invalid' %}
+                            {% for error in form.date_dentiste.errors %}
+                                <div class='invalid-feedback'>
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.date_dentiste class='is-valid' %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.date_dentiste %}
+                    {% endif %}
+                    {% if form.date_dentiste.help_text %}
+                        <small class='form-text text-muted'>
+                            {{ form.date_dentiste.help_text }}
                         </small>
                     {% endif %}
                 </td>

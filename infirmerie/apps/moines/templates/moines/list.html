@@ -22,8 +22,8 @@
                 <tr>
                     <td><a href="{% url 'moines:detail' moine.id %}">{{ moine }}</a></td>
                     <td>{{ moine.date_naissance }}</td>
-                    <td>Date</td>
-                    <td>Date</td>
+                    <td>{{ moine.date_vaccin }}</td>
+                    <td>{{ moine.date_dentiste }}</td>
                 <tr>
             {% endfor %}
         </tbody>

@@ -11,7 +11,6 @@ class Moine(models.Model):
     )
     nom_religieux = models.CharField(
         max_length=255,
-        blank=True
     )
     prenom_civil = models.CharField(
         max_length=255,
@@ -19,18 +18,9 @@ class Moine(models.Model):
     nom_civil = models.CharField(
         max_length=255,
     )
-    date_naissance = models.DateField(
-        null=True,
-        blank=True
-    )
-    date_vaccin = models.DateField(
-        null=True,
-        blank=True
-    )
-    date_dentiste = models.DateField(
-        null=True,
-        blank=True,
-    )
+    date_naissance = models.DateField()
+    date_vaccin = models.DateField()
+    date_dentiste = models.DateField()
     created_at = models.DateTimeField(
         auto_now_add=True
     )
