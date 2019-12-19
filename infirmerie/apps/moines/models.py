@@ -18,9 +18,15 @@ class Moine(models.Model):
     nom_civil = models.CharField(
         max_length=255,
     )
-    date_naissance = models.DateField()
-    date_vaccin = models.DateField()
-    date_dentiste = models.DateField()
+    date_naissance = models.DateField(
+        null=True
+    )
+    date_vaccin = models.DateField(
+        null=True
+    )
+    date_dentiste = models.DateField(
+        null=True
+    )
     created_at = models.DateTimeField(
         auto_now_add=True
     )
