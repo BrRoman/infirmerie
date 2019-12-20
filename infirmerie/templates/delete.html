@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <form class="d-flex flex-column align-items-center" method="post">{% csrf_token %}
+        <h3>Êtes-vous sûr de vouloir supprimer cet élément ?</h3>
+        <h1 class="text-danger">{{ object }}</h1>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary">Annuler</button>
+            <input class="btn btn-danger" type="submit" value="Oui">
+        </div>
+    </form>
+{% endblock content %}

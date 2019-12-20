@@ -2,7 +2,7 @@
 
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
 from .models import Moine
@@ -39,3 +39,10 @@ class MoineUpdateView(UpdateView):
     form_class = MoineForm
     template_name = 'moines/form.html'
     success_url = reverse_lazy('moines:list', args=[1])
+
+
+class MoineDeleteView(DeleteView):
+    """ Delete moine. """
+    model = Moine
+    success_url = reverse_lazy('moines:list', args=[1])
+    template_name = "moines/delete.html"
