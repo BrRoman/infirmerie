@@ -19,25 +19,28 @@ class Moine(models.Model):
         max_length=255,
     )
     date_naissance = models.DateField(
-        null=True
+        null=True,
     )
     date_vaccin = models.DateField(
-        null=True
+        null=True,
     )
     date_dentiste = models.DateField(
-        null=True
+        null=True,
     )
     created_at = models.DateTimeField(
-        auto_now_add=True
+        auto_now_add=True,
     )
     last_modified = models.DateTimeField(
-        auto_now=True
+        auto_now=True,
     )
 
     def __str__(self):
-        return (self.titre + ' ' if self.titre != '' else '') \
-            + (self.nom_religieux if self.nom_religieux != '' else self.prenom_civil) \
-            + (' Marie' if self.nom_religieux != '' else '')
+        nom_complet = ''
+        nom_complet += self.titre + ' ' if self.titre != '-' else ''
+        nom_complet += self.nom_religieux if self.nom_religieux != '' else (
+            self.prenom_civil + ' ' + self.nom_civil)
+        nom_complet += ' Marie' if self.nom_religieux != '' else ''
+        return nom_complet
 
     def get_absolute_url(self):
         """ Return absolute url. """
