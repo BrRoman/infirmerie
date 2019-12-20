@@ -12,10 +12,9 @@ from .forms import MoineForm
 class MoineListView(ListView):  # pylint: disable=too-many-ancestors
     """ List of Moines. """
     template_name = 'moines/list.html'
-    paginate_by = 4
-
-    def get_queryset(self):
-        return Moine.objects.order_by('date_naissance', 'nom_religieux', 'prenom_civil')
+    paginate_by = 5
+    queryset = Moine.objects.order_by(
+        'date_naissance', 'nom_religieux', 'prenom_civil')
 
 
 class MoineCreateView(CreateView):
