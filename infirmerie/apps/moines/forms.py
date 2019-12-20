@@ -6,31 +6,32 @@ from tempus_dominus.widgets import DatePicker
 from .models import Moine
 
 
-POSTULANT = ''
-FRERE = 'Frère'
-PERE = 'Père'
-
-
 class MoineForm(forms.ModelForm):
     """ Moine form. """
     titre = forms.ChoiceField(
-        required=False,
         label='Qualité :',
         choices=[
-            (POSTULANT, ''),
-            (FRERE, 'Fr. '),
-            (PERE, 'P. '),
+            ('-', 'Postulant'),
+            ('Fr.', 'Frère'),
+            ('P.', 'Père'),
         ],
     )
     nom_religieux = forms.CharField(
         required=False,
         label='Nom religieux :',
+        help_text='NB : "Marie" sera ajouté automatiquement.'
     )
     prenom_civil = forms.CharField(
         label='Prénom civil :',
+        error_messages={
+            'required': 'Ce champ est obligatoire.',
+        }
     )
     nom_civil = forms.CharField(
         label='Nom civil :',
+        error_messages={
+            'required': 'Ce champ est obligatoire.',
+        }
     )
     date_naissance = forms.DateField(
         required=False,
