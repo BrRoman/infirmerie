@@ -1,6 +1,11 @@
 {% extends "main.html" %}
 
+{% load static %}
 {% load widget_tweaks %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/tempusdominus-bootstrap-4.min.css' %}">
+{% endblock css %}
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'moines:list' 1 %}">Moines</a></li>
@@ -14,203 +19,191 @@
 
 {% block content %}
     {% if object %}
-        <h1>Modifier un moine</h1>
+        <h1>Modifier {{ moine }}</h1>
     {% else %}
         <h1>Créer un nouveau moine</h1>
     {% endif %}
 
-    <form method="post">
+    <form method="post" novalidate>
         {% csrf_token %}
 
-        <table>
-            <!-- Qualité -->
-            <tr class="form-group">
-                <td>{{ form.titre.label_tag }}</td>
-                <td>
-                    {% if form.is_bound %}
-                        {% if form.titre.errors %}
-                            {% render_field form.titre class="is-invalid" %}
-                            {% for error in form.titre.errors %}
-                                <div class="invalid-feedback">
-                                    {{ error }}
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            {% render_field form.titre class="is-valid" %}
-                        {% endif %}
-                    {% else %}
-                        {% render_field form.titre %}
-                    {% endif %}
-                    
-                    {% if form.titre.help_text %}
-                        <small class="form-text text-muted">
-                            {{ form.titre.help_text }}
-                        </small>
-                    {% endif %}
-                </td>
-            </tr>
+        <!-- Qualité -->
+        <div class="form-group">
+            {{ form.titre.label_tag }}
+            {% if form.is_bound %}
+                {% if form.titre.errors %}
+                    {% render_field form.titre class="is-invalid" %}
+                    {% for error in form.titre.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.titre class="is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.titre %}
+            {% endif %}
+            
+            {% if form.titre.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.titre.help_text }}
+                </small>
+            {% endif %}
+        </div>
 
-            <!-- Nom religieux -->
-            <tr class="form-group">
-                <td>{{ form.nom_religieux.label_tag }}</td>
-                <td>
-                    {% if form.is_bound %}
-                        {% if form.nom_religieux.errors %}
-                            {% render_field form.nom_religieux class="is-invalid" %}
-                            {% for error in form.nom_religieux.errors %}
-                                <div class="invalid-feedback">
-                                    {{ error }}
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            {% render_field form.nom_religieux class="is-valid" %}
-                        {% endif %}
-                    {% else %}
-                        {% render_field form.nom_religieux %}
-                    {% endif %}
-                    {% if form.nom_religieux.help_text %}
-                        <small class="form-text text-muted">
-                            {{ form.nom_religieux.help_text }}
-                        </small>
-                    {% endif %}
-                </td>
-            </tr>
+        <!-- Nom religieux -->
+        <div class="form-group">
+            {{ form.nom_religieux.label_tag }}
+            {% if form.is_bound %}
+                {% if form.nom_religieux.errors %}
+                    {% render_field form.nom_religieux class="is-invalid" %}
+                    {% for error in form.nom_religieux.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.nom_religieux class="is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.nom_religieux %}
+            {% endif %}
+            {% if form.nom_religieux.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.nom_religieux.help_text }}
+                </small>
+            {% endif %}
+        </div>
 
-            <!-- Prénom civil -->
-            <tr class="form-group">
-                <td>{{ form.prenom_civil.label_tag }}</td>
-                <td>
-                    {% if form.is_bound %}
-                        {% if form.prenom_civil.errors %}
-                            {% render_field form.prenom_civil class="is-invalid" %}
-                            {% for error in form.prenom_civil.errors %}
-                                <div class="invalid-feedback">
-                                    {{ error }}
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            {% render_field form.prenom_civil class="is-valid" %}
-                        {% endif %}
-                    {% else %}
-                        {% render_field form.prenom_civil %}
-                    {% endif %}
-                    {% if form.prenom_civil.help_text %}
-                        <small class="form-text text-muted">
-                            {{ form.prenom_civil.help_text }}
-                        </small>
-                    {% endif %}
-                </td>
-            </tr>
+        <!-- Prénom civil -->
+        <div class="form-group">
+            {{ form.prenom_civil.label_tag }}
+            {% if form.is_bound %}
+                {% if form.prenom_civil.errors %}
+                    {% render_field form.prenom_civil class="is-invalid" %}
+                    {% for error in form.prenom_civil.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.prenom_civil class="is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.prenom_civil %}
+            {% endif %}
+            {% if form.prenom_civil.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.prenom_civil.help_text }}
+                </small>
+            {% endif %}
+        </div>
 
-            <!-- Nom civil -->
-            <tr class="form-group">
-                <td>{{ form.nom_civil.label_tag }}</td>
-                <td>
-                    {% if form.is_bound %}
-                        {% if form.nom_civil.errors %}
-                            {% render_field form.nom_civil class="is-invalid" %}
-                            {% for error in form.nom_civil.errors %}
-                                <div class="invalid-feedback">
-                                    {{ error }}
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            {% render_field form.nom_civil class="is-valid" %}
-                        {% endif %}
-                    {% else %}
-                        {% render_field form.nom_civil %}
-                    {% endif %}
-                    {% if form.nom_civil.help_text %}
-                        <small class="form-text text-muted">
-                            {{ form.nom_civil.help_text }}
-                        </small>
-                    {% endif %}
-                </td>
-            </tr>
+        <!-- Nom civil -->
+        <div class="form-group">
+            {{ form.nom_civil.label_tag }}
+            {% if form.is_bound %}
+                {% if form.nom_civil.errors %}
+                    {% render_field form.nom_civil class="is-invalid" %}
+                    {% for error in form.nom_civil.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.nom_civil class="is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.nom_civil %}
+            {% endif %}
+            {% if form.nom_civil.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.nom_civil.help_text }}
+                </small>
+            {% endif %}
+        </div>
 
-            <!-- Date de naissance -->
-            <tr class='form-group'>
-                <td>{{ form.date_naissance.label_tag }}</td>
-                <td>
-                    {% if form.is_bound %}
-                        {% if form.date_naissance.errors %}
-                            {% render_field form.date_naissance class='is-invalid' %}
-                            {% for error in form.date_naissance.errors %}
-                                <div class='invalid-feedback'>
-                                    {{ error }}
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            {% render_field form.date_naissance class='is-valid' %}
-                        {% endif %}
-                    {% else %}
-                        {% render_field form.date_naissance %}
-                    {% endif %}
-                    {% if form.date_naissance.help_text %}
-                        <small class='form-text text-muted'>
-                            {{ form.date_naissance.help_text }}
-                        </small>
-                    {% endif %}
-                </td>
-            </tr>
+        <!-- Date de naissance -->
+        <div class='form-group'>
+            {{ form.date_naissance.label_tag }}
+            {% if form.is_bound %}
+                {% if form.date_naissance.errors %}
+                    {% render_field form.date_naissance class='is-invalid' %}
+                    {% for error in form.date_naissance.errors %}
+                        <div class='invalid-feedback'>
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.date_naissance class='is-valid' %}
+                {% endif %}
+            {% else %}
+                {% render_field form.date_naissance %}
+            {% endif %}
+            {% if form.date_naissance.help_text %}
+                <small class='form-text text-muted'>
+                    {{ form.date_naissance.help_text }}
+                </small>
+            {% endif %}
+        </div>
 
-            <!-- Date du dernier vaccin -->
-            <tr class='form-group'>
-                <td>{{ form.date_vaccin.label_tag }}</td>
-                <td>
-                    {% if form.is_bound %}
-                        {% if form.date_vaccin.errors %}
-                            {% render_field form.date_vaccin class='is-invalid' %}
-                            {% for error in form.date_vaccin.errors %}
-                                <div class='invalid-feedback'>
-                                    {{ error }}
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            {% render_field form.date_vaccin class='is-valid' %}
-                        {% endif %}
-                    {% else %}
-                        {% render_field form.date_vaccin %}
-                    {% endif %}
-                    {% if form.date_vaccin.help_text %}
-                        <small class='form-text text-muted'>
-                            {{ form.date_vaccin.help_text }}
-                        </small>
-                    {% endif %}
-                </td>
-            </tr>
+        <!-- Date du dernier vaccin -->
+        <div class='form-group'>
+            {{ form.date_vaccin.label_tag }}
+            {% if form.is_bound %}
+                {% if form.date_vaccin.errors %}
+                    {% render_field form.date_vaccin class='is-invalid' %}
+                    {% for error in form.date_vaccin.errors %}
+                        <div class='invalid-feedback'>
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.date_vaccin class='is-valid' %}
+                {% endif %}
+            {% else %}
+                {% render_field form.date_vaccin %}
+            {% endif %}
+            {% if form.date_vaccin.help_text %}
+                <small class='form-text text-muted'>
+                    {{ form.date_vaccin.help_text }}
+                </small>
+            {% endif %}
+        </div>
 
-            <!-- Date du denier rendez-vous chez le dentiste -->
-            <tr class='form-group'>
-                <td>{{ form.date_dentiste.label_tag }}</td>
-                <td>
-                    {% if form.is_bound %}
-                        {% if form.date_dentiste.errors %}
-                            {% render_field form.date_dentiste class='is-invalid' %}
-                            {% for error in form.date_dentiste.errors %}
-                                <div class='invalid-feedback'>
-                                    {{ error }}
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            {% render_field form.date_dentiste class='is-valid' %}
-                        {% endif %}
-                    {% else %}
-                        {% render_field form.date_dentiste %}
-                    {% endif %}
-                    {% if form.date_dentiste.help_text %}
-                        <small class='form-text text-muted'>
-                            {{ form.date_dentiste.help_text }}
-                        </small>
-                    {% endif %}
-                </td>
-            </tr>
-        </table>
+        <!-- Date du denier rendez-vous chez le dentiste -->
+        <div class='form-group'>
+            {{ form.date_dentiste.label_tag }}
+            {% if form.is_bound %}
+                {% if form.date_dentiste.errors %}
+                    {% render_field form.date_dentiste class='is-invalid' %}
+                    {% for error in form.date_dentiste.errors %}
+                        <div class='invalid-feedback'>
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.date_dentiste class='is-valid' %}
+                {% endif %}
+            {% else %}
+                {% render_field form.date_dentiste %}
+            {% endif %}
+            {% if form.date_dentiste.help_text %}
+                <small class='form-text text-muted'>
+                    {{ form.date_dentiste.help_text }}
+                </small>
+            {% endif %}
+        </div>
 
-        <button type="submit" class="btn btn-success">Valider</button>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary mx-3">Annuler</button>
+            <button type="submit" class="btn btn-success mx-3">Valider</button>
+        </div>
     </form>
 {% endblock content %}
 
 {% block javascript %}
-    {{ form.media }}
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/tempusdominus-bootstrap-4.min.js' %}"></script>
 {% endblock javascript %}
