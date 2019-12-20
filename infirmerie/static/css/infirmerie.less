@@ -1,13 +1,14 @@
-@blue: rgb(0, 0, 200);
+@blue: rgb(0, 0, 255);
+@blue_bootstrap: rgba(0, 123, 255);
 @green: rgb(0, 100, 0);
 @orange: rgb(231, 131, 0);
 @red: rgb(200, 0, 0);
 
 h1 {
     color: @orange;
-    margin: 0px 0px 20px 0px;
 }
 
+// Links:
 a:hover {
     text-decoration: none;
 }
@@ -20,15 +21,21 @@ a {
     color: @blue;
 }
 
-.page-item.active .page-link {
-    background-color: @blue;
-    border-color: @blue;
+.page-item.active {
+    .page-link {
+        background-color: @blue;
+        border-color: @blue;
+    }
+
+    .page-link:hover {
+        background-color: @blue_bootstrap;
+        border-color: @blue_bootstrap;
+    }
 }
 
 .page-link {
     color: @blue;
 }
-
 
 // Tables:
 .table-borderless td {
@@ -36,6 +43,13 @@ a {
 }
 
 // Detail and form:
+.block {
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+}
+
 label {
     color: @green;
     font-weight: bold;
@@ -47,6 +61,7 @@ small {
     text-align: right;
 }
 
+// Buttons:
 .btn {
     margin: 0px 5px 0px 5px;
     width: 120px;
