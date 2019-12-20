@@ -5,9 +5,12 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
-    <h1>Liste des moines</h1>
+    <h class="d-flex align-self-stretch">
+        <h1 class="mr-auto">Moines</h1>
+        <div class="ml-auto">{% include 'pagination.html' %}</div>
+    </h>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Moine</th>
@@ -24,12 +27,10 @@
                     <td>{{ moine.date_naissance }}</td>
                     <td>{{ moine.date_vaccin }}</td>
                     <td>{{ moine.date_dentiste }}</td>
-                <tr>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    {% include 'pagination.html' %}
-
-    <a href="{% url 'moines:create' %}"><button class="btn btn-primary">Ajouter un moine</button></a>
+    <a href="{% url 'moines:create' %}"><button class="btn btn-primary" style="width: 150px;">Ajouter un moine</button></a>
 {% endblock content %}
