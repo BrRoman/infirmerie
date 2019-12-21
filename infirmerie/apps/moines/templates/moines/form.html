@@ -132,7 +132,7 @@
                     {% if form.date_naissance.errors %}
                         {% render_field form.date_naissance class='is-invalid' %}
                         {% for error in form.date_naissance.errors %}
-                            <div class='invalid-feedback'>
+                            <div class='invalid-feedback d-block'>
                                 {{ error }}
                             </div>
                         {% endfor %}
@@ -156,7 +156,7 @@
                     {% if form.date_vaccin.errors %}
                         {% render_field form.date_vaccin class='is-invalid' %}
                         {% for error in form.date_vaccin.errors %}
-                            <div class='invalid-feedback'>
+                            <div class='invalid-feedback d-block'>
                                 {{ error }}
                             </div>
                         {% endfor %}
@@ -180,7 +180,7 @@
                     {% if form.date_dentiste.errors %}
                         {% render_field form.date_dentiste class='is-invalid' %}
                         {% for error in form.date_dentiste.errors %}
-                            <div class='invalid-feedback'>
+                            <div class='invalid-feedback d-block'>
                                 {{ error }}
                             </div>
                         {% endfor %}
