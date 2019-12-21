@@ -4,80 +4,101 @@
 @orange: rgb(231, 131, 0);
 @red: rgb(200, 0, 0);
 
-h1 {
-    color: @orange;
-}
+body {
+    h1 {
+        color: @orange;
+    }
 
-// Links:
-a:hover {
-    text-decoration: none;
-}
+    // Nav:
+    nav {
+        #logo {
+            img {
+                width: 50px;
+            }
 
-nav a {
-    color: yellowgreen;
-}
+            p {
+                color: yellowgreen;
+                font-family: LucidaHW;
+                font-size: 2em;
+            }
+        }
 
-a {
-    color: @blue;
-}
+        #menu {
+            font-size: 1.3em;
+        }
+    }
 
-.page-item.active {
+    // Links:
+    a:hover {
+        text-decoration: none;
+    }
+
+    nav a {
+        color: yellowgreen;
+    }
+
+    a {
+        color: @blue;
+    }
+
+    .page-item.active {
+        .page-link {
+            background-color: @blue;
+            border-color: @blue;
+        }
+
+        .page-link:hover {
+            background-color: @blue_bootstrap;
+            border-color: @blue_bootstrap;
+        }
+    }
+
     .page-link {
+        color: @blue;
+    }
+
+    // Tables:
+    .table-borderless td {
+        border: 0px;
+    }
+
+    // Detail and form:
+    label {
+        color: @green;
+        font-weight: bold;
+        margin: 0px 5px 0px 0px;
+        min-width: 150px;
+    }
+
+    small {
+        text-align: right;
+    }
+
+    .block {
+        border: 1px solid grey;
+        border-radius: 5px;
+        margin: 10px 0px 10px 0px;
+        padding: 10px;
+    }
+
+    // Buttons:
+    .btn {
+        margin: 0px 5px 0px 5px;
+        width: 120px;
+    }
+
+    .btn-danger {
+        background-color: @red;
+        border-color: @red;
+    }
+
+    .btn-primary {
         background-color: @blue;
         border-color: @blue;
     }
 
-    .page-link:hover {
-        background-color: @blue_bootstrap;
-        border-color: @blue_bootstrap;
+    .btn-success {
+        background-color: @green;
+        border-color: @green;
     }
-}
-
-.page-link {
-    color: @blue;
-}
-
-// Tables:
-.table-borderless td {
-    border: 0px;
-}
-
-// Detail and form:
-.block {
-    border: 1px solid grey;
-    border-radius: 5px;
-    margin: 10px 0px 10px 0px;
-    padding: 10px;
-}
-
-label {
-    color: @green;
-    font-weight: bold;
-    margin: 0px 5px 0px 0px;
-    min-width: 150px;
-}
-
-small {
-    text-align: right;
-}
-
-// Buttons:
-.btn {
-    margin: 0px 5px 0px 5px;
-    width: 120px;
-}
-
-.btn-danger {
-    background-color: @red;
-    border-color: @red;
-}
-
-.btn-primary {
-    background-color: @blue;
-    border-color: @blue;
-}
-
-.btn-success {
-    background-color: @green;
-    border-color: @green;
 }

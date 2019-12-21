@@ -11,16 +11,24 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet/less" href="{% static 'css/infirmerie.less' %}">
         {% block css %}{% endblock css %}
+        
+        <style>@font-face{font-family: "LucidaHW"; src: url("{% static 'fonts/TR Lucida Handwriting Italic.ttf' %}")}</style>
     </head>
 
     <body>
         <nav class="navbar navbar-dark bg-dark">
-            <a href="/" class="navbar-brand"><img src="{% static '/images/infirmerie.png' %}" style="width: 50px;">Infirmerie</a>
-            <form>
-                <a href="/moines/page=1">Moines</a>
-                <a href="/toubibs/page=1">Toubibs</a>
-                <a href="/billets/page=1">Billets</a>
-            </form>
+            <div id="logo">
+                <a href="/" class="d-flex align-items-center">
+                    <img class="navbar-brand mr-2" src="{% static '/images/infirmerie.png' %}">
+                    <p class="my-0">Infirmerie</p>
+                </a>
+            </div>
+
+            <div id="menu">
+                <a class="mx-3" href="/moines/page=1">Moines</a>
+                <a class="mx-3" href="/toubibs/page=1">Toubibs</a>
+                <a class="mx-3" href="/billets/page=1">Billets</a>
+            </div>
         </nav>
         
         <div id="breadcrumbs">
