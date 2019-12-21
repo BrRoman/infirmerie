@@ -16,4 +16,4 @@ class MoinesModelsTests(TestCase):
         """ Return absolute url. """
         author = Moine.objects.get(id=self.moine_test.pk)
         self.assertEqual(author.get_absolute_url(), reverse(
-            'moines:detail', kwargs={'pk': self.moine_test.pk}))
+            'moines:detail', args=[self.moine_test.pk]))
