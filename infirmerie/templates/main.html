@@ -24,16 +24,18 @@
                 </a>
             </div>
 
-            <div id="menu">
-                <a class="mx-3" href="/moines/page=1">Moines</a>
-                <a class="mx-3" href="/toubibs/page=1">Toubibs</a>
-                <a class="mx-3" href="/billets/page=1">Billets</a>
-            </div>
+            {% if user.is_authenticated %}
+                <div id="menu">
+                    <a class="mx-3" href="/billets/">Agenda</a>
+                    <a class="mx-3" href="/moines/page=1">Moines</a>
+                    <a class="mx-3" href="/toubibs/page=1">Toubibs</a>
+                </div>
+            {% endif %}
         </nav>
         
         <div id="breadcrumbs">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href={% url 'agenda:calendar' %}>Accueil</a></li>
+                <li class="breadcrumb-item"><a href={% url 'billets:agenda' %}>Accueil</a></li>
                 {% block breadcrumbs %}
                 {% endblock breadcrumbs %}
             </ol>
