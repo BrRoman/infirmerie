@@ -1,6 +1,9 @@
 """ apps/moines/forms.py """
 
+import datetime
+
 from django import forms
+
 from tempus_dominus.widgets import DatePicker
 
 from .models import Moine
@@ -53,3 +56,27 @@ class MoineForm(forms.ModelForm):
         model = Moine
         fields = ['titre', 'nom_religieux',
                   'prenom_civil', 'nom_civil', 'date_naissance', 'date_vaccin', 'date_dentiste']
+
+    def clean_date_naissance(self):
+        """ Check date naissance in the past. """
+        date_naissance = self.cleaned_data['date_naissance']
+        if date_naissance > datetime.date.today():
+            raise forms.ValidationError(
+                'Date de naissance dans le futur !', code='invalid')
+        return date_naissance
+
+    def clean_date_vaccin(self):
+        """ Check date vaccin in the past. """
+        date_vaccin = self.cleaned_data['date_vaccin']
+        if date_vaccin > datetime.date.today():
+            raise forms.ValidationError(
+                'Date de vaccin dans le futur !', code='invalid')
+        return date_vaccin
+
+    def clean_date_dentiste(self):
+        """ Check date dentiste in the past. """
+        date_dentiste = self.cleaned_data['date_dentiste']
+        if date_dentiste > datetime.date.today():
+            raise forms.ValidationError(
+                'Date de dentiste dans le futur !', code='invalid')
+        return date_dentiste
