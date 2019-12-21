@@ -1,5 +1,8 @@
+""" apps/accounts/views.py """
+
 from django.shortcuts import render
 
 
 def login(request):
-    return render(request, 'accounts/login.html', {})
+    """ Login view. """
+    return render(request, 'accounts/login.html')

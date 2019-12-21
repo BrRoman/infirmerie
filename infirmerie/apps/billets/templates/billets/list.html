@@ -1,9 +1,0 @@
-{% extends 'main.html' %}
-
-{% block content %}
-    <h1>Liste des billets</h1>
-    <ul>
-        <li><a href="{% url 'billets:detail' %}">Billet détail</a></li>
-    </ul>
-    <a href="{% url 'billets:create' %}">Nouveau billet</a>
-{% endblock content %}
