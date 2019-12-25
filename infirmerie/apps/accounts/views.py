@@ -1,8 +1,11 @@
 """ apps/accounts/views.py """
 
-from django.shortcuts import render
+from django.contrib.auth.views import LoginView
+
+from .forms import InfirmerieLoginForm
 
 
-def login(request):
+class InfirmerieLoginView(LoginView):
     """ Login view. """
-    return render(request, 'accounts/login.html')
+    form_class = InfirmerieLoginForm
+    template_name = 'accounts/login.html'
