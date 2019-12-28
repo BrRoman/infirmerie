@@ -31,6 +31,14 @@
                     <a class="mx-3" href="/toubibs/page=1">Toubibs</a>
                 </div>
             {% endif %}
+
+            <div id="connection">
+                {% if user.is_authenticated %}
+                        <a class="mx-3" href="/accounts/logout">Déconnexion</a>
+                {% else %}
+                        <a class="mx-3" href="/accounts/login">Connexion</a>
+                {% endif %}
+            </div>
         </nav>
         
         <div id="breadcrumbs">
