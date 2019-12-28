@@ -1,5 +1,6 @@
 """ apps/moines/views.py """
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -9,7 +10,7 @@ from .models import Moine
 from .forms import MoineForm
 
 
-class MoineListView(ListView):  # pylint: disable=too-many-ancestors
+class MoineListView(LoginRequiredMixin, ListView):  # pylint: disable=too-many-ancestors
     """ List of Moines. """
     template_name = 'moines/list.html'
     paginate_by = 5
@@ -17,7 +18,7 @@ class MoineListView(ListView):  # pylint: disable=too-many-ancestors
         'date_naissance', 'nom_religieux', 'prenom_civil')
 
 
-class MoineCreateView(CreateView):
+class MoineCreateView(LoginRequiredMixin, CreateView):
     """ Create Moine. """
     model = Moine
     form_class = MoineForm
@@ -25,14 +26,14 @@ class MoineCreateView(CreateView):
     success_url = reverse_lazy('moines:list', args=[1])
 
 
-class MoineDetailView(DetailView):
+class MoineDetailView(LoginRequiredMixin, DetailView):
     """ Detail of Moine. """
     fields = ('__all__')
     model = Moine
     template_name = 'moines/detail.html'
 
 
-class MoineUpdateView(UpdateView):
+class MoineUpdateView(LoginRequiredMixin, UpdateView):
     """ Update Moine. """
     model = Moine
     form_class = MoineForm
@@ -40,7 +41,7 @@ class MoineUpdateView(UpdateView):
     success_url = reverse_lazy('moines:list', args=[1])
 
 
-class MoineDeleteView(DeleteView):
+class MoineDeleteView(LoginRequiredMixin, DeleteView):
     """ Delete moine. """
     model = Moine
     success_url = reverse_lazy('moines:list', args=[1])
