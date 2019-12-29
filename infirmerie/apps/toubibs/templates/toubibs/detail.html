@@ -1,7 +1,35 @@
 {% extends 'main.html' %}
 
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'toubibs:list' 1 %}">Toubibs</a></li>
+    <li class="breadcrumb-item active">{{ toubib }}</li>
+{% endblock breadcrumbs %}
+
 {% block content %}
-    <h1>Détail du toubib</h1>
-    <a href="{% url 'toubibs:update' %}">Éditer ce toubib</a>
-    <a href="{% url 'toubibs:list' %}">Retour à la liste des toubibs</a>
+    <h1>{{ toubib }}</h1>
+    <h4>{{ toubib.prenom_civil }} {{ toubib.nom_civil }}</h4>
+
+    <div class="d-flex flex-column align-items-start">
+        <small>Créé le : {{ toubib.created_at }}</small>
+        <small>Dernière modification le : {{ toubib.last_modified }}</small>
+    </div>
+
+    <div class="block row justify-content-center mt-3 mb-2">
+        <table class="table table-borderless my-0">
+            <tr>
+                <td><label>Adresse :</label></td><td>{{ toubib.adresse_complete }}</td>
+            </tr>
+            <tr>
+                <td><label>Téléphone :</label></td><td>{{ toubib.telephone }}</td>
+            </tr>
+            <tr>
+                <td><label>Email :</label></td><td>{{ toubib.email }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'toubibs:delete' toubib.id %}"><button class="btn btn-danger">Supprimer</button></a>
+        <a href="{% url 'toubibs:update' toubib.id %}"><button class="btn btn-primary">Modifier</button></a>
+    </div>
 {% endblock content %}

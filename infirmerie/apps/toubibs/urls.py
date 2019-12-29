@@ -1,11 +1,15 @@
+""" apps/toubibs/urls.py """
+
 from django.urls import path
 
-from . import views
+from .views import ToubibCreateView, ToubibDeleteView, \
+    ToubibDetailView, ToubibListView, ToubibUpdateView
 
 app_name = 'toubibs'
 urlpatterns = [
-    path('', views.list, name='list'),
-    path('create', views.create, name='create'),
-    path('detail', views.detail, name='detail'),
-    path('update', views.update, name='update')
+    path('page=<int:page>', ToubibListView.as_view(), name='list'),
+    path('create', ToubibCreateView.as_view(), name='create'),
+    path('id=<int:pk>/detail', ToubibDetailView.as_view(), name='detail'),
+    path('id=<int:pk>/update', ToubibUpdateView.as_view(), name='update'),
+    path('id=<int:pk>/delete', ToubibDeleteView.as_view(), name='delete'),
 ]

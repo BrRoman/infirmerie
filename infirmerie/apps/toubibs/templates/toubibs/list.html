@@ -1,9 +1,36 @@
 {% extends 'main.html' %}
 
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">Toubibs</li>
+{% endblock breadcrumbs %}
+
 {% block content %}
-    <h1>Liste des toubibs</h1>
-    <ul>
-        <li><a href="{% url 'toubibs:detail' %}">Toubib détail</a></li>
-    </ul>
-    <a href="{% url 'toubibs:create' %}">Nouveau toubib</a>
+    <div class="d-flex align-self-stretch">
+        <h1 class="mr-auto">Toubibs</h1>
+        <div class="ml-auto">{% include 'pagination.html' %}</div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Toubib</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>Mail</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for toubib in object_list %}
+                <tr>
+                    <td><a href="{% url 'toubibs:detail' toubib.id %}">{{ toubib }}</a></td>
+                    <td>{{ toubib.adresse_complete }}</td>
+                    <td>{{ toubib.telephone }}</td>
+                    <td>{{ toubib.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'toubibs:create' %}"><button class="btn btn-primary" style="width: 150px;">Ajouter un toubib</button></a>
 {% endblock content %}
