@@ -16,8 +16,8 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-dark bg-dark">
-            <div id="logo">
+        <nav class="navbar navbar-dark bg-dark d-flex justify-content-center">
+            <div id="logo" class="col-3 mr-auto">
                 <a href="/" class="d-flex align-items-center">
                     <img class="navbar-brand mr-2" src="{% static '/images/infirmerie.png' %}">
                     <p class="my-0">Infirmerie</p>
@@ -26,13 +26,13 @@
 
             {% if user.is_authenticated %}
                 <div id="menu">
-                    <a class="mx-3" href="/billets/">Agenda</a>
-                    <a class="mx-3" href="/moines/page=1">Moines</a>
-                    <a class="mx-3" href="/toubibs/page=1">Toubibs</a>
+                    <a class="mx-3" href="{% url 'billets:agenda' %}">Agenda</a>
+                    <a class="mx-3" href="{% url 'moines:list' 1 %}">Moines</a>
+                    <a class="mx-3" href="{% url 'toubibs:list' 1 %}">Toubibs</a>
                 </div>
             {% endif %}
 
-            <div id="connection">
+            <div id="connection" class="col-3 ml-auto text-right">
                 {% if user.is_authenticated %}
                         <a class="mx-3" href="/accounts/logout">Déconnexion</a>
                 {% else %}
