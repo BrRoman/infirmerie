@@ -60,7 +60,7 @@ class MoineForm(forms.ModelForm):
     def clean_date_naissance(self):
         """ Check date naissance in the past. """
         date_naissance = self.cleaned_data['date_naissance']
-        if date_naissance > datetime.date.today():
+        if date_naissance and date_naissance > datetime.date.today():
             raise forms.ValidationError(
                 'Date de naissance dans le futur !', code='invalid')
         return date_naissance
@@ -68,7 +68,7 @@ class MoineForm(forms.ModelForm):
     def clean_date_vaccin(self):
         """ Check date vaccin in the past. """
         date_vaccin = self.cleaned_data['date_vaccin']
-        if date_vaccin > datetime.date.today():
+        if date_vaccin and date_vaccin > datetime.date.today():
             raise forms.ValidationError(
                 'Date de vaccin dans le futur !', code='invalid')
         return date_vaccin
@@ -76,7 +76,7 @@ class MoineForm(forms.ModelForm):
     def clean_date_dentiste(self):
         """ Check date dentiste in the past. """
         date_dentiste = self.cleaned_data['date_dentiste']
-        if date_dentiste > datetime.date.today():
+        if date_dentiste and date_dentiste > datetime.date.today():
             raise forms.ValidationError(
                 'Date de dentiste dans le futur !', code='invalid')
         return date_dentiste
