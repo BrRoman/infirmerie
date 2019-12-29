@@ -37,9 +37,9 @@ class Moine(models.Model):
     def __str__(self):
         nom_complet = ''
         nom_complet += self.titre + ' ' if self.titre != '-' else ''
-        nom_complet += self.nom_religieux if self.nom_religieux != '' else (
+        nom_complet += self.nom_religieux if self.nom_religieux else (
             self.prenom_civil + ' ' + self.nom_civil)
-        nom_complet += ' Marie' if self.nom_religieux != '' else ''
+        nom_complet += ' Marie' if self.nom_religieux else ''
         return nom_complet
 
     def get_absolute_url(self):

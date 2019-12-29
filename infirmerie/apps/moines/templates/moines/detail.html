@@ -29,7 +29,7 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        <a href="{% url 'moines:delete' moine.id %}"<button class="btn btn-danger">Supprimer</button></a>
+        <a href="{% url 'moines:delete' moine.id %}"><button class="btn btn-danger">Supprimer</button></a>
         <a href="{% url 'moines:update' moine.id %}"><button class="btn btn-primary">Modifier</button></a>
     </div>
 {% endblock content %}
