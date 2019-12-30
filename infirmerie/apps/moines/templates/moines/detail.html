@@ -10,20 +10,20 @@
     <h4>{{ moine.prenom_civil }} {{ moine.nom_civil }}</h4>
 
     <div class="d-flex flex-column align-items-start">
-        <small>Créé le : {{ moine.created_at }}</small>
-        <small>Dernière modification le : {{ moine.last_modified }}</small>
+        <small>Créé le : {{ moine.created_at|date:"d/m/Y" }} à {{ moine.created_at|time:"H:i:s" }}</small>
+        <small>Dernière modification le : {{ moine.last_modified|date:"d/m/Y" }} à {{ moine.last_modified|time:"H:i:s" }}</small>
     </div>
 
     <div class="block row justify-content-center mt-3 mb-2">
         <table class="table table-borderless my-0">
             <tr>
-                <td><label>Date de naissance :</label></td><td>{{ moine.date_naissance }}</td>
+                <td><label>Date de naissance :</label></td><td>{{ moine.date_naissance|date:"d/m/Y" }}</td>
             </tr>
             <tr>
-                <td><label>Vaccin :</label></td><td>{{ moine.date_vaccin }}</td>
+                <td><label>Vaccin :</label></td><td>{{ moine.date_vaccin|date:"d/m/Y" }}</td>
             </tr>
             <tr>
-                <td><label>Dentiste :</label></td><td>{{ moine.date_dentiste }}</td>
+                <td><label>Dentiste :</label></td><td>{{ moine.date_dentiste|date:"d/m/Y" }}</td>
             </tr>
         </table>
     </div>

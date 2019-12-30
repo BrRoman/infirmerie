@@ -39,17 +39,41 @@ class MoineForm(forms.ModelForm):
     date_naissance = forms.DateField(
         required=False,
         label='Date de naissance :',
-        widget=DatePicker(),
+        input_formats=[
+            '%d/%m/%Y',
+        ],
+        widget=DatePicker(options={
+            'format': 'DD/MM/YYYY',
+        }),
+        error_messages={
+            'invalid': 'Date invalide.',
+        }
     )
     date_vaccin = forms.DateField(
         required=False,
         label='Date du dernier vaccin :',
-        widget=DatePicker(),
+        input_formats=[
+            '%d/%m/%Y',
+        ],
+        widget=DatePicker(options={
+            'format': 'DD/MM/YYYY',
+        }),
+        error_messages={
+            'invalid': 'Date invalide.',
+        }
     )
     date_dentiste = forms.DateField(
         required=False,
         label='Dernier rendez-vous dentiste :',
-        widget=DatePicker(),
+        input_formats=[
+            '%d/%m/%Y',
+        ],
+        widget=DatePicker(options={
+            'format': 'DD/MM/YYYY',
+        }),
+        error_messages={
+            'invalid': 'Date invalide.',
+        }
     )
 
     class Meta:

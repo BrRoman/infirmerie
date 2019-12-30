@@ -24,9 +24,9 @@
             {% for moine in object_list %}
                 <tr>
                     <td><a href="{% url 'moines:detail' moine.id %}">{{ moine }}</a></td>
-                    <td>{{ moine.date_naissance }}</td>
-                    <td>{{ moine.date_vaccin }}</td>
-                    <td>{{ moine.date_dentiste }}</td>
+                    <td>{{ moine.date_naissance|date:"d/m/Y"|default_if_none:"" }}</td>
+                    <td>{{ moine.date_vaccin|date:"d/m/Y"|default_if_none:"" }}</td>
+                    <td>{{ moine.date_dentiste|date:"d/m/Y"|default_if_none:"" }}</td>
                 </tr>
             {% endfor %}
         </tbody>
