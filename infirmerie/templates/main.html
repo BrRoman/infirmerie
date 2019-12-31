@@ -27,8 +27,11 @@
             {% if user.is_authenticated %}
                 <div id="menu">
                     <a class="mx-3" href="{% url 'billets:agenda' %}">Agenda</a>
+                    <a href="{% url 'billets:create' %}" title="Créer un nouveau billet" class="link_plus">+</a>
                     <a class="mx-3" href="{% url 'moines:list' 1 %}">Moines</a>
+                    <a href="{% url 'moines:create' %}" title="Créer un nouveau moine" class="link_plus">+</a>
                     <a class="mx-3" href="{% url 'toubibs:list' 1 %}">Toubibs</a>
+                    <a href="{% url 'toubibs:create' %}" title="Créer un nouveau toubib" class="link_plus">+</a>
                 </div>
             {% endif %}
 
