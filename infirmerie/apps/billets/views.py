@@ -10,7 +10,7 @@ from .models import Billet
 class AgendaView(LoginRequiredMixin, ListView):
     """ Agenda (main page of the app). """
     template_name = "billets/agenda.html"
-    queryset = Billet.objects.all()
+    queryset = Billet.objects.all().order_by('datetime')
 
 
 def create(request):

@@ -1,11 +1,13 @@
+""" apps/billets/models.py """
+
 from django.db import models
-from django.contrib.auth.models import User
 
 from apps.moines.models import Moine
 from apps.toubibs.models import Toubib
 
 
 class Billet(models.Model):
+    """ Billet model. """
     moine = models.ForeignKey(
         Moine,
         related_name='billets',
