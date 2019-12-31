@@ -1,6 +1,7 @@
 """ apps/toubibs/models.py """
 
 from django.db import models
+from django.urls import reverse
 
 
 class Toubib(models.Model):
@@ -23,10 +24,14 @@ class Toubib(models.Model):
     def __str__(self):
         nom_complet = self.titre
         nom_complet += ' ' if self.titre else ''
-        nom_complet += self.prenom
+        nom_complet += self.prenom if self.prenom else ''
         nom_complet += ' ' if self.prenom else ''
-        nom_complet += self.nom
+        nom_complet += self.nom.upper()
         return nom_complet
+
+    def get_absolute_url(self):
+        """ Return absolute url. """
+        return reverse('toubibs:detail', args=[self.pk])
 
     def adresse_complete(self):
         """ Return complete address as text. """
