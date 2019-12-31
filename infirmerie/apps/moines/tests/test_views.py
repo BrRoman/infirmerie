@@ -34,21 +34,21 @@ class MoinesViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_list_404(self):
-        """ List view returns 404 code if logged in. """
+        """ List view returns 404 code. """
         self.client.force_login(self.testuser)
         url = reverse('moines:list', args=[9999])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
     def test_list_url_resolves_list_view(self):
-        """ List url resolves to list view if logged in. """
+        """ List url resolves to list view. """
         self.client.force_login(self.testuser)
         view = resolve('/moines/page=1')
         self.assertEqual(view.func.__name__,
                          views.MoineListView.as_view().__name__)
 
     def test_list_view_contains_links_to_moines(self):
-        """ List view contains links to moine if logged in."""
+        """ List view contains links to moine."""
         self.client.force_login(self.testuser)
         moine_url = reverse('moines:detail', args=[self.moine_test.pk])
         response = self.client.get('/moines/page=1')
@@ -63,14 +63,14 @@ class MoinesViewsTests(TestCase):
             response, '/accounts/login?next=' + quote(quote(url)))
 
     def test_create_200(self):
-        """ Create view returns 200 code if logged in. """
+        """ Create view returns 200 code. """
         self.client.force_login(self.testuser)
         url = reverse('moines:create')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_create_url_resolves_create_view(self):
-        """ Create url resolves to create view if logged in. """
+        """ Create url resolves to create view. """
         self.client.force_login(self.testuser)
         view = resolve('/moines/create')
         self.assertEqual(view.func.__name__,
@@ -85,21 +85,21 @@ class MoinesViewsTests(TestCase):
             response, '/accounts/login?next=' + quote(quote(url)))
 
     def test_detail_200(self):
-        """ Detail view returns 200 code if logged in. """
+        """ Detail view returns 200 code. """
         self.client.force_login(self.testuser)
         url = reverse('moines:detail', args=[self.moine_test.pk])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_detail_404(self):
-        """ Detail view returns 404 code if logged in. """
+        """ Detail view returns 404 code. """
         self.client.force_login(self.testuser)
         url = reverse('moines:detail', args=[9999])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
     def test_detail_url_resolves_detail_view(self):
-        """ Detail url resolves to detail view if logged in. """
+        """ Detail url resolves to detail view. """
         self.client.force_login(self.testuser)
         view = resolve('/moines/id=1/detail')
         self.assertEqual(view.func.__name__,
@@ -114,28 +114,28 @@ class MoinesViewsTests(TestCase):
             response, '/accounts/login?next=' + quote(quote(url)))
 
     def test_update_200(self):
-        """ Update view returns 200 code if logged in. """
+        """ Update view returns 200 code. """
         self.client.force_login(self.testuser)
         url = reverse('moines:update', args=[self.moine_test.pk])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_update_404(self):
-        """ Update view returns 404 code if logged in. """
+        """ Update view returns 404 code. """
         self.client.force_login(self.testuser)
         url = reverse('moines:update', args=[9999])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
     def test_update_url_resolves_update_view(self):
-        """ Update url resoves to update view if logged in. """
+        """ Update url resoves to update view. """
         self.client.force_login(self.testuser)
         view = resolve('/moines/id=1/update')
         self.assertEqual(view.func.__name__,
                          views.MoineUpdateView.as_view().__name__)
 
     def test_create_contains_tempus_dominus(self):
-        """ Create form contains 3 x tempus-dominus if logged in. """
+        """ Create form contains 3 x tempus-dominus. """
         self.client.force_login(self.testuser)
         url = reverse('moines:create')
         response = self.client.get(url)
@@ -143,7 +143,7 @@ class MoinesViewsTests(TestCase):
             response, 'class="form-control  datetimepicker-input"', 3)
 
     def test_update_contains_tempus_dominus(self):
-        """ Update form contains 3 x tempus-dominus if logged in. """
+        """ Update form contains 3 x tempus-dominus. """
         self.client.force_login(self.testuser)
         url = reverse('moines:update', args=[self.moine_test.pk])
         response = self.client.get(url)
