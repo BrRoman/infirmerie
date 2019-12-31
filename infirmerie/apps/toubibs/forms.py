@@ -14,6 +14,9 @@ class ToubibForm(forms.ModelForm):
             ('M.', 'Monsieur'),
             ('Mme', 'Madame'),
         ],
+        error_messages={
+            'required': 'Ce champ est obligatoire.',
+        }
     )
     nom = forms.CharField(
         label='Nom :',
@@ -52,6 +55,9 @@ class ToubibForm(forms.ModelForm):
     email = forms.EmailField(
         required=False,
         label='Mail :',
+        error_messages={
+            'invalid': 'Adresse mail invalide.',
+        }
     )
 
     class Meta:
