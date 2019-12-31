@@ -32,4 +32,7 @@
         <a href="{% url 'moines:delete' moine.id %}"><button class="btn btn-danger">Supprimer</button></a>
         <a href="{% url 'moines:update' moine.id %}"><button class="btn btn-primary">Modifier</button></a>
     </div>
+    
+    <a href="{% url 'moines:list' 1 %}" class="btn btn-cancel mx-3">Retour à la liste</a>
+
 {% endblock content %}
