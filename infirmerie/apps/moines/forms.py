@@ -14,7 +14,7 @@ class MoineForm(forms.ModelForm):
     titre = forms.ChoiceField(
         label='Qualité :',
         choices=[
-            ('-', 'Postulant'),
+            ('Postulant', 'Postulant'),
             ('Fr.', 'Frère'),
             ('P.', 'Père'),
         ],
