@@ -38,9 +38,19 @@ class Moine(models.Model):
         nom_complet = ''
         nom_complet += self.titre + ' ' if self.titre != 'Postulant' else ''
         nom_complet += self.nom_religieux if self.nom_religieux else (
-            self.prenom_civil + ' ' + self.nom_civil)
+            self.prenom_civil + ' ' + self.nom_civil.upper())
         nom_complet += ' Marie' if self.nom_religieux else ''
         return nom_complet
+
+    def civil(self):
+        """ Return the complete civil name of the monk. """
+        if self.titre == 'Postulant':
+            return ''
+        civil = ''
+        civil += self.prenom_civil if self.prenom_civil else ''
+        civil += ' ' if self.prenom_civil else ''
+        civil += self.nom_civil.upper() if self.nom_civil else ''
+        return civil
 
     def get_absolute_url(self):
         """ Return absolute url. """

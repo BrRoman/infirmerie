@@ -23,7 +23,7 @@
         <tbody>
             {% for moine in object_list %}
                 <tr>
-                    <td><a href="{% url 'moines:detail' moine.id %}">{{ moine }}</a></td>
+                    <td><a href="{% url 'moines:detail' moine.id %}">{{ moine }} {% if moine.civil != '' %}[{{ moine.civil }}]{% endif %}</a></td>
                     <td>{{ moine.date_naissance|date:"d/m/Y"|default_if_none:"" }}</td>
                     <td>{{ moine.date_vaccin|date:"d/m/Y"|default_if_none:"" }}</td>
                     <td>{{ moine.date_dentiste|date:"d/m/Y"|default_if_none:"" }}</td>
