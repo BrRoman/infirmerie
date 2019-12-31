@@ -37,12 +37,12 @@ class Toubib(models.Model):
         """ Return complete address as text. """
         adresse_complete = ''
         adresse_complete += self.adresse_1 if self.adresse_1 else ''
-        adresse_complete += ('\n' +
-                             self.adresse_2) if self.adresse_2 else ''
-        adresse_complete += ('\n' +
-                             self.adresse_3) if self.adresse_3 else ''
-        adresse_complete += ('\n' +
-                             self.code_postal) if self.code_postal else ''
+        adresse_complete += '\n' if self.adresse_1 else '' + \
+            self.adresse_2 if self.adresse_2 else ''
+        adresse_complete += '\n' if self.adresse_2 else '' + \
+            self.adresse_3 if self.adresse_3 else ''
+        adresse_complete += '\n' if self.adresse_3 else '' + \
+            self.code_postal if self.code_postal else ''
         adresse_complete += ' ' if self.code_postal else ''
         adresse_complete += self.ville if self.ville else ''
         return adresse_complete
