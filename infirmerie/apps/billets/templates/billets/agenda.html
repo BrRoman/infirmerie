@@ -1,5 +1,9 @@
 {% extends 'main.html' %}
 
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">Agenda</li>
+{% endblock breadcrumbs %}
+
 {% block content %}
     <div class="d-flex align-self-stretch">
         <h1 class="mr-auto">Billets</h1>
@@ -18,7 +22,7 @@
         <tbody>
             {% for billet in object_list %}
                 <tr>
-                    <td><a href="{% url 'billets:detail' billet.id %}">{{ billet.datetime|date:"d/m/Y" }} à {{ billet.datetime|time:'H:i:s' }}</a></td>
+                    <td><a href="{% url 'billets:detail' billet.id %}">{{ billet }}</a></td>
                     <td>{{ billet.moine }}</td>
                     <td>{{ billet.toubib }}</td>
                 </tr>

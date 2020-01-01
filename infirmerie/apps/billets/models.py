@@ -18,6 +18,10 @@ class Billet(models.Model):
         related_name='billets',
         on_delete=models.CASCADE
     )
-    datetime = models.DateTimeField()
+    when = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        when = self.when
+        return when.strftime('%d/%m/%Y') + ' à ' + when.strftime('%H:%M')
