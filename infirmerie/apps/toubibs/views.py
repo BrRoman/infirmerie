@@ -6,8 +6,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
-from .models import Toubib
 from .forms import ToubibForm
+from .models import Toubib
 
 
 class ToubibListView(LoginRequiredMixin, ListView):  # pylint: disable=too-many-ancestors

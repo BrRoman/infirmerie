@@ -6,11 +6,11 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
-from .models import Moine
 from .forms import MoineForm
+from .models import Moine
 
 
-class MoineListView(LoginRequiredMixin, ListView):  # pylint: disable=too-many-ancestors
+class MoineListView(LoginRequiredMixin, ListView):
     """ List of Moines. """
     template_name = 'moines/list.html'
     paginate_by = 5
