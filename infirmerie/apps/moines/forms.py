@@ -42,9 +42,12 @@ class MoineForm(forms.ModelForm):
         input_formats=[
             '%d/%m/%Y',
         ],
-        widget=DatePicker(options={
-            'format': 'DD/MM/YYYY',
-        }),
+        widget=DatePicker(
+            options={
+                'format': 'DD/MM/YYYY',
+                'locale': 'fr',
+            }
+        ),
         error_messages={
             'invalid': 'Date invalide.',
         }

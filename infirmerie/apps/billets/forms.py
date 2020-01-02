@@ -21,7 +21,6 @@ class BilletForm(forms.ModelForm):
                 'format': 'DD/MM/YYYY HH:mm',
                 'locale': 'fr',
                 'sideBySide': True,
-                'timeZone': 'Europe/Paris',
             },
         ),
         error_messages={
