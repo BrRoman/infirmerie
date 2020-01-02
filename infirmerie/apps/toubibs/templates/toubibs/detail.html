@@ -1,5 +1,7 @@
 {% extends 'main.html' %}
 
+{% load tz %}
+
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'toubibs:list' 1 %}">Toubibs</a></li>
     <li class="breadcrumb-item active">{{ toubib }}</li>
@@ -10,8 +12,10 @@
     <h4>{{ toubib.prenom_civil }} {{ toubib.nom_civil }}</h4>
 
     <div class="d-flex flex-column align-items-start">
-        <small>Créé le : {{ toubib.created_at|date:"d/m/Y" }} à {{ toubib.created_at|time:"H:i:s" }}</small>
-        <small>Dernière modification le : {{ toubib.last_modified|date:"d/m/Y" }} à {{ toubib.last_modified|time:"H:i:s" }}</small>
+        {% localtime on %}
+            <small>Créé le : {{ toubib.created_at|date:"d/m/Y" }} à {{ toubib.created_at|time:"H:i:s" }}</small>
+            <small>Dernière modification le : {{ toubib.last_modified|date:"d/m/Y" }} à {{ toubib.last_modified|time:"H:i:s" }}</small>
+        {% endlocaltime %}
     </div>
 
     <div class="block row justify-content-center mt-3 mb-2">
