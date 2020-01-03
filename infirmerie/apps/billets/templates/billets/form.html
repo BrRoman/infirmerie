@@ -4,11 +4,11 @@
 {% load widget_tweaks %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/tempusdominus-bootstrap-4.min.css' %}">
+    <link rel="stylesheet" href="{% static "css/tempusdominus-bootstrap-4.min.css" %}">
 {% endblock css %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{% url 'billets:agenda' 1 %}">Agenda</a></li>
+    <li class="breadcrumb-item"><a href="{% url "billets:agenda" 1 %}">Agenda</a></li>
     {% if object %}
         <li class="breadcrumb-item"><a href="{% url "billets:detail" billet.id %}">{{ billet }}</a></li>
         <li class="breadcrumb-item active">Modifier</li>
@@ -28,72 +28,75 @@
         {% csrf_token %}
 
         <div class="block">
-            <div class='form-group'>
+            <!-- Quand ? -->
+            <div class="form-group">
                 {{ form.when.label_tag }}
                 {% if form.is_bound %}
                     {% if form.when.errors %}
-                        {% render_field form.when class='is-invalid' %}
+                        {% render_field form.when class="form-control is-invalid" %}
                         {% for error in form.when.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.when class='is-valid' %}
+                        {% render_field form.when class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.when %}
+                    {% render_field form.when class="form-control" %}
                 {% endif %}
                 {% if form.when.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.when.help_text }}
                     </small>
                 {% endif %}
             </div>
 
+            <!-- Moine -->
             <div class="form-group">
-                <div class='form-group'>
+                <div class="form-group">
                     {{ form.moine.label_tag }}
                     {% if form.is_bound %}
                         {% if form.moine.errors %}
-                            {% render_field form.moine class='is-invalid' %}
+                            {% render_field form.moine class="custom-select form-control is-invalid" %}
                             {% for error in form.moine.errors %}
-                                <div class='invalid-feedback' style='display: block;'>
+                                <div class="invalid-feedback" style="display: block;">
                                     {{ error }}
                                 </div>
                             {% endfor %}
                         {% else %}
-                            {% render_field form.moine class='is-valid' %}
+                            {% render_field form.moine class="custom-select form-control is-valid" %}
                         {% endif %}
                     {% else %}
-                        {% render_field form.moine %}
+                        {% render_field form.moine class="custom-select form-control" %}
                     {% endif %}
                     {% if form.moine.help_text %}
-                        <small class='form-text text-muted'>
+                        <small class="form-text text-muted">
                             {{ form.moine.help_text }}
                         </small>
                     {% endif %}
                 </div>
             </div>
 
-            <div class='form-group'>
+            <!-- Toubib -->
+            <div class="form-group">
                 {{ form.toubib.label_tag }}
                 {% if form.is_bound %}
                     {% if form.toubib.errors %}
-                        {% render_field form.when class='is-invalid' %}
+                        {% render_field form.when class="custom-select form-control is-invalid" %}
                         {% for error in form.toubib.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.toubib class='is-valid' %}
+                        {% render_field form.toubib class="custom-select form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.toubib %}
+                    {% render_field form.toubib class="custom-select form-control" %}
                 {% endif %}
                 {% if form.toubib.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.toubib.help_text }}
                     </small>
                 {% endif %}
@@ -101,14 +104,14 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <a href="{% url 'billets:agenda' 1 %}" class="btn btn-primary mx-3">Annuler</a>
+            <a href="{% url "billets:agenda" 1 %}" class="btn btn-primary mx-3">Annuler</a>
             <button type="submit" class="btn btn-success mx-3">Valider</button>
         </div>
     </form>
 {% endblock content %}
 
 {% block javascript %}
-    <script src="{% static 'js/moment.min.js' %}"></script>
-    <script src="{% static 'js/moment-locale-fr.js' %}"></script>
-    <script src="{% static 'js/tempusdominus-bootstrap-4.min.js' %}"></script>
+    <script src="{% static "js/moment.min.js" %}"></script>
+    <script src="{% static "js/moment-locale-fr.js" %}"></script>
+    <script src="{% static "js/tempusdominus-bootstrap-4.min.js" %}"></script>
 {% endblock javascript %}

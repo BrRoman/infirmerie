@@ -33,17 +33,17 @@
                 {{ form.titre.label_tag }}
                 {% if form.is_bound %}
                     {% if form.titre.errors %}
-                        {% render_field form.titre class="is-invalid" %}
+                        {% render_field form.titre class="custom-select form-control is-invalid" %}
                         {% for error in form.titre.errors %}
                             <div class="invalid-feedback d-block">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.titre class="is-valid" %}
+                        {% render_field form.titre class="custom-select form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.titre %}
+                    {% render_field form.titre class="custom-select form-control" %}
                 {% endif %}
                 
                 {% if form.titre.help_text %}
@@ -58,17 +58,17 @@
                 {{ form.nom_religieux.label_tag }}
                 {% if form.is_bound %}
                     {% if form.nom_religieux.errors %}
-                        {% render_field form.nom_religieux class="is-invalid" %}
+                        {% render_field form.nom_religieux class="form-control is-invalid" %}
                         {% for error in form.nom_religieux.errors %}
                             <div class="invalid-feedback d-block">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.nom_religieux class="is-valid" %}
+                        {% render_field form.nom_religieux class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.nom_religieux %}
+                    {% render_field form.nom_religieux class="form-control" %}
                 {% endif %}
                 {% if form.nom_religieux.help_text %}
                     <small class="form-text text-muted">
@@ -82,17 +82,17 @@
                 {{ form.prenom_civil.label_tag }}
                 {% if form.is_bound %}
                     {% if form.prenom_civil.errors %}
-                        {% render_field form.prenom_civil class="is-invalid" %}
+                        {% render_field form.prenom_civil class="form-control is-invalid" %}
                         {% for error in form.prenom_civil.errors %}
                             <div class="invalid-feedback d-block">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.prenom_civil class="is-valid" %}
+                        {% render_field form.prenom_civil class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.prenom_civil %}
+                    {% render_field form.prenom_civil class="form-control" %}
                 {% endif %}
                 {% if form.prenom_civil.help_text %}
                     <small class="form-text text-muted">
@@ -106,17 +106,17 @@
                 {{ form.nom_civil.label_tag }}
                 {% if form.is_bound %}
                     {% if form.nom_civil.errors %}
-                        {% render_field form.nom_civil class="is-invalid" %}
+                        {% render_field form.nom_civil class="form-control is-invalid" %}
                         {% for error in form.nom_civil.errors %}
                             <div class="invalid-feedback d-block">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.nom_civil class="is-valid" %}
+                        {% render_field form.nom_civil class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.nom_civil %}
+                    {% render_field form.nom_civil class="form-control" %}
                 {% endif %}
                 {% if form.nom_civil.help_text %}
                     <small class="form-text text-muted">
@@ -140,7 +140,7 @@
                         {% render_field form.date_naissance class='is-valid' %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.date_naissance %}
+                    {% render_field form.date_naissance class="form-control" %}
                 {% endif %}
                 {% if form.date_naissance.help_text %}
                     <small class='form-text text-muted'>
@@ -164,7 +164,7 @@
                         {% render_field form.date_vaccin class='is-valid' %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.date_vaccin %}
+                    {% render_field form.date_vaccin class="form-control" %}
                 {% endif %}
                 {% if form.date_vaccin.help_text %}
                     <small class='form-text text-muted'>
@@ -188,7 +188,7 @@
                         {% render_field form.date_dentiste class='is-valid' %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.date_dentiste %}
+                    {% render_field form.date_dentiste class="form-control" %}
                 {% endif %}
                 {% if form.date_dentiste.help_text %}
                     <small class='form-text text-muted'>

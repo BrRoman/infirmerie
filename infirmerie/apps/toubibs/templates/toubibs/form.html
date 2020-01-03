@@ -4,11 +4,11 @@
 {% load widget_tweaks %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/tempusdominus-bootstrap-4.min.css' %}">
+    <link rel="stylesheet" href="{% static "css/tempusdominus-bootstrap-4.min.css" %}">
 {% endblock css %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{% url 'toubibs:list' 1 %}">Toubibs</a></li>
+    <li class="breadcrumb-item"><a href="{% url "toubibs:list" 1 %}">Toubibs</a></li>
     {% if object %}
         <li class="breadcrumb-item"><a href="{% url "toubibs:detail" toubib.id %}">{{ toubib }}</a></li>
         <li class="breadcrumb-item active">Modifier</li>
@@ -33,17 +33,17 @@
                 {{ form.titre.label_tag }}
                 {% if form.is_bound %}
                     {% if form.titre.errors %}
-                        {% render_field form.titre class="is-invalid" %}
+                        {% render_field form.titre class="custom-select form-control is-invalid" %}
                         {% for error in form.titre.errors %}
                             <div class="invalid-feedback d-block">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.titre class="is-valid" %}
+                        {% render_field form.titre class="custom-select form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.titre %}
+                    {% render_field form.titre class="custom-select form-control" %}
                 {% endif %}
                 
                 {% if form.titre.help_text %}
@@ -54,216 +54,216 @@
             </div>
 
             <!-- Prénom -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.prenom.label_tag }}
                 {% if form.is_bound %}
                     {% if form.prenom.errors %}
-                        {% render_field form.prenom class='is-invalid' %}
+                        {% render_field form.prenom class="form-control is-invalid" %}
                         {% for error in form.prenom.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.prenom class='is-valid' %}
+                        {% render_field form.prenom class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.prenom %}
+                    {% render_field form.prenom class="form-control" %}
                 {% endif %}
                 {% if form.prenom.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.prenom.help_text }}
                     </small>
                 {% endif %}
             </div>
 
             <!-- Nom -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.nom.label_tag }}
                 {% if form.is_bound %}
                     {% if form.nom.errors %}
-                        {% render_field form.nom class='is-invalid' %}
+                        {% render_field form.nom class="form-control is-invalid" %}
                         {% for error in form.nom.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.nom class='is-valid' %}
+                        {% render_field form.nom class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.nom %}
+                    {% render_field form.nom class="form-control" %}
                 {% endif %}
                 {% if form.nom.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.nom.help_text }}
                     </small>
                 {% endif %}
             </div>
 
             <!-- Adresse 1 -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.adresse_1.label_tag }}
                 {% if form.is_bound %}
                     {% if form.adresse_1.errors %}
-                        {% render_field form.adresse_1 class='is-invalid' %}
+                        {% render_field form.adresse_1 class="form-control is-invalid" %}
                         {% for error in form.adresse_1.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.adresse_1 class='is-valid' %}
+                        {% render_field form.adresse_1 class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.adresse_1 %}
+                    {% render_field form.adresse_1 class="form-control" %}
                 {% endif %}
                 {% if form.adresse_1.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.adresse_1.help_text }}
                     </small>
                 {% endif %}
             </div>
 
             <!-- Adresse 2 -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.adresse_2.label_tag }}
                 {% if form.is_bound %}
                     {% if form.adresse_2.errors %}
-                        {% render_field form.adresse_2 class='is-invalid' %}
+                        {% render_field form.adresse_2 class="form-control is-invalid" %}
                         {% for error in form.adresse_2.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.adresse_2 class='is-valid' %}
+                        {% render_field form.adresse_2 class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.adresse_2 %}
+                    {% render_field form.adresse_2 class="form-control" %}
                 {% endif %}
                 {% if form.adresse_2.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.adresse_2.help_text }}
                     </small>
                 {% endif %}
             </div>
 
             <!-- Adresse 3 -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.adresse_3.label_tag }}
                 {% if form.is_bound %}
                     {% if form.adresse_3.errors %}
-                        {% render_field form.adresse_3 class='is-invalid' %}
+                        {% render_field form.adresse_3 class="form-control is-invalid" %}
                         {% for error in form.adresse_3.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.adresse_3 class='is-valid' %}
+                        {% render_field form.adresse_3 class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.adresse_3 %}
+                    {% render_field form.adresse_3 class="form-control" %}
                 {% endif %}
                 {% if form.adresse_3.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.adresse_3.help_text }}
                     </small>
                 {% endif %}
             </div>
 
             <!-- Code postal -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.code_postal.label_tag }}
                 {% if form.is_bound %}
                     {% if form.code_postal.errors %}
-                        {% render_field form.code_postal class='is-invalid' %}
+                        {% render_field form.code_postal class="form-control is-invalid" %}
                         {% for error in form.code_postal.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.code_postal class='is-valid' %}
+                        {% render_field form.code_postal class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.code_postal %}
+                    {% render_field form.code_postal class="form-control" %}
                 {% endif %}
                 {% if form.code_postal.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.code_postal.help_text }}
                     </small>
                 {% endif %}
             </div>
 
             <!-- Ville -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.ville.label_tag }}
                 {% if form.is_bound %}
                     {% if form.ville.errors %}
-                        {% render_field form.ville class='is-invalid' %}
+                        {% render_field form.ville class="form-control is-invalid" %}
                         {% for error in form.ville.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.ville class='is-valid' %}
+                        {% render_field form.ville class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.ville %}
+                    {% render_field form.ville class="form-control" %}
                 {% endif %}
                 {% if form.ville.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.ville.help_text }}
                     </small>
                 {% endif %}
             </div>
 
             <!-- Téléphone -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.telephone.label_tag }}
                 {% if form.is_bound %}
                     {% if form.telephone.errors %}
-                        {% render_field form.telephone class='is-invalid' %}
+                        {% render_field form.telephone class="form-control is-invalid" %}
                         {% for error in form.telephone.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.telephone class='is-valid' %}
+                        {% render_field form.telephone class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.telephone %}
+                    {% render_field form.telephone class="form-control" %}
                 {% endif %}
                 {% if form.telephone.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.telephone.help_text }}
                     </small>
                 {% endif %}
             </div>
 
             <!-- Mail -->
-            <div class='form-group'>
+            <div class="form-group">
                 {{ form.email.label_tag }}
                 {% if form.is_bound %}
                     {% if form.email.errors %}
-                        {% render_field form.email class='is-invalid' %}
+                        {% render_field form.email class="form-control is-invalid" %}
                         {% for error in form.email.errors %}
-                            <div class='invalid-feedback' style='display: block;'>
+                            <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.email class='is-valid' %}
+                        {% render_field form.email class="form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.email %}
+                    {% render_field form.email class="form-control" %}
                 {% endif %}
                 {% if form.email.help_text %}
-                    <small class='form-text text-muted'>
+                    <small class="form-text text-muted">
                         {{ form.email.help_text }}
                     </small>
                 {% endif %}
@@ -272,7 +272,7 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <a href="{% url 'toubibs:list' 1 %}" class="btn btn-primary mx-3">Annuler</a>
+            <a href="{% url "toubibs:list" 1 %}" class="btn btn-primary mx-3">Annuler</a>
             <button type="submit" class="btn btn-success mx-3">Valider</button>
         </div>
     </form>
