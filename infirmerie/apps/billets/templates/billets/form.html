@@ -28,6 +28,30 @@
         {% csrf_token %}
 
         <div class="block">
+            <!-- Titre -->
+            <div class="form-group">
+                {{ form.titre.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.titre.errors %}
+                        {% render_field form.titre class="form-control is-invalid" %}
+                        {% for error in form.titre.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.titre class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.titre class="form-control" %}
+                {% endif %}
+                {% if form.titre.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.titre.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
             <!-- Quand ? -->
             <div class="form-group">
                 {{ form.when.label_tag }}
@@ -83,7 +107,7 @@
                 {{ form.toubib.label_tag }}
                 {% if form.is_bound %}
                     {% if form.toubib.errors %}
-                        {% render_field form.when class="custom-select form-control is-invalid" %}
+                        {% render_field form.toubib class="custom-select form-control is-invalid" %}
                         {% for error in form.toubib.errors %}
                             <div class="invalid-feedback" style="display: block;">
                                 {{ error }}

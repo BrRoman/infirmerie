@@ -13,6 +13,7 @@
     <table class="table table-striped table-bordered table-sm">
         <thead>
             <tr>
+                <th>Titre</th>
                 <th>Date</th>
                 <th>Moine</th>
                 <th>Toubib</th>
@@ -23,6 +24,7 @@
             {% for billet in object_list %}
                 <tr>
                     <td><a href="{% url 'billets:detail' billet.id %}">{{ billet }}</a></td>
+                    <td>{{ billet.date_time }}</td>
                     <td>{{ billet.moine }}</td>
                     <td>{{ billet.toubib }}</td>
                 </tr>

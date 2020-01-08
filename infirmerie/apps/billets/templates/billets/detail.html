@@ -8,8 +8,8 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
-    <h1>Billet du</h1>
-    <h4>{{ billet }}</h4>
+    <h1>{{ billet }}</h1>
+    <h4>{{ billet.date_time }}</h4>
 
     <div class="d-flex flex-column align-items-start">
         {% localtime on %}

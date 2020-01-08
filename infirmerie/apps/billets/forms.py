@@ -11,6 +11,13 @@ from .models import Billet
 
 class BilletForm(forms.ModelForm):
     """ Billet form. """
+    titre = forms.CharField(
+        max_length=255,
+        error_messages={
+            'required': 'Ce champ est obligatoire',
+        },
+        help_text='Par exemple "P. Vianney (ophtalmo)"',
+    )
     when = forms.DateTimeField(
         label='Date et heure :',
         input_formats=[
@@ -45,4 +52,4 @@ class BilletForm(forms.ModelForm):
 
     class Meta:
         model = Billet
-        fields = ('when', 'moine', 'toubib')
+        fields = ('titre', 'when', 'moine', 'toubib')

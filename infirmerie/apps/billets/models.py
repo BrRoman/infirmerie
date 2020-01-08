@@ -8,6 +8,9 @@ from apps.toubibs.models import Toubib
 
 class Billet(models.Model):
     """ Billet model. """
+    titre = models.CharField(
+        max_length=255,
+    )
     moine = models.ForeignKey(
         Moine,
         related_name='billets',
@@ -23,5 +26,8 @@ class Billet(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        when = self.when
-        return when.strftime('%d/%m/%Y') + ' à ' + when.strftime('%H:%M')
+        return self.titre
+
+    def date_time(self):
+        """ Return date and time of rendez-vous under human form. """
+        return self.when.strftime('%d/%m/%Y') + ' à ' + self.when.strftime('%H:%M')
