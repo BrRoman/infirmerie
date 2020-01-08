@@ -24,10 +24,11 @@
         <h1>Créer un nouveau moine</h1>
     {% endif %}
 
-    <form method="post" novalidate>
-        {% csrf_token %}
-        
-        <div class="block">
+    <div class="col-5">
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
             <!-- Qualité -->
             <div class="form-group">
                 {{ form.titre.label_tag }}
@@ -196,13 +197,109 @@
                     </small>
                 {% endif %}
             </div>
-        </div>
 
-        <div class="d-flex justify-content-center">
-            <a href="{% url 'moines:list' 1 %}" class="btn btn-primary mx-3">Annuler</a>
-            <button type="submit" class="btn btn-success mx-3">Valider</button>
-        </div>
-    </form>
+            <!-- Date du dernier rendez-vous chez l'ophtalmo -->
+            <div class="form-group">
+                {{ form.date_ophtalmo.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.date_ophtalmo.errors %}
+                        {% render_field form.date_ophtalmo class="form-control is-invalid" %}
+                        {% for error in form.date_ophtalmo.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.date_ophtalmo class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.date_ophtalmo class="form-control" %}
+                {% endif %}
+                {% if form.date_ophtalmo.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.date_ophtalmo.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
+            <!-- Date du dernier don du sang -->
+            <div class="form-group">
+                {{ form.date_don_sang.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.date_don_sang.errors %}
+                        {% render_field form.date_don_sang class="form-control is-invalid" %}
+                        {% for error in form.date_don_sang.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.date_don_sang class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.date_don_sang class="form-control" %}
+                {% endif %}
+                {% if form.date_don_sang.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.date_don_sang.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
+            <!-- Date du dernier examen prostate -->
+            <div class="form-group">
+                {{ form.date_prostate.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.date_prostate.errors %}
+                        {% render_field form.date_prostate class="form-control is-invalid" %}
+                        {% for error in form.date_prostate.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.date_prostate class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.date_prostate class="form-control" %}
+                {% endif %}
+                {% if form.date_prostate.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.date_prostate.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
+            <!-- Date du dernier examen hémocult -->
+            <div class="form-group">
+                {{ form.date_hemocult.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.date_hemocult.errors %}
+                        {% render_field form.date_hemocult class="form-control is-invalid" %}
+                        {% for error in form.date_hemocult.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.date_hemocult class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.date_hemocult class="form-control" %}
+                {% endif %}
+                {% if form.date_hemocult.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.date_hemocult.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'moines:list' 1 %}" class="btn btn-primary mx-3">Annuler</a>
+                <button type="submit" class="btn btn-success mx-3">Valider</button>
+            </div>
+        </form>
+    </div>
 {% endblock content %}
 
 {% block javascript %}

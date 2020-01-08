@@ -78,11 +78,63 @@ class MoineForm(forms.ModelForm):
             'invalid': 'Date invalide.',
         }
     )
+    date_ophtalmo = forms.DateField(
+        required=False,
+        label='Dernier rendez-vous ophtalmo :',
+        input_formats=[
+            '%d/%m/%Y',
+        ],
+        widget=DatePicker(options={
+            'format': 'DD/MM/YYYY',
+        }),
+        error_messages={
+            'invalid': 'Date invalide.',
+        }
+    )
+    date_don_sang = forms.DateField(
+        required=False,
+        label='Dernier don du sang :',
+        input_formats=[
+            '%d/%m/%Y',
+        ],
+        widget=DatePicker(options={
+            'format': 'DD/MM/YYYY',
+        }),
+        error_messages={
+            'invalid': 'Date invalide.',
+        }
+    )
+    date_prostate = forms.DateField(
+        required=False,
+        label='Dernier examen prostate :',
+        input_formats=[
+            '%d/%m/%Y',
+        ],
+        widget=DatePicker(options={
+            'format': 'DD/MM/YYYY',
+        }),
+        error_messages={
+            'invalid': 'Date invalide.',
+        }
+    )
+    date_hemocult = forms.DateField(
+        required=False,
+        label='Dernier examen hémocult :',
+        input_formats=[
+            '%d/%m/%Y',
+        ],
+        widget=DatePicker(options={
+            'format': 'DD/MM/YYYY',
+        }),
+        error_messages={
+            'invalid': 'Date invalide.',
+        }
+    )
 
     class Meta:
         model = Moine
         fields = ['titre', 'nom_religieux',
-                  'prenom_civil', 'nom_civil', 'date_naissance', 'date_vaccin', 'date_dentiste']
+                  'prenom_civil', 'nom_civil', 'date_naissance', 'date_vaccin', 'date_dentiste', 'date_ophtalmo', 'date_don_sang', 'date_prostate', 'date_hemocult']
 
     def clean_date_naissance(self):
         """ Check date naissance in the past. """

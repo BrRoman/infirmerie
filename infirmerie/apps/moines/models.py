@@ -18,6 +18,10 @@ class Moine(models.Model):
     nom_civil = models.CharField(
         max_length=255,
     )
+    numero_secu = models.CharField(
+        max_length=15,
+        null=True,
+    )
     date_naissance = models.DateField(
         null=True,
     )
@@ -25,6 +29,18 @@ class Moine(models.Model):
         null=True,
     )
     date_dentiste = models.DateField(
+        null=True,
+    )
+    date_ophtalmo = models.DateField(
+        null=True,
+    )
+    date_don_sang = models.DateField(
+        null=True,
+    )
+    date_prostate = models.DateField(
+        null=True,
+    )
+    date_hemocult = models.DateField(
         null=True,
     )
     created_at = models.DateTimeField(
