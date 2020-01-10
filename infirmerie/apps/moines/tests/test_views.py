@@ -135,17 +135,17 @@ class MoinesViewsTests(TestCase):
                          views.MoineUpdateView.as_view().__name__)
 
     def test_create_contains_tempus_dominus(self):
-        """ Create form contains 3 x tempus-dominus. """
+        """ Create form contains 7 x tempus-dominus. """
         self.client.force_login(self.testuser)
         url = reverse('moines:create')
         response = self.client.get(url)
         self.assertContains(
-            response, 'class="form-control  datetimepicker-input"', 3)
+            response, 'class="form-control datetimepicker-input"', 7)
 
     def test_update_contains_tempus_dominus(self):
-        """ Update form contains 3 x tempus-dominus. """
+        """ Update form contains 7 x tempus-dominus. """
         self.client.force_login(self.testuser)
         url = reverse('moines:update', args=[self.moine_test.pk])
         response = self.client.get(url)
         self.assertContains(
-            response, 'class="form-control  datetimepicker-input"', 3)
+            response, 'class="form-control datetimepicker-input"', 7)
