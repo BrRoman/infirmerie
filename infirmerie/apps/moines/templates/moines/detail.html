@@ -21,6 +21,12 @@
     <div class="block row justify-content-center mt-3 mb-2">
         <table class="table table-borderless my-0">
             <tr>
+                <td><label>Médecin traitant :</label></td><td>{{ moine.medecin_traitant|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td><label>Dentiste :</label></td><td>{{ moine.dentiste|default_if_none:'' }}</td>
+            </tr>
+            <tr>
                 <td><label>Date de naissance :</label></td><td>{{ moine.date_naissance|date:"d/m/Y" }}</td>
             </tr>
             <tr>

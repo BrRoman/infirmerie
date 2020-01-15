@@ -3,6 +3,8 @@
 from django.db import models
 from django.urls import reverse
 
+from apps.toubibs.models import Toubib
+
 
 class Moine(models.Model):
     """ Moine model. """
@@ -24,6 +26,18 @@ class Moine(models.Model):
     )
     date_naissance = models.DateField(
         null=True,
+    )
+    medecin_traitant = models.ForeignKey(
+        null=True,
+        to=Toubib,
+        on_delete=models.SET_NULL,
+        related_name='medecin_traitant',
+    )
+    dentiste = models.ForeignKey(
+        null=True,
+        to=Toubib,
+        on_delete=models.SET_NULL,
+        related_name='dentiste',
     )
     date_vaccin = models.DateField(
         null=True,

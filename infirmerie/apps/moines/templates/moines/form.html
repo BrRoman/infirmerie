@@ -150,6 +150,54 @@
                 {% endif %}
             </div>
 
+            <!-- Médecin traitant -->
+            <div class="form-group">
+                {{ form.medecin_traitant.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.medecin_traitant.errors %}
+                        {% render_field form.medecin_traitant class="custom-select form-control is-invalid" %}
+                        {% for error in form.medecin_traitant.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.medecin_traitant class="custom-select form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.medecin_traitant class="custom-select form-control" %}
+                {% endif %}
+                {% if form.medecin_traitant.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.medecin_traitant.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
+            <!-- Dentiste -->
+            <div class="form-group">
+                {{ form.dentiste.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.dentiste.errors %}
+                        {% render_field form.dentiste class="form-control is-invalid" %}
+                        {% for error in form.dentiste.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.dentiste class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.dentiste class="form-control" %}
+                {% endif %}
+                {% if form.dentiste.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.dentiste.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
             <!-- Date du dernier vaccin -->
             <div class='form-group'>
                 {{ form.date_vaccin.label_tag }}

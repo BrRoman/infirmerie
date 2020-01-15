@@ -6,6 +6,7 @@ from django import forms
 
 from tempus_dominus.widgets import DatePicker
 
+from apps.toubibs.models import Toubib
 from .models import Moine
 
 
@@ -51,6 +52,16 @@ class MoineForm(forms.ModelForm):
         error_messages={
             'invalid': 'Date invalide.',
         }
+    )
+    medecin_traitant = forms.ModelChoiceField(
+        queryset=Toubib.objects.filter(
+            specialite='Généraliste').order_by('nom', 'prenom'),
+        label='Médecin traitant',
+    )
+    dentiste = forms.ModelChoiceField(
+        queryset=Toubib.objects.filter(
+            specialite='Dentiste').order_by('nom', 'prenom'),
+        label='Dentiste',
     )
     date_vaccin = forms.DateField(
         required=False,
@@ -134,7 +145,7 @@ class MoineForm(forms.ModelForm):
     class Meta:
         model = Moine
         fields = ['titre', 'nom_religieux',
-                  'prenom_civil', 'nom_civil', 'date_naissance', 'date_vaccin', 'date_dentiste', 'date_ophtalmo', 'date_don_sang', 'date_prostate', 'date_hemocult']
+                  'prenom_civil', 'nom_civil', 'date_naissance', 'medecin_traitant', 'dentiste', 'date_vaccin', 'date_dentiste', 'date_ophtalmo', 'date_don_sang', 'date_prostate', 'date_hemocult']
 
     def clean_date_naissance(self):
         """ Check date naissance in the past. """
