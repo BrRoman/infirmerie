@@ -28,6 +28,25 @@ class ToubibForm(forms.ModelForm):
         required=False,
         label='Prénom :',
     )
+    specialite = forms.ChoiceField(
+        label='Spécialité :',
+        choices=[
+            ('Généraliste', 'Généraliste'),
+            ('Dentiste', 'Dentiste'),
+            ('Ophtalmo', 'Ophtalmo'),
+            ('Gastro', 'Gastro'),
+            ('Rhumato', 'Rhumato'),
+            ('ORL', 'ORL'),
+            ('Homéopathe', 'Homéopathe'),
+            ('Kiné', 'Kiné'),
+            ('Infirmière', 'Infirmière'),
+            ('Acupuncteur', 'Acupuncteur'),
+            ('Pharmacien', 'Pharmacien'),
+        ],
+        error_messages={
+            'required': 'Ce champ est obligatoire',
+        },
+    )
     adresse_1 = forms.CharField(
         required=False,
         label='Adresse 1 :',
@@ -62,5 +81,5 @@ class ToubibForm(forms.ModelForm):
 
     class Meta:
         model = Toubib
-        fields = ['titre', 'nom', 'prenom', 'adresse_1', 'adresse_2',
+        fields = ['titre', 'nom', 'prenom', 'specialite', 'adresse_1', 'adresse_2',
                   'adresse_3', 'code_postal', 'ville', 'telephone', 'email']

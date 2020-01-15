@@ -6,11 +6,10 @@ from django.urls import reverse
 
 class Toubib(models.Model):
     """ Toubib model. """
-    titre = models.CharField(
-        max_length=25,
-    )
+    titre = models.CharField(max_length=25)
     prenom = models.CharField(max_length=50, null=True, blank=True)
     nom = models.CharField(max_length=50)
+    specialite = models.CharField(max_length=25)
     adresse_1 = models.CharField(max_length=255, null=True, blank=True)
     adresse_2 = models.CharField(max_length=255, null=True, blank=True)
     adresse_3 = models.CharField(max_length=255, null=True, blank=True)
