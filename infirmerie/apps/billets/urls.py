@@ -11,4 +11,5 @@ urlpatterns = [
     path('id=<int:pk>/detail', views.BilletDetailView.as_view(), name='detail'),
     path('id=<int:pk>/update', views.BilletUpdateView.as_view(), name='update'),
     path('id=<int:pk>/delete', views.BilletDeleteView.as_view(), name='delete'),
+    path('id=<int:pk>/pdf', views.BilletPDFView.as_view(), name='pdf'),
 ]
