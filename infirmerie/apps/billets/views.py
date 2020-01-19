@@ -1,7 +1,9 @@
 """ apps/billets/views.py """
 
+import io
+
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import FileResponse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic.detail import DetailView
@@ -54,10 +56,13 @@ class BilletDeleteView(LoginRequiredMixin, DeleteView):
 class BilletPDFView(View):
     """ Display billet as pdf. """
 
-    def get(self):
+    def get(self, request, *args, **kwargs):
         """ Get pdf. """
-        pdf = canvas.Canvas("apps/billets/hello.pdf")
-        pdf.drawString(100, 100, "Hello World")
+        buffer = io.BytesIO()
+        pdf = canvas.Canvas(buffer)
+        pdf.drawString(100, 800, "Rendez-vous médical")
+        pdf.drawString(100, 700, self)
         pdf.showPage()
         pdf.save()
-        return HttpResponse('Hello pdf!')
+        buffer.seek(0)
+        return FileResponse(buffer, filename='billet.pdf')
