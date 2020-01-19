@@ -10,6 +10,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
+from reportlab.lib.pagesizes import A6
 from reportlab.pdfgen import canvas
 
 from .forms import BilletForm
@@ -56,12 +57,15 @@ class BilletDeleteView(LoginRequiredMixin, DeleteView):
 class BilletPDFView(View):
     """ Display billet as pdf. """
 
-    def get(self, request, *args, **kwargs):
-        """ Get pdf. """
+    def get(self, request, **kwargs):
+        """ Return pdf of billet in browser. """
+        billet = Billet.objects.get(pk=self.kwargs['pk'])
         buffer = io.BytesIO()
-        pdf = canvas.Canvas(buffer)
-        pdf.drawString(100, 800, "Rendez-vous médical")
-        pdf.drawString(100, 700, self)
+        pdf = canvas.Canvas(buffer, pagesize=A6)
+        pdf.drawString(10, 300, 'Rendez-vous médical')
+        pdf.drawString(10, 250, 'Moine concerné : ' + billet.moine.__str__())
+        pdf.drawString(10, 200, 'Médecin : ' + billet.toubib.__str__())
+        pdf.drawString(10, 150, 'Date : ' + billet.date_time())
         pdf.showPage()
         pdf.save()
         buffer.seek(0)
