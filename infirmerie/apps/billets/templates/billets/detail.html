@@ -34,6 +34,7 @@
         <a href="{% url 'billets:update' billet.id %}"><button class="btn btn-primary">Modifier</button></a>
     </div>
     
-    <a href="{% url 'billets:agenda' 1 %}" class="btn btn-cancel mx-3">Retour à l'agenda</a>
+    <a href="{% url 'billets:pdf' billet.id %}"><button class="btn btn-dark" style="margin: 20px;"><span class="fas fa-print" style="margin-right: 10px;"></span>Imprimer le billet</button></a>
+    <a href="{% url 'billets:agenda' 1 %}"><button class="btn btn-success">Retour à l'agenda</button></a>
 
 {% endblock content %}
