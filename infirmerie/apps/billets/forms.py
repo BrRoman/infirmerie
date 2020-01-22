@@ -80,18 +80,23 @@ class BilletForm(forms.ModelForm):
     prix = forms.FloatField(
         required=False,
         label='Prix :',
+        widget=forms.TextInput,
+        help_text='NB : Les éventuelles virgules sont automatiquement converties en points.',
     )
     facture = forms.BooleanField(
         required=False,
         label='Facture',
+        label_suffix='',
     )
     gratis = forms.BooleanField(
         required=False,
         label='Gratis',
+        label_suffix='',
     )
     vitale = forms.BooleanField(
         required=False,
         label='Carte vitale',
+        label_suffix='',
     )
     toubib = forms.ModelChoiceField(
         queryset=Toubib.objects.all().order_by('nom'),
