@@ -13,7 +13,7 @@ from .models import Moine
 class MoineListView(LoginRequiredMixin, ListView):
     """ List of Moines. """
     template_name = 'moines/list.html'
-    paginate_by = 5
+    paginate_by = 1000
     queryset = Moine.objects.order_by(
         'date_naissance', 'nom_religieux', 'prenom_civil')
 

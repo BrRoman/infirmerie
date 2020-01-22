@@ -20,7 +20,7 @@ from .models import Billet
 class AgendaView(LoginRequiredMixin, ListView):
     """ Agenda (main page of the app). """
     template_name = "billets/agenda.html"
-    paginate_by = 5
+    paginate_by = 20
     queryset = Billet.objects.all().order_by('-when')
 
 

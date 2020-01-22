@@ -13,7 +13,7 @@ from .models import Toubib
 class ToubibListView(LoginRequiredMixin, ListView):  # pylint: disable=too-many-ancestors
     """ List of Toubibs. """
     template_name = 'toubibs/list.html'
-    paginate_by = 5
+    paginate_by = 20
     queryset = Toubib.objects.order_by('nom', 'prenom')
 
 
