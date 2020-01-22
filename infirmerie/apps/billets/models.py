@@ -76,6 +76,16 @@ class Billet(models.Model):
     def __str__(self):
         return self.titre
 
+    def moines(self):
+        """ Return a unique string of all the monks. """
+        moines = ''
+        moines += self.moine1.__str__()
+        moines += (', ' + self.moine2.__str__()) if self.moine2 else ''
+        moines += (', ' + self.moine3.__str__()) if self.moine3 else ''
+        moines += (', ' + self.moine4.__str__()) if self.moine4 else ''
+        moines += (', ' + self.moine5.__str__()) if self.moine5 else ''
+        return moines
+
     def date_time(self):
         """ Return date and time of rendez-vous under human form. """
         return self.when.strftime('%d/%m/%Y') + ' à ' + self.when.strftime('%H:%M')

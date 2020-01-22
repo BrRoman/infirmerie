@@ -63,7 +63,7 @@ class BilletPDFView(View):
         buffer = io.BytesIO()
         pdf = canvas.Canvas(buffer, pagesize=A6)
         pdf.drawString(10, 300, 'Rendez-vous médical')
-        pdf.drawString(10, 250, 'Moine concerné : ' + billet.moine.__str__())
+        pdf.drawString(10, 250, 'Moine(s) concerné(s) : ' + billet.moines())
         pdf.drawString(10, 200, 'Médecin : ' + billet.toubib.__str__())
         pdf.drawString(10, 150, 'Date : ' + billet.date_time())
         pdf.showPage()
