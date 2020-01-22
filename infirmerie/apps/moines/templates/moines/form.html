@@ -84,17 +84,17 @@
             <div class="d-flex my-2">
                 {% if form.is_bound %}
                     {% if form.is_chauffeur.errors %}
-                        {% render_field form.is_chauffeur class="form-control mx-2 is-invalid" style="width: auto;" %}
+                        {% render_field form.is_chauffeur class="form-control is-invalid" style="width: auto;" %}
                         {% for error in form.is_chauffeur.errors %}
                             <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.is_chauffeur class="form-control mx-2 is-valid" style="width: auto;" %}
+                        {% render_field form.is_chauffeur class="form-control is-valid" style="width: auto;" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.is_chauffeur class="form-control mx-2" style="width: auto;" %}
+                    {% render_field form.is_chauffeur class="form-control" style="width: auto;" %}
                 {% endif %}
                 {% if form.is_chauffeur.help_text %}
                     <small class="form-text text-muted">
@@ -205,17 +205,17 @@
                 {{ form.dentiste.label_tag }}
                 {% if form.is_bound %}
                     {% if form.dentiste.errors %}
-                        {% render_field form.dentiste class="form-control is-invalid" %}
+                        {% render_field form.dentiste class="custom-select form-control is-invalid" %}
                         {% for error in form.dentiste.errors %}
                             <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.dentiste class="form-control is-valid" %}
+                        {% render_field form.dentiste class="custom-select form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.dentiste class="form-control" %}
+                    {% render_field form.dentiste class="custom-select form-control" %}
                 {% endif %}
                 {% if form.dentiste.help_text %}
                     <small class="form-text text-muted">
