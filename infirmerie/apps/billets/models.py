@@ -11,17 +11,65 @@ class Billet(models.Model):
     titre = models.CharField(
         max_length=255,
     )
-    moine = models.ForeignKey(
+    moine1 = models.ForeignKey(
         Moine,
-        related_name='billets',
-        on_delete=models.CASCADE
+        related_name='billets_moine1',
+        on_delete=models.CASCADE,
+    )
+    moine2 = models.ForeignKey(
+        Moine,
+        related_name='billets_moine2',
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    moine3 = models.ForeignKey(
+        Moine,
+        related_name='billets_moine3',
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    moine4 = models.ForeignKey(
+        Moine,
+        related_name='billets_moine4',
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    moine5 = models.ForeignKey(
+        Moine,
+        related_name='billets_moine5',
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    chauffeur = models.ForeignKey(
+        Moine,
+        related_name='billets_chauffeur',
+        on_delete=models.CASCADE,
+        null=True,
     )
     toubib = models.ForeignKey(
         Toubib,
-        related_name='billets',
-        on_delete=models.CASCADE
+        related_name='billets_toubib',
+        on_delete=models.CASCADE,
     )
     when = models.DateTimeField()
+    where = models.CharField(
+        max_length=25,
+    )
+    prix = models.FloatField(
+        null=True,
+    )
+    facture = models.BooleanField(
+        default=False,
+    )
+    gratis = models.BooleanField(
+        default=False,
+    )
+    vitale = models.BooleanField(
+        default=False,
+    )
+    remarque = models.TextField(
+        null=True,
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 

@@ -35,12 +35,63 @@ class BilletForm(forms.ModelForm):
             'required': 'Ce champ est obligatoire',
         }
     )
-    moine = forms.ModelChoiceField(
+    where = forms.ChoiceField(
+        choices=[
+            ('Travail', 'Travail'),
+            ('Domicile', 'Domicile'),
+            ('Infirmerie', 'Infirmerie'),
+            ('Porterie', 'Porterie'),
+        ],
+        label='Lieu :',
+    )
+    moine1 = forms.ModelChoiceField(
         queryset=Moine.objects.all().order_by('nom_religieux'),
-        label='Moine :',
+        label='Moine 1 :',
         error_messages={
             'required': 'Ce champ est obligatoire',
         },
+    )
+    moine2 = forms.ModelChoiceField(
+        required=False,
+        queryset=Moine.objects.all().order_by('nom_religieux'),
+        label='Moine 2 :',
+    )
+    moine3 = forms.ModelChoiceField(
+        required=False,
+        queryset=Moine.objects.all().order_by('nom_religieux'),
+        label='Moine 3 :',
+    )
+    moine4 = forms.ModelChoiceField(
+        required=False,
+        queryset=Moine.objects.all().order_by('nom_religieux'),
+        label='Moine 4 :',
+    )
+    moine5 = forms.ModelChoiceField(
+        required=False,
+        queryset=Moine.objects.all().order_by('nom_religieux'),
+        label='Moine 5 :',
+    )
+    chauffeur = forms.ModelChoiceField(
+        required=False,
+        queryset=Moine.objects.filter(
+            is_chauffeur=True).order_by('nom_religieux'),
+        label='Chauffeur :',
+    )
+    prix = forms.FloatField(
+        required=False,
+        label='Prix :',
+    )
+    facture = forms.BooleanField(
+        required=False,
+        label='Facture',
+    )
+    gratis = forms.BooleanField(
+        required=False,
+        label='Gratis',
+    )
+    vitale = forms.BooleanField(
+        required=False,
+        label='Carte vitale',
     )
     toubib = forms.ModelChoiceField(
         queryset=Toubib.objects.all().order_by('nom'),
@@ -49,7 +100,13 @@ class BilletForm(forms.ModelForm):
             'required': 'Ce champ est obligatoire',
         },
     )
+    remarque = forms.CharField(
+        required=False,
+        label='Remarques :',
+        widget=forms.Textarea,
+    )
 
     class Meta:
         model = Billet
-        fields = ('titre', 'when', 'moine', 'toubib')
+        fields = ('titre', 'when', 'where', 'moine1', 'moine2', 'moine3',
+                  'moine4', 'moine5', 'chauffeur', 'prix', 'facture', 'gratis', 'vitale', 'toubib', 'remarque')
