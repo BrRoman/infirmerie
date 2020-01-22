@@ -58,11 +58,13 @@ class MoineForm(forms.ModelForm):
         }
     )
     medecin_traitant = forms.ModelChoiceField(
+        required=False,
         queryset=Toubib.objects.filter(
             specialite='Généraliste').order_by('nom', 'prenom'),
         label='Médecin traitant',
     )
     dentiste = forms.ModelChoiceField(
+        required=False,
         queryset=Toubib.objects.filter(
             specialite='Dentiste').order_by('nom', 'prenom'),
         label='Dentiste',

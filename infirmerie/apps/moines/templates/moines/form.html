@@ -29,53 +29,55 @@
         <form method="post" novalidate>
             {% csrf_token %}
 
-            <!-- Qualité -->
-            <div class="form-group">
-                {{ form.titre.label_tag }}
-                {% if form.is_bound %}
-                    {% if form.titre.errors %}
-                        {% render_field form.titre class="custom-select form-control is-invalid" %}
-                        {% for error in form.titre.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ error }}
-                            </div>
-                        {% endfor %}
+            <div class="d-flex justify-content-around">
+                <!-- Qualité -->
+                <div class="form-group">
+                    {{ form.titre.label_tag }}
+                    {% if form.is_bound %}
+                        {% if form.titre.errors %}
+                            {% render_field form.titre class="custom-select form-control is-invalid" %}
+                            {% for error in form.titre.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.titre class="custom-select form-control is-valid" %}
+                        {% endif %}
                     {% else %}
-                        {% render_field form.titre class="custom-select form-control is-valid" %}
+                        {% render_field form.titre class="custom-select form-control" %}
                     {% endif %}
-                {% else %}
-                    {% render_field form.titre class="custom-select form-control" %}
-                {% endif %}
-                
-                {% if form.titre.help_text %}
-                    <small class="form-text text-muted">
-                        {{ form.titre.help_text }}
-                    </small>
-                {% endif %}
-            </div>
+                    
+                    {% if form.titre.help_text %}
+                        <small class="form-text text-muted">
+                            {{ form.titre.help_text }}
+                        </small>
+                    {% endif %}
+                </div>
 
-            <!-- Nom religieux -->
-            <div class="form-group">
-                {{ form.nom_religieux.label_tag }}
-                {% if form.is_bound %}
-                    {% if form.nom_religieux.errors %}
-                        {% render_field form.nom_religieux class="form-control is-invalid" %}
-                        {% for error in form.nom_religieux.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ error }}
-                            </div>
-                        {% endfor %}
+                <!-- Nom religieux -->
+                <div class="form-group">
+                    {{ form.nom_religieux.label_tag }}
+                    {% if form.is_bound %}
+                        {% if form.nom_religieux.errors %}
+                            {% render_field form.nom_religieux class="form-control is-invalid" %}
+                            {% for error in form.nom_religieux.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.nom_religieux class="form-control is-valid" %}
+                        {% endif %}
                     {% else %}
-                        {% render_field form.nom_religieux class="form-control is-valid" %}
+                        {% render_field form.nom_religieux class="form-control" %}
                     {% endif %}
-                {% else %}
-                    {% render_field form.nom_religieux class="form-control" %}
-                {% endif %}
-                {% if form.nom_religieux.help_text %}
-                    <small class="form-text text-muted">
-                        {{ form.nom_religieux.help_text }}
-                    </small>
-                {% endif %}
+                    {% if form.nom_religieux.help_text %}
+                        <small class="form-text text-muted">
+                            {{ form.nom_religieux.help_text }}
+                        </small>
+                    {% endif %}
+                </div>
             </div>
 
             <!-- Is chauffeur -->
