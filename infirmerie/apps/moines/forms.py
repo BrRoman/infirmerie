@@ -25,6 +25,10 @@ class MoineForm(forms.ModelForm):
         label='Nom religieux :',
         help_text='NB : "Marie" sera ajouté automatiquement.'
     )
+    is_chauffeur = forms.BooleanField(
+        label='Peut conduire',
+        label_suffix='',
+    )
     prenom_civil = forms.CharField(
         label='Prénom civil :',
         error_messages={
@@ -144,7 +148,7 @@ class MoineForm(forms.ModelForm):
 
     class Meta:
         model = Moine
-        fields = ['titre', 'nom_religieux',
+        fields = ['titre', 'nom_religieux', 'is_chauffeur',
                   'prenom_civil', 'nom_civil', 'date_naissance', 'medecin_traitant', 'dentiste', 'date_vaccin', 'date_dentiste', 'date_ophtalmo', 'date_don_sang', 'date_prostate', 'date_hemocult']
 
     def clean_date_naissance(self):

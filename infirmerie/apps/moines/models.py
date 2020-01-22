@@ -14,6 +14,9 @@ class Moine(models.Model):
     nom_religieux = models.CharField(
         max_length=255,
     )
+    is_chauffeur = models.BooleanField(
+        default=False,
+    )
     prenom_civil = models.CharField(
         max_length=255,
     )

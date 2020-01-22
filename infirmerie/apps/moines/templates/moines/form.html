@@ -78,6 +78,30 @@
                 {% endif %}
             </div>
 
+            <!-- Is chauffeur -->
+            <div class="d-flex my-2">
+                {% if form.is_bound %}
+                    {% if form.is_chauffeur.errors %}
+                        {% render_field form.is_chauffeur class="form-control mx-2 is-invalid" style="width: auto;" %}
+                        {% for error in form.is_chauffeur.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.is_chauffeur class="form-control mx-2 is-valid" style="width: auto;" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.is_chauffeur class="form-control mx-2" style="width: auto;" %}
+                {% endif %}
+                {% if form.is_chauffeur.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.is_chauffeur.help_text }}
+                    </small>
+                {% endif %}
+                {{ form.is_chauffeur.label_tag }}
+            </div>
+
             <!-- Prénom civil -->
             <div class="form-group">
                 {{ form.prenom_civil.label_tag }}

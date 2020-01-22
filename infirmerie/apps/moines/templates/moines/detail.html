@@ -21,6 +21,9 @@
     <div class="block row justify-content-center mt-3 mb-2">
         <table class="table table-borderless my-0">
             <tr>
+                <td><label>Peut conduire :</label></td><td>{{ moine.is_chauffeur|yesno:'Oui,Non' }}</td>
+            </tr>
+            <tr>
                 <td><label>Médecin traitant :</label></td><td>{{ moine.medecin_traitant|default_if_none:'' }}</td>
             </tr>
             <tr>
