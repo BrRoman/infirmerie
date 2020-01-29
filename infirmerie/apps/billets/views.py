@@ -47,6 +47,10 @@ class BilletUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'billets/form.html'
     success_url = reverse_lazy('billets:agenda', args=[1])
 
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
+
 
 class BilletDeleteView(LoginRequiredMixin, DeleteView):
     """ Delete billet. """

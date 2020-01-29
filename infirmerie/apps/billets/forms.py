@@ -1,6 +1,7 @@
 """ apps/billets/forms.py """
 
 from django import forms
+from django.core.mail import send_mail
 
 from tempus_dominus.widgets import DateTimePicker
 
@@ -115,3 +116,25 @@ class BilletForm(forms.ModelForm):
         model = Billet
         fields = ('titre', 'when', 'where', 'moine1', 'moine2', 'moine3',
                   'moine4', 'moine5', 'chauffeur', 'prix', 'facture', 'gratis', 'vitale', 'toubib', 'remarque')
+
+    def send_email(self):
+        """ Send email to courses. """
+        # Subject:
+        mail_subject = 'RV médical (' + self.instance.titre + ')'
+        # Message:
+        mail_message = ''
+        mail_message += 'Date et heure : ' + self.instance.date_time()
+        mail_message += '\nMoines : ' + self.instance.moines()
+        mail_message += '\nMédecin : ' + self.instance.toubib.__str__()
+        mail_message += '\nChauffeur : ' + self.instance.chauffeur.__str__()
+        if self.instance.gratis:
+            mail_message += '\nGratis pro Deo'
+        elif self.instance.prix:
+            mail_message += '\nPrix : ' + self.instance.prix
+        mail_message += '\nFacture' if self.instance.facture else ''
+        # From:
+        mail_from = 'editeur@traditions-monastiques.com'
+        # To:
+        mail_to = ['editeur@traditions-monastiques.com']
+
+        send_mail(mail_subject, mail_message, mail_from, mail_to)
