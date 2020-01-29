@@ -5,8 +5,9 @@ import io
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views import View
+from django.views.generic.base import RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
@@ -17,6 +18,18 @@ from reportlab.pdfgen import canvas
 
 from .forms import BilletForm
 from .models import Billet
+
+
+class HomeView(RedirectView):
+    """ Home view: redirect to agenda. """
+    pattern_name = 'root'
+
+    def get_redirect_url(self, *args, **kwargs):
+        today = datetime.date.today()
+        day = today.strftime('%d')
+        month = today.strftime('%m')
+        year = today.strftime('%Y')
+        return reverse('billets:agenda', kwargs={'day': day, 'month': month, 'year': year})
 
 
 class AgendaView(LoginRequiredMixin, ListView):

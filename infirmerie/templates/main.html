@@ -18,7 +18,7 @@
     <body>
         <nav class="navbar navbar-dark bg-dark d-flex justify-content-center">
             <div id="logo" class="col-3 mr-auto">
-                <a href="/" class="d-flex align-items-center">
+                <a href={% url 'root' %} class="d-flex align-items-center">
                     <img class="navbar-brand mr-2" src="{% static '/images/infirmerie.png' %}">
                     <p class="my-0">Infirmerie</p>
                 </a>
@@ -26,7 +26,7 @@
 
             {% if user.is_authenticated %}
                 <div id="menu">
-                    <a class="mx-3" href="{% url 'billets:agenda' '12' '01' '2000' %}">Agenda</a><!-- TODO: Valeur par défaut: date du jour. -->
+                    <a class="mx-3" href={% url 'root' %}>Agenda</a><!-- TODO: Valeur par défaut: date du jour. -->
                     <a href="{% url 'billets:create' %}" title="Créer un nouveau billet" class="link_plus">+</a>
                     <a class="mx-3" href="{% url 'moines:list' 1 %}">Moines</a>
                     <a href="{% url 'moines:create' %}" title="Créer un nouveau moine" class="link_plus">+</a>
@@ -46,7 +46,7 @@
         
         <div id="breadcrumbs">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href={% url 'billets:agenda' '12' '01' '2000' %}>Accueil</a></li><!-- TODO: Valeur par défaut: date du jour. -->
+                <li class="breadcrumb-item"><a href={% url 'root' %}>Accueil</a></li><!-- TODO: Valeur par défaut: date du jour. -->
                 {% block breadcrumbs %}
                 {% endblock breadcrumbs %}
             </ol>
