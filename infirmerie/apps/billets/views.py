@@ -1,5 +1,6 @@
 """ apps/billets/views.py """
 
+import datetime
 import io
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -23,6 +24,18 @@ class AgendaView(LoginRequiredMixin, ListView):
     template_name = "billets/agenda.html"
     paginate_by = 20
     queryset = Billet.objects.all().order_by('-when')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        display_date = datetime.date(
+            int(self.kwargs['year']), int(self.kwargs['month']), int(self.kwargs['day']))
+        days = {}
+        for i in range(7):
+            date = (display_date + datetime.timedelta(days=i)
+                    ).strftime('%d/%m/%Y')
+            days[date] = "Content"
+        context['days'] = days
+        return context
 
 
 class BilletCreateView(LoginRequiredMixin, CreateView):
