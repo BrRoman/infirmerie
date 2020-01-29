@@ -22,19 +22,27 @@ from .models import Billet
 class AgendaView(LoginRequiredMixin, ListView):
     """ Agenda (main page of the app). """
     template_name = "billets/agenda.html"
-    paginate_by = 20
     queryset = Billet.objects.all().order_by('-when')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # Date that has been required in **kwargs:
         display_date = datetime.date(
             int(self.kwargs['year']), int(self.kwargs['month']), int(self.kwargs['day']))
+
+        # Initial date of the week containing the required date:
+        initial_date = display_date - \
+            datetime.timedelta(days=(display_date.weekday() + 1)
+                               if display_date.weekday() != 6 else 0)
+
         days = {}
         for i in range(7):
-            date = (display_date + datetime.timedelta(days=i)
+            date = (initial_date + datetime.timedelta(days=i)
                     ).strftime('%d/%m/%Y')
             days[date] = "Content"
         context['days'] = days
+
         return context
 
 

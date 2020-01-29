@@ -7,19 +7,28 @@
 {% block content %}
     <div class="d-flex align-self-stretch">
         <h1 class="mr-auto">Agenda</h1>
-        <div class="ml-auto">{% include 'pagination.html' %}</div>
     </div>
 
     <div id="agenda" class="d-flex justify-content-center align-items-center">
-        {% for date, content in days.items %}
-            <div class="agenda-column">
-                <div class="agenda-date">
-                    {{ date }}
-                </div>
-                <div class="agenda-content">
-                    {{ content }}
-                </div>
-            </div>
-        {% endfor %}
+        <table>
+            <tr>
+                <td>Dimanche</td>
+                <td>Lundi</td>
+                <td>Mardi</td>
+                <td>Mercredi</td>
+                <td>Jeudi</td>
+                <td>Vendredi</td>
+                <td>Samedi</td>
+            </tr>
+
+            <tr>
+                {% for date, content in days.items %}
+                    <td>
+                        {{ date }}</br>
+                        {{ content }}
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
     </div>
 {% endblock content %}
