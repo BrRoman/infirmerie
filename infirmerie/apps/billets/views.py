@@ -32,6 +32,10 @@ class BilletCreateView(LoginRequiredMixin, CreateView):
     template_name = 'billets/form.html'
     success_url = reverse_lazy('billets:agenda', args=[1])
 
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
+
 
 class BilletDetailView(LoginRequiredMixin, DetailView):
     """ Detail of Billet. """

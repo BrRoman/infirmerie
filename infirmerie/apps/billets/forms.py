@@ -130,7 +130,7 @@ class BilletForm(forms.ModelForm):
         if self.instance.gratis:
             mail_message += '\nGratis pro Deo'
         elif self.instance.prix:
-            mail_message += '\nPrix : ' + self.instance.prix
+            mail_message += '\nPrix : ' + str(self.instance.prix)
         mail_message += '\nFacture' if self.instance.facture else ''
         # From:
         mail_from = 'editeur@traditions-monastiques.com'
