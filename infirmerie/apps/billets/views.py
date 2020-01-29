@@ -59,7 +59,7 @@ class BilletDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "billets/delete.html"
 
 
-class BilletPDFView(View):
+class BilletPDFView(LoginRequiredMixin, View):
     """ Display billet as pdf. """
 
     def get(self, request, *args, **kwargs):
@@ -90,17 +90,20 @@ class BilletPDFView(View):
         pdf.roundRect(7 * mm, 35 * mm, width - 2 * 7 * mm, 35 * mm, 3 * mm)
         pdf.drawString(10 * mm, 40 * mm, billet.toubib.__str__())
         pdf.restoreState()
-        pdf.drawString(15 * mm, 45 * mm, billet.toubib.adresse_1)
+        if billet.toubib.adresse_1:
+            pdf.drawString(15 * mm, 45 * mm, billet.toubib.adresse_1)
         if billet.toubib.adresse_2:
             pdf.drawString(15 * mm, 50 * mm, billet.toubib.adresse_2)
             add += 15
         if billet.toubib.adresse_3:
             pdf.drawString(15 * mm, 55 * mm, billet.toubib.adresse_3)
             add += 15
-        pdf.drawString(15 * mm, 50 * mm + add, billet.toubib.code_postal +
-                       ' ' + billet.toubib.ville)
-        pdf.drawString(15 * mm, 55 * mm + add,
-                       ('Tél. ' + billet.toubib.telephone) if billet.toubib.telephone else '')
+        if billet.toubib.code_postal and billet.toubib.ville:
+            pdf.drawString(15 * mm, 50 * mm + add, billet.toubib.code_postal +
+                           ' ' + billet.toubib.ville)
+        if billet.toubib.telephone:
+            pdf.drawString(15 * mm, 55 * mm + add,
+                           ('Tél. ' + billet.toubib.telephone) if billet.toubib.telephone else '')
         pdf.saveState()
 
         # Moine :
@@ -139,10 +142,12 @@ class BilletPDFView(View):
         prix += ' - Apporter la carte vitale' if billet.vitale else ''
         pdf.drawString(10 * mm, 123 * mm, prix)
         # Chauffeur :
-        pdf.drawString(10 * mm, 128 * mm, 'Chauffeur : ' +
-                       billet.chauffeur.__str__())
+        if billet.chauffeur:
+            pdf.drawString(10 * mm, 128 * mm, 'Chauffeur : ' +
+                           billet.chauffeur.__str__())
         # Remarques :
-        pdf.drawString(10 * mm, 133 * mm, billet.remarque)
+        if billet.remarque:
+            pdf.drawString(10 * mm, 133 * mm, billet.remarque)
 
         pdf.showPage()
         pdf.save()
