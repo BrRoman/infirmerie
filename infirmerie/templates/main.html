@@ -18,7 +18,7 @@
     <body>
         <nav class="navbar navbar-dark bg-dark d-flex justify-content-center">
             <div id="logo" class="col-3 mr-auto">
-                <a href="/" class="d-flex align-items-center">
+                <a href={% url 'root' %} class="d-flex align-items-center">
                     <img class="navbar-brand mr-2" src="{% static '/images/infirmerie.png' %}">
                     <p class="my-0">Infirmerie</p>
                 </a>
@@ -46,7 +46,7 @@
         
         <div id="breadcrumbs">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href={% url 'billets:agenda' 1 %}>Accueil</a></li>
+                <li class="breadcrumb-item"><a href={% url 'root' %}><span class="fas fa-home"></span></a></li>
                 {% block breadcrumbs %}
                 {% endblock breadcrumbs %}
             </ol>

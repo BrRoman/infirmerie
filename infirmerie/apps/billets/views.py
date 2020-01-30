@@ -1,11 +1,13 @@
 """ apps/billets/views.py """
 
+import datetime
 import io
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views import View
+from django.views.generic.base import RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
@@ -18,11 +20,44 @@ from .forms import BilletForm
 from .models import Billet
 
 
+class HomeView(RedirectView):
+    """ Home view: redirect to agenda. """
+
+    def get_redirect_url(self, *args, **kwargs):
+        today = datetime.date.today()
+        day = today.strftime('%d')
+        month = today.strftime('%m')
+        year = today.strftime('%Y')
+        return reverse('billets:agenda', kwargs={'day': day, 'month': month, 'year': year})
+
+
 class AgendaView(LoginRequiredMixin, ListView):
     """ Agenda (main page of the app). """
     template_name = "billets/agenda.html"
-    paginate_by = 20
     queryset = Billet.objects.all().order_by('-when')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Date that has been required in **kwargs:
+        display_date = datetime.datetime(
+            int(self.kwargs['year']), int(self.kwargs['month']), int(self.kwargs['day']))
+
+        # Initial date of the week containing the required date:
+        initial_date = display_date - \
+            datetime.timedelta(days=(display_date.weekday() + 1)
+                               if display_date.weekday() != 6 else 0)
+
+        # Construct the list of days with all their data:
+        days = {}
+        for i in range(7):
+            date = initial_date + datetime.timedelta(days=i)
+            date_format = date.strftime('%d/%m/%Y')
+            days[date_format] = Billet.objects.filter(when__gt=date).filter(
+                when__lt=(date + datetime.timedelta(days=1)))
+        context['days'] = days
+
+        return context
 
 
 class BilletCreateView(LoginRequiredMixin, CreateView):
@@ -30,7 +65,7 @@ class BilletCreateView(LoginRequiredMixin, CreateView):
     model = Billet
     form_class = BilletForm
     template_name = 'billets/form.html'
-    success_url = reverse_lazy('billets:agenda', args=[1])
+    success_url = reverse_lazy('root')
 
     def form_valid(self, form):
         form.send_email()
@@ -53,7 +88,7 @@ class BilletUpdateView(LoginRequiredMixin, UpdateView):
     model = Billet
     form_class = BilletForm
     template_name = 'billets/form.html'
-    success_url = reverse_lazy('billets:agenda', args=[1])
+    success_url = reverse_lazy('root')
 
     def form_valid(self, form):
         form.send_email()
@@ -63,7 +98,7 @@ class BilletUpdateView(LoginRequiredMixin, UpdateView):
 class BilletDeleteView(LoginRequiredMixin, DeleteView):
     """ Delete billet. """
     model = Billet
-    success_url = reverse_lazy('billets:agenda', args=[1])
+    success_url = reverse_lazy('root')
     template_name = "billets/delete.html"
 
 
