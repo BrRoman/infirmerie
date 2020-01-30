@@ -4,13 +4,13 @@
 {% load widget_tweaks %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static "css/tempusdominus-bootstrap-4.min.css" %}">
+    <link rel="stylesheet" href={% static "css/tempusdominus-bootstrap-4.min.css" %}>
 {% endblock css %}
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url "billets:agenda" 1 %}">Agenda</a></li>
     {% if object %}
-        <li class="breadcrumb-item"><a href="{% url "billets:detail" billet.id %}">{{ billet }}</a></li>
+        <li class="breadcrumb-item"><a href={% url 'billets:detail' billet.id %}>{{ billet }}</a></li>
         <li class="breadcrumb-item active">Modifier</li>
     {% else %}
         <li class="breadcrumb-item active">Créer</li>

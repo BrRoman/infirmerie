@@ -5,11 +5,11 @@
     <head>
         <meta charset="UTF-8">
         <title>Infirmerie</title>
-        <link rel="icon" href="{% static 'images/infirmerie.png' %}">
-        <link rel="stylesheet" href="{% static 'js/jquery-ui-1.12.1/jquery-ui.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/fontawesome-free-5.7.1-web/css/all.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}">
-        <link rel="stylesheet/less" href="{% static 'css/infirmerie.less' %}">
+        <link rel="icon" href={% static 'images/infirmerie.png' %}>
+        <link rel="stylesheet" href={% static 'js/jquery-ui-1.12.1/jquery-ui.min.css' %}>
+        <link rel="stylesheet" href={% static 'css/fontawesome-free-5.7.1-web/css/all.min.css' %}>
+        <link rel="stylesheet" href={% static 'css/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}>
+        <link rel="stylesheet/less" href={% static 'css/infirmerie.less' %}>
         {% block css %}{% endblock css %}
         
         <style>@font-face{font-family: "LucidaHW"; src: url("{% static 'fonts/TR Lucida Handwriting Italic.ttf' %}")}</style>
@@ -26,12 +26,12 @@
 
             {% if user.is_authenticated %}
                 <div id="menu">
-                    <a class="mx-3" href="{% url 'billets:agenda' 1 %}">Agenda</a>
-                    <a href="{% url 'billets:create' %}" title="Créer un nouveau billet" class="link_plus">+</a>
-                    <a class="mx-3" href="{% url 'moines:list' 1 %}">Moines</a>
-                    <a href="{% url 'moines:create' %}" title="Créer un nouveau moine" class="link_plus">+</a>
-                    <a class="mx-3" href="{% url 'toubibs:list' 1 %}">Toubibs</a>
-                    <a href="{% url 'toubibs:create' %}" title="Créer un nouveau toubib" class="link_plus">+</a>
+                    <a class="mx-3" href={% url 'root' %}>Agenda</a>
+                    <a href={% url 'billets:create' %} title="Créer un nouveau billet" class="link_plus">+</a>
+                    <a class="mx-3" href={% url 'moines:list' 1 %}>Moines</a>
+                    <a href={% url 'moines:create' %} title="Créer un nouveau moine" class="link_plus">+</a>
+                    <a class="mx-3" href={% url 'toubibs:list' 1 %}>Toubibs</a>
+                    <a href={% url 'toubibs:create' %} title="Créer un nouveau toubib" class="link_plus">+</a>
                 </div>
             {% endif %}
 

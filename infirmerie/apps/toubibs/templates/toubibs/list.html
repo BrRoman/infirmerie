@@ -24,7 +24,7 @@
         <tbody>
             {% for toubib in object_list %}
                 <tr>
-                    <td><a href="{% url 'toubibs:detail' toubib.id %}">{{ toubib }}</a></td>
+                    <td><a href={% url 'toubibs:detail' toubib.id %}>{{ toubib }}</a></td>
                     <td>{{ toubib.specialite }}</td>
                     <td>{{ toubib.adresse_complete }}</td>
                     <td>{{ toubib.telephone }}</td>

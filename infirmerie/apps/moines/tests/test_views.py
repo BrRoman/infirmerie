@@ -52,7 +52,7 @@ class MoinesViewsTests(TestCase):
         self.client.force_login(self.testuser)
         moine_url = reverse('moines:detail', args=[self.moine_test.pk])
         response = self.client.get('/moines/page=1')
-        self.assertContains(response, 'href="{0}"'.format(moine_url))
+        self.assertContains(response, 'href={0}'.format(moine_url))
 
     # Create:
     def test_create_redirect_if_no_login(self):
