@@ -120,7 +120,7 @@ class BilletForm(forms.ModelForm):
     def send_email(self):
         """ Send email to courses. """
         # Subject:
-        mail_subject = 'RV médical (' + self.instance.titre + ')'
+        mail_subject = 'TEST --- RV médical (' + self.instance.titre + ')'
         # Message:
         mail_message = ''
         mail_message += 'Date et heure : ' + self.instance.date_time()
@@ -135,6 +135,9 @@ class BilletForm(forms.ModelForm):
         # From:
         mail_from = 'editeur@traditions-monastiques.com'
         # To:
-        mail_to = ['editeur@traditions-monastiques.com']
+        mail_to = [
+            'editeur@traditions-monastiques.com',
+            'courses@clairval.com'
+        ]
 
         send_mail(mail_subject, mail_message, mail_from, mail_to)

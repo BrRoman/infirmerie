@@ -36,6 +36,10 @@ class BilletCreateView(LoginRequiredMixin, CreateView):
         form.send_email()
         return super().form_valid(form)
 
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
+
 
 class BilletDetailView(LoginRequiredMixin, DetailView):
     """ Detail of Billet. """
