@@ -1,3 +1,5 @@
+@darkgrey: rgb(61, 61, 61);
+@full-red: rgb(255, 0, 0);
 @green: rgb(0, 100, 0);
 @grey: rgb(182, 182, 182);
 @orange: rgb(255, 145, 0);
@@ -120,9 +122,27 @@ body {
         padding: 10px;
     }
 
-    // Buttons:
-    .btn {
-        margin: 0px 5px 0px 5px;
-        min-width: 120px;
+    #logos_detail {
+        font-size: 1.2em;
+
+        .fas {
+            margin: 15px 10px 5px 10px;
+        }
+
+        .fa-reply {
+            color: @darkgrey;
+        }
+
+        .fa-edit {
+            color: @green;
+        }
+
+        .fa-file-pdf {
+            color: @full-red;
+        }
+
+        .fa-trash-alt {
+            color: @full-red;
+        }
     }
 }
