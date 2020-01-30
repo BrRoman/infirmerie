@@ -1,9 +1,5 @@
 {% extends 'main.html' %}
 
-{% block breadcrumbs %}
-    <li class="breadcrumb-item active">Agenda</li>
-{% endblock breadcrumbs %}
-
 {% block content %}
     <div class="d-flex align-self-stretch">
         <h1 class="mr-auto">Agenda</h1>
@@ -11,24 +7,35 @@
 
     <div id="agenda" class="d-flex justify-content-center align-items-center">
         <table>
-            <tr>
-                <td>Dimanche</td>
-                <td>Lundi</td>
-                <td>Mardi</td>
-                <td>Mercredi</td>
-                <td>Jeudi</td>
-                <td>Vendredi</td>
-                <td>Samedi</td>
+            <tr id="weekdays">
+                <td class="weekday">Dimanche</td>
+                <td class="weekday">Lundi</td>
+                <td class="weekday">Mardi</td>
+                <td class="weekday">Mercredi</td>
+                <td class="weekday">Jeudi</td>
+                <td class="weekday">Vendredi</td>
+                <td class="weekday">Samedi</td>
             </tr>
 
             <tr>
-                {% for date, content in days.items %}
+                {% for date, data in days.items %}
                     <td>
-                        {{ date }}</br>
-                        {{ content }}
+                        <div class="d-flex flex-column justify-content-start align-items-center">
+                            <div class="date">{{ date }}</div>
+                            <div class="column_data d-flex flex-column justify-content-start align-items-center">
+                                {% for billet in data %}
+                                    <a href={% url 'billets:detail' billet.id %}>
+                                        <div class="rendez_vous">
+                                            {{ billet.when|date:"H:i" }}
+                                            {{ billet.titre }}
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </td>
                 {% endfor %}
             </tr>
         </table>
-    </div>
+    </td>
 {% endblock content %}

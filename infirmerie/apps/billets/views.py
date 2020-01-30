@@ -22,7 +22,6 @@ from .models import Billet
 
 class HomeView(RedirectView):
     """ Home view: redirect to agenda. """
-    pattern_name = 'root'
 
     def get_redirect_url(self, *args, **kwargs):
         today = datetime.date.today()
@@ -41,7 +40,7 @@ class AgendaView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
 
         # Date that has been required in **kwargs:
-        display_date = datetime.date(
+        display_date = datetime.datetime(
             int(self.kwargs['year']), int(self.kwargs['month']), int(self.kwargs['day']))
 
         # Initial date of the week containing the required date:
@@ -49,11 +48,13 @@ class AgendaView(LoginRequiredMixin, ListView):
             datetime.timedelta(days=(display_date.weekday() + 1)
                                if display_date.weekday() != 6 else 0)
 
+        # Construct the list of days with all their data:
         days = {}
         for i in range(7):
-            date = (initial_date + datetime.timedelta(days=i)
-                    ).strftime('%d/%m/%Y')
-            days[date] = "Content"
+            date = initial_date + datetime.timedelta(days=i)
+            date_format = date.strftime('%d/%m/%Y')
+            days[date_format] = Billet.objects.filter(when__gt=date).filter(
+                when__lt=(date + datetime.timedelta(days=1)))
         context['days'] = days
 
         return context
@@ -64,7 +65,7 @@ class BilletCreateView(LoginRequiredMixin, CreateView):
     model = Billet
     form_class = BilletForm
     template_name = 'billets/form.html'
-    success_url = reverse_lazy('billets:agenda', args=[1])
+    success_url = reverse_lazy('root')
 
 
 class BilletDetailView(LoginRequiredMixin, DetailView):
@@ -79,7 +80,7 @@ class BilletUpdateView(LoginRequiredMixin, UpdateView):
     model = Billet
     form_class = BilletForm
     template_name = 'billets/form.html'
-    success_url = reverse_lazy('billets:agenda', args=[1])
+    success_url = reverse_lazy('root')
 
     def form_valid(self, form):
         form.send_email()
@@ -89,7 +90,7 @@ class BilletUpdateView(LoginRequiredMixin, UpdateView):
 class BilletDeleteView(LoginRequiredMixin, DeleteView):
     """ Delete billet. """
     model = Billet
-    success_url = reverse_lazy('billets:agenda', args=[1])
+    success_url = reverse_lazy('root')
     template_name = "billets/delete.html"
 
 

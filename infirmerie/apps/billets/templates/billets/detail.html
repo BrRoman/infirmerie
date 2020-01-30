@@ -3,7 +3,6 @@
 {% load tz %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{% url 'billets:agenda' 1 %}">Agenda</a></li>
     <li class="breadcrumb-item active">{{ billet }}</li>
 {% endblock breadcrumbs %}
 
@@ -48,7 +47,6 @@
         <a href="{% url 'billets:update' billet.id %}"><button class="btn btn-primary">Modifier</button></a>
     </div>
     
-    <a href="{% url 'billets:pdf' billet.id %}"><button class="btn btn-dark" style="margin: 20px;"><span class="fas fa-print" style="margin-right: 10px;"></span>Imprimer le billet</button></a>
-    <a href="{% url 'billets:agenda' 1 %}"><button class="btn btn-success">Retour à l'agenda</button></a>
+    <a href={% url 'root' %}><button class="btn btn-success">Retour à l'agenda</button></a>
 
 {% endblock content %}
