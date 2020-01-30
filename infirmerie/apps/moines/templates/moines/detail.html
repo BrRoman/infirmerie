@@ -3,7 +3,7 @@
 {% load tz %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href={% url 'moines:list' 1 %}>Moines</a></li>
+    <li class="breadcrumb-item"><a href={% url 'moines:list' %}>Moines</a></li>
     <li class="breadcrumb-item active">{{ moine }}</li>
 {% endblock breadcrumbs %}
 
@@ -58,6 +58,6 @@
         <a href={% url 'moines:update' moine.id %}><button class="btn btn-primary">Modifier</button></a>
     </div>
     
-    <a href={% url 'moines:list' 1 %} class="btn btn-cancel mx-3">Retour à la liste</a>
+    <a href={% url 'moines:list' %} class="btn btn-cancel mx-3">Retour à la liste</a>
 
 {% endblock content %}

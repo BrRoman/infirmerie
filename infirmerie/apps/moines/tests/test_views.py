@@ -21,7 +21,7 @@ class MoinesViewsTests(TestCase):
     # List:
     def test_list_redirect_if_no_login(self):
         """ List view redirects if no login. """
-        url = reverse('moines:list', args=[1])
+        url = reverse('moines:list')
         response = self.client.get(url)
         self.assertRedirects(
             response, '/accounts/login?next=' + quote(quote(url)))
@@ -29,14 +29,14 @@ class MoinesViewsTests(TestCase):
     def test_list_200(self):
         """ List view returns 200 code. """
         self.client.force_login(self.testuser)
-        url = reverse('moines:list', args=[1])
+        url = reverse('moines:list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_list_404(self):
         """ List view returns 404 code. """
         self.client.force_login(self.testuser)
-        url = reverse('moines:list', args=[9999])
+        url = reverse('moines:list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
