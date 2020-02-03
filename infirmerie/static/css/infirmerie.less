@@ -62,16 +62,19 @@ body {
                 vertical-align: top;
             }
 
-            #weekdays,
-            .date {
+            .weekday,
+            .date,
+            .current_weekday,
+            .current_date {
                 background-color: @grey;
-                color: white;
+                color: @green;
                 font-weight: bold;
                 width: 100%;
             }
 
-            .date {
-                margin: 0px 0px 10px 0px;
+            .current_weekday,
+            .current_date {
+                color: @full-red;
             }
 
             .column_data {

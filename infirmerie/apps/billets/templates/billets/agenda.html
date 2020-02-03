@@ -20,13 +20,20 @@
                 <td class="weekday">Samedi</td>
             </tr>
 
+        <table class="col-11">
             <tr>
                 {% for date, data in days.items %}
                     <td>
                         <div class="d-flex flex-column justify-content-start align-items-center">
-                            <div class="date">{{ date }}</div>
+                            <!-- Weekday -->
+                            <div class="{% if data.current %}current_weekday{% else %}weekday{% endif %}">{% cycle 'Dimanche' 'Lundi' 'Mardi' 'Mercredi' 'Jeudi' 'Vendredi' 'Samedi' %}</div>
+
+                            <!-- Date-->
+                            <div class="{% if data.current %}current_date{% else %}date{% endif %}">{{ date }}</div>
+
+                            <!-- Data -->
                             <div class="column_data d-flex flex-column justify-content-start align-items-center">
-                                {% for billet in data %}
+                                {% for billet in data.billets %}
                                     <a href={% url 'billets:detail' billet.id %}>
                                         <div class="rendez_vous">
                                             {{ billet.when|date:"H:i" }}

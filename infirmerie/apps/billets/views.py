@@ -53,8 +53,10 @@ class AgendaView(LoginRequiredMixin, ListView):
         for i in range(7):
             date = initial_date + datetime.timedelta(days=i)
             date_format = date.strftime('%d/%m/%Y')
-            days[date_format] = Billet.objects.filter(when__gt=date).filter(
+            days[date_format] = {}
+            days[date_format]['billets'] = Billet.objects.filter(when__gt=date).filter(
                 when__lt=(date + datetime.timedelta(days=1)))
+            days[date_format]['current'] = (date == display_date)
         context['days'] = days
 
         return context
