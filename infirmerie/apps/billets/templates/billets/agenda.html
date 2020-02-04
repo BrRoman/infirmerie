@@ -1,25 +1,33 @@
 {% extends 'main.html' %}
 
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "css/tempusdominus-bootstrap-4.min.css" %}>
+{% endblock css %}
+
 {% block content %}
-    <div class="d-flex align-self-stretch">
-        <div id="title" class="form-inline">
+    <div class="d-flex align-self-stretch align-items-center mx-5">
+        <!-- Title -->
+        <div id="title" class="form-inline mr-auto">
             <h1>Agenda</h1>
             <a href={% url 'billets:create' %}><p class="mr-auto" title="Ajouter un billet"><span class="fas fa-plus-circle"></span></p></a>
         </div>
+
+        <!-- Tools -->
+        <div id="tools" class="d-flex align-items-center ml-auto mr-5">
+            <span id="previous_week" class="fas fa-angle-double-left" title="Semaine précédente"></span>
+
+            <div class="input-group" id="datepicker">
+                <span class="fas fa-calendar-alt" data-target="#datepicker" data-toggle="datetimepicker" title="Calendrier"></span>
+            </div>
+
+            <span id="next_week" class="fas fa-angle-double-right" title="Semaine suivante"></span>
+        </div>
     </div>
 
-    <div id="agenda" class="d-flex justify-content-center align-items-center">
-        <table>
-            <tr id="weekdays">
-                <td class="weekday">Dimanche</td>
-                <td class="weekday">Lundi</td>
-                <td class="weekday">Mardi</td>
-                <td class="weekday">Mercredi</td>
-                <td class="weekday">Jeudi</td>
-                <td class="weekday">Vendredi</td>
-                <td class="weekday">Samedi</td>
-            </tr>
-
+    <!-- Agenda -->
+    <div id="agenda" class="d-flex justify-content-center align-items-start">        
         <table class="col-11">
             <tr>
                 {% for date, data in days.items %}
@@ -47,5 +55,11 @@
                 {% endfor %}
             </tr>
         </table>
-    </td>
+    </div>
 {% endblock content %}
+
+{% block javascript %}
+    <script src="{% static "js/moment.min.js" %}"></script>
+    <script src="{% static "js/moment-locale-fr.js" %}"></script>
+    <script src="{% static "js/tempusdominus-bootstrap-4.min.js" %}"></script>
+{% endblock javascript %}

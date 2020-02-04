@@ -39,6 +39,10 @@ class AgendaView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        date_today = datetime.date.today()
+        context['today'] = {'day': date_today.strftime(
+            '%d'), 'month': date_today.strftime('%m'), 'year': date_today.strftime('%Y')}
+
         # Date that has been required in **kwargs:
         display_date = datetime.datetime(
             int(self.kwargs['year']), int(self.kwargs['month']), int(self.kwargs['day']))
