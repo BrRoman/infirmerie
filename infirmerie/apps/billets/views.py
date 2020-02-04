@@ -39,6 +39,10 @@ class AgendaView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        date_today = datetime.date.today()
+        context['today'] = {'day': date_today.strftime(
+            '%d'), 'month': date_today.strftime('%m'), 'year': date_today.strftime('%Y')}
+
         # Date that has been required in **kwargs:
         display_date = datetime.datetime(
             int(self.kwargs['year']), int(self.kwargs['month']), int(self.kwargs['day']))
@@ -52,9 +56,11 @@ class AgendaView(LoginRequiredMixin, ListView):
         days = {}
         for i in range(7):
             date = initial_date + datetime.timedelta(days=i)
-            date_format = date.strftime('%d/%m/%Y')
-            days[date_format] = Billet.objects.filter(when__gt=date).filter(
+            date_human = datetime.date(date.year, date.month, date.day)
+            days[date_human] = {}
+            days[date_human]['billets'] = Billet.objects.filter(when__gt=date).filter(
                 when__lt=(date + datetime.timedelta(days=1)))
+            days[date_human]['current'] = (date_human == datetime.date.today())
         context['days'] = days
 
         return context
