@@ -136,8 +136,9 @@ class BilletPDFView(LoginRequiredMixin, View):
         add = 0
         pdf.setFont("Helvetica-Bold", 10)
         pdf.drawString(10 * mm, 33 * mm, 'Médecin')
-        pdf.roundRect(7 * mm, 35 * mm, width - 2 * 7 * mm, 35 * mm, 3 * mm)
-        pdf.drawString(10 * mm, 40 * mm, billet.toubib.__str__())
+        pdf.roundRect(7 * mm, 35 * mm, width - 2 * 7 * mm, 30 * mm, 3 * mm)
+        pdf.drawString(10 * mm, 40 * mm, billet.toubib.__str__() + (' (Tél. ' +
+                                                                    billet.toubib.telephone + ')') if billet.toubib.telephone else '')
         pdf.restoreState()
         if billet.toubib.adresse_1:
             pdf.drawString(15 * mm, 45 * mm, billet.toubib.adresse_1)
@@ -150,53 +151,50 @@ class BilletPDFView(LoginRequiredMixin, View):
         if billet.toubib.code_postal and billet.toubib.ville:
             pdf.drawString(15 * mm, 50 * mm + add, billet.toubib.code_postal +
                            ' ' + billet.toubib.ville)
-        if billet.toubib.telephone:
-            pdf.drawString(15 * mm, 55 * mm + add,
-                           ('Tél. ' + billet.toubib.telephone) if billet.toubib.telephone else '')
         pdf.saveState()
 
         # Moine :
         pdf.setFont("Helvetica-Bold", 10)
-        pdf.drawString(10 * mm, 78 * mm, 'Moine(s) concerné(s)')
-        pdf.roundRect(7 * mm, 80 * mm, width - 2 * 7 * mm, 28 * mm, 3 * mm)
+        pdf.drawString(10 * mm, 73 * mm, 'Moine(s) concerné(s)')
+        pdf.roundRect(7 * mm, 75 * mm, width - 2 * 7 * mm, 23 * mm, 3 * mm)
         pdf.restoreState()
-        pdf.rect(10 * mm, 83 * mm, 2 * mm, 2 * mm)
-        pdf.drawString(15 * mm, 85 * mm, billet.moine1.__str__())
+        pdf.rect(10 * mm, 78 * mm, 2 * mm, 2 * mm)
+        pdf.drawString(15 * mm, 80 * mm, billet.moine1.__str__())
         if billet.moine2:
-            pdf.rect(10 * mm, 88 * mm, 2 * mm, 2 * mm)
-            pdf.drawString(15 * mm, 90 * mm, billet.moine2.__str__())
+            pdf.rect(10 * mm, 83 * mm, 2 * mm, 2 * mm)
+            pdf.drawString(15 * mm, 85 * mm, billet.moine2.__str__())
         if billet.moine3:
-            pdf.rect(10 * mm, 93 * mm, 2 * mm, 2 * mm)
-            pdf.drawString(15 * mm, 95 * mm, billet.moine3.__str__())
+            pdf.rect(10 * mm, 88 * mm, 2 * mm, 2 * mm)
+            pdf.drawString(15 * mm, 90 * mm, billet.moine3.__str__())
         if billet.moine4:
-            pdf.rect(10 * mm, 98 * mm, 2 * mm, 2 * mm)
-            pdf.drawString(15 * mm, 100 * mm, billet.moine4.__str__())
-        if billet.moine5:
-            pdf.rect(10 * mm, 103 * mm, 2 * mm, 2 * mm)
-            pdf.drawString(15 * mm, 105 * mm, billet.moine5.__str__())
+            pdf.rect(10 * mm, 93 * mm, 2 * mm, 2 * mm)
+            pdf.drawString(15 * mm, 95 * mm, billet.moine4.__str__())
+        # if billet.moine5:
+        #     pdf.rect(10 * mm, 98 * mm, 2 * mm, 2 * mm)
+        #     pdf.drawString(15 * mm, 100 * mm, billet.moine5.__str__())
         pdf.saveState()
 
         # Divers (prix, chauffeur, remarques):
         pdf.setFont("Helvetica-Bold", 10)
-        pdf.drawString(10 * mm, 116 * mm, 'Remarques')
-        pdf.roundRect(7 * mm, 118 * mm, width - 2 * 7 * mm, 25 * mm, 3 * mm)
+        pdf.drawString(10 * mm, 106 * mm, 'Remarques')
+        pdf.roundRect(7 * mm, 108 * mm, width - 2 * 7 * mm, 35 * mm, 3 * mm)
         pdf.restoreState()
         # Prix :
-        prix = 'Prix : '
+        prix = 'Prix :'
         if billet.gratis:
-            prix += 'gratis pro Deo.'
+            prix += ' - Gratis pro Deo.'
         elif billet.prix:
             prix += str(billet.prix) + ' €'
             prix += ' (facture)' if billet.facture else ''
         prix += ' - Apporter la carte vitale' if billet.vitale else ''
-        pdf.drawString(10 * mm, 123 * mm, prix)
+        pdf.drawString(10 * mm, 113 * mm, prix)
         # Chauffeur :
         if billet.chauffeur:
-            pdf.drawString(10 * mm, 128 * mm, 'Chauffeur : ' +
+            pdf.drawString(10 * mm, 118 * mm, 'Chauffeur : ' +
                            billet.chauffeur.__str__())
         # Remarques :
         if billet.remarque:
-            pdf.drawString(10 * mm, 133 * mm, billet.remarque)
+            pdf.drawString(10 * mm, 123 * mm, billet.remarque)
 
         pdf.showPage()
         pdf.save()
