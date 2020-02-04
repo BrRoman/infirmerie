@@ -3,7 +3,6 @@
 {% load tz %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{% url 'billets:agenda' 1 %}">Agenda</a></li>
     <li class="breadcrumb-item active">{{ billet }}</li>
 {% endblock breadcrumbs %}
 
@@ -16,6 +15,13 @@
             <small>Créé le : {{ billet.created_at|date:"d/m/Y" }} à {{ billet.created_at|time:"H:i:s" }}</small>
             <small>Dernière modification le : {{ billet.last_modified|date:"d/m/Y" }} à {{ billet.last_modified|time:"H:i:s" }}</small>
         {% endlocaltime %}
+    </div>
+
+    <div id="logos_detail" class="d-flex justify-content-center">
+        <a href={% url 'root' %}><span class="fas fa-reply" title="Retour à l'agenda"></span></a>
+        <a href={% url 'billets:update' billet.id %}><span class="fas fa-edit" title="Modifier ce billet"></span></a>
+        <a href={% url 'billets:pdf' billet.id %}><span class="fas fa-file-pdf" title="Voir le pdf"></span></a>
+        <a href={% url 'billets:delete' billet.id %}><span class="fas fa-trash-alt" title="Supprimer ce billet"></span></a>
     </div>
 
     <div class="block row justify-content-center mt-3 mb-2">
@@ -42,13 +48,4 @@
             </tr>
         </table>
     </div>
-
-    <div class="d-flex justify-content-center">
-        <a href="{% url 'billets:delete' billet.id %}"><button class="btn btn-danger">Supprimer</button></a>
-        <a href="{% url 'billets:update' billet.id %}"><button class="btn btn-primary">Modifier</button></a>
-    </div>
-    
-    <a href="{% url 'billets:pdf' billet.id %}"><button class="btn btn-dark" style="margin: 20px;"><span class="fas fa-print" style="margin-right: 10px;"></span>Imprimer le billet</button></a>
-    <a href="{% url 'billets:agenda' 1 %}"><button class="btn btn-success">Retour à l'agenda</button></a>
-
 {% endblock content %}

@@ -6,7 +6,10 @@
 
 {% block content %}
     <div class="d-flex align-self-stretch">
-        <h1 class="mr-auto">Toubibs</h1>
+        <div id="title" class="form-inline">
+            <h1>Toubibs</h1>
+            <a href={% url 'toubibs:create' %}><p class="mr-auto" title="Ajouter un toubib"><span class="fas fa-plus-circle"></p></a>
+        </div>
         <div class="ml-auto">{% include 'pagination.html' %}</div>
     </div>
 
@@ -24,7 +27,7 @@
         <tbody>
             {% for toubib in object_list %}
                 <tr>
-                    <td><a href="{% url 'toubibs:detail' toubib.id %}">{{ toubib }}</a></td>
+                    <td><a href={% url 'toubibs:detail' toubib.id %}>{{ toubib }}</a></td>
                     <td>{{ toubib.specialite }}</td>
                     <td>{{ toubib.adresse_complete }}</td>
                     <td>{{ toubib.telephone }}</td>

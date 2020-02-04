@@ -23,7 +23,7 @@ class MoineCreateView(LoginRequiredMixin, CreateView):
     model = Moine
     form_class = MoineForm
     template_name = 'moines/form.html'
-    success_url = reverse_lazy('moines:list', args=[1])
+    success_url = reverse_lazy('moines:list')
 
 
 class MoineDetailView(LoginRequiredMixin, DetailView):
@@ -38,11 +38,11 @@ class MoineUpdateView(LoginRequiredMixin, UpdateView):
     model = Moine
     form_class = MoineForm
     template_name = 'moines/form.html'
-    success_url = reverse_lazy('moines:list', args=[1])
+    success_url = reverse_lazy('moines:list')
 
 
 class MoineDeleteView(LoginRequiredMixin, DeleteView):
     """ Delete moine. """
     model = Moine
-    success_url = reverse_lazy('moines:list', args=[1])
+    success_url = reverse_lazy('moines:list')
     template_name = "moines/delete.html"

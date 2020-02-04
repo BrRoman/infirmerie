@@ -52,7 +52,7 @@ class ToubibsViewsTests(TestCase):
         self.client.force_login(self.testuser)
         toubib_url = reverse('toubibs:detail', args=[self.toubib_test.pk])
         response = self.client.get('/toubibs/page=1')
-        self.assertContains(response, 'href="{0}"'.format(toubib_url))
+        self.assertContains(response, 'href={0}'.format(toubib_url))
 
     # Create:
     def test_create_redirect_if_no_login(self):

@@ -1,12 +1,10 @@
-@blue_bootstrap: rgba(0, 123, 255);
+@darkgrey: rgb(61, 61, 61);
+@full-red: rgb(255, 0, 0);
 @green: rgb(0, 100, 0);
+@grey: rgb(182, 182, 182);
 @orange: rgb(255, 145, 0);
-@red: rgb(200, 0, 0);
 
 body {
-    h1 {
-        color: @green;
-    }
 
     // Nav:
     nav {
@@ -18,17 +16,12 @@ body {
             p {
                 color: @orange;
                 font-family: LucidaHW;
-                font-size: 2em;
+                font-size: 1.3em;
             }
         }
 
-        #menu {
-            font-size: 1.3em;
-
-            .link_plus {
-                color: whitesmoke;
-                margin: 0px 5px 10px -10px;
-            }
+        a {
+            font-size: 1.5em;
         }
     }
 
@@ -37,8 +30,95 @@ body {
         text-decoration: none;
     }
 
-    nav a {
-        color: @orange;
+    .fa-plus-circle {
+        color: @green;
+    }
+
+    nav a,
+    nav a:hover {
+        color: @grey;
+    }
+
+    // Breadcrumbs:
+    .breadcrumb {
+        padding: 5px 0px 5px 50px;
+    }
+
+    // Title:
+    #title {
+        h1 {
+            color: @green;
+            font-family: "LucidaHW";
+            margin: 0px 10px 20px 10px;
+        }
+
+        p {
+            margin: 0px 0px 40px 8px;
+        }
+    }
+
+    // Tools:
+    #tools {
+        margin: 0px 10px 20px 10px;
+
+        a,
+        .fas {
+            color: @green;
+            cursor: pointer;
+            font-size: 1.5em;
+            margin: 0px 10px 0px 10px;
+        }
+    }
+
+    // Agenda:
+    #agenda {
+        text-align: center;
+        width: 100%;
+
+        table {
+            width: 100%;
+
+            tr,
+            td {
+                margin: 0px;
+                padding: 0px;
+                vertical-align: top;
+            }
+
+            .weekday,
+            .date,
+            .current_weekday,
+            .current_date {
+                background-color: @grey;
+                color: @green;
+                font-weight: bold;
+                width: 100%;
+            }
+
+            .current_weekday,
+            .current_date {
+                color: @full-red;
+            }
+
+            .column_data {
+                margin: 10px 0px 0px 0px;
+                width: 100%;
+
+                a,
+                .rendez_vous {
+                    background-color: rgb(0, 100, 0);
+                    border-radius: 3px;
+                    color: white;
+                    font-family: fantasy;
+                    font-size: 8pt;
+                    margin: 0px 0px 2px 0px;
+                    padding: 1px 3px 1px 3px;
+                    text-align: left;
+                    width: 80%;
+                }
+            }
+        }
+
     }
 
     // Tables:
@@ -69,9 +149,27 @@ body {
         padding: 10px;
     }
 
-    // Buttons:
-    .btn {
-        margin: 0px 5px 0px 5px;
-        min-width: 120px;
+    #logos_detail {
+        font-size: 1.2em;
+
+        .fas {
+            margin: 15px 10px 5px 10px;
+        }
+
+        .fa-reply {
+            color: @darkgrey;
+        }
+
+        .fa-edit {
+            color: @green;
+        }
+
+        .fa-file-pdf {
+            color: @full-red;
+        }
+
+        .fa-trash-alt {
+            color: @full-red;
+        }
     }
 }

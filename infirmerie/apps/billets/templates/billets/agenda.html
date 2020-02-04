@@ -1,34 +1,65 @@
 {% extends 'main.html' %}
 
-{% block breadcrumbs %}
-    <li class="breadcrumb-item active">Agenda</li>
-{% endblock breadcrumbs %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "css/tempusdominus-bootstrap-4.min.css" %}>
+{% endblock css %}
 
 {% block content %}
-    <div class="d-flex align-self-stretch">
-        <h1 class="mr-auto">Billets</h1>
-        <div class="ml-auto">{% include 'pagination.html' %}</div>
+    <div class="d-flex align-self-stretch align-items-center mx-5">
+        <!-- Title -->
+        <div id="title" class="form-inline mr-auto">
+            <h1>Agenda</h1>
+            <a href={% url 'billets:create' %}><p class="mr-auto" title="Ajouter un billet"><span class="fas fa-plus-circle"></span></p></a>
+        </div>
+
+        <!-- Tools -->
+        <div id="tools" class="d-flex align-items-center ml-auto mr-5">
+            <span id="previous_week" class="fas fa-angle-double-left" title="Semaine précédente"></span>
+
+            <div class="input-group" id="datepicker">
+                <span class="fas fa-calendar-alt" data-target="#datepicker" data-toggle="datetimepicker" title="Calendrier"></span>
+            </div>
+
+            <span id="next_week" class="fas fa-angle-double-right" title="Semaine suivante"></span>
+        </div>
     </div>
 
-    <table class="table table-striped table-bordered table-sm">
-        <thead>
+    <!-- Agenda -->
+    <div id="agenda" class="d-flex justify-content-center align-items-start">        
+        <table class="col-11">
             <tr>
-                <th>Titre</th>
-                <th>Date</th>
-                <th>Moine</th>
-                <th>Toubib</th>
-            </tr>
-        </thead>
+                {% for date, data in days.items %}
+                    <td>
+                        <div class="d-flex flex-column justify-content-start align-items-center">
+                            <!-- Weekday -->
+                            <div class="{% if data.current %}current_weekday{% else %}weekday{% endif %}">{% cycle 'Dimanche' 'Lundi' 'Mardi' 'Mercredi' 'Jeudi' 'Vendredi' 'Samedi' %}</div>
 
-        <tbody>
-            {% for billet in object_list %}
-                <tr>
-                    <td><a href="{% url 'billets:detail' billet.id %}">{{ billet }}</a></td>
-                    <td>{{ billet.date_time }}</td>
-                    <td>{{ billet.moines }}</td>
-                    <td>{{ billet.toubib }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                            <!-- Date-->
+                            <div class="{% if data.current %}current_date{% else %}date{% endif %}">{{ date }}</div>
+
+                            <!-- Data -->
+                            <div class="column_data d-flex flex-column justify-content-start align-items-center">
+                                {% for billet in data.billets %}
+                                    <a href={% url 'billets:detail' billet.id %}>
+                                        <div class="rendez_vous">
+                                            {{ billet.when|date:"H:i" }}
+                                            {{ billet.titre }}
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
 {% endblock content %}
+
+{% block javascript %}
+    <script src="{% static "js/moment.min.js" %}"></script>
+    <script src="{% static "js/moment-locale-fr.js" %}"></script>
+    <script src="{% static "js/tempusdominus-bootstrap-4.min.js" %}"></script>
+{% endblock javascript %}

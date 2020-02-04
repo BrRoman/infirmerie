@@ -6,7 +6,7 @@ from django.urls import include, path
 from apps.billets import views as billets_views
 
 urlpatterns = [
-    path('', billets_views.AgendaView.as_view(), name='agenda'),
+    path('', billets_views.HomeView.as_view(), name='root'),
     path('admin/', admin.site.urls),
     path('accounts/', include('apps.accounts.urls')),
     path('billets/', include('apps.billets.urls')),
