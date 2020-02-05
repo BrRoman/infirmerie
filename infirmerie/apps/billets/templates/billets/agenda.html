@@ -31,7 +31,7 @@
         <table class="col-11">
             <tr>
                 {% for date, data in days.items %}
-                    <td>
+                    <td class="col-1">
                         <div class="d-flex flex-column justify-content-start align-items-center">
                             <!-- Weekday -->
                             <div class="{% if data.current %}current_weekday{% else %}weekday{% endif %}">{% cycle 'Dimanche' 'Lundi' 'Mardi' 'Mercredi' 'Jeudi' 'Vendredi' 'Samedi' %}</div>
@@ -44,8 +44,7 @@
                                 {% for billet in data.billets %}
                                     <a href={% url 'billets:detail' billet.id %}>
                                         <div class="rendez_vous">
-                                            {{ billet.when|date:"H:i" }}
-                                            {{ billet.titre }}
+                                            {{ billet.when|date:"H:i" }} - {{ billet.titre }}
                                         </div>
                                     </a>
                                 {% endfor %}
