@@ -23,11 +23,11 @@ class Moine(models.Model):
     nom_civil = models.CharField(
         max_length=255,
     )
-    numero_secu = models.CharField(
-        max_length=15,
+    date_naissance = models.DateField(
         null=True,
     )
-    date_naissance = models.DateField(
+    numero_secu = models.CharField(
+        max_length=15,
         null=True,
     )
     medecin_traitant = models.ForeignKey(
@@ -58,6 +58,9 @@ class Moine(models.Model):
         null=True,
     )
     date_hemocult = models.DateField(
+        null=True,
+    )
+    remarques = models.TextField(
         null=True,
     )
     created_at = models.DateTimeField(

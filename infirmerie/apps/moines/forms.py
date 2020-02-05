@@ -57,6 +57,13 @@ class MoineForm(forms.ModelForm):
             'invalid': 'Date invalide.',
         }
     )
+    numero_secu = forms.CharField(
+        required=False,
+        max_length=15,
+        min_length=15,
+        help_text='15 caractères, sans espace',
+        label='Numéro de sécurité sociale',
+    )
     medecin_traitant = forms.ModelChoiceField(
         required=False,
         queryset=Toubib.objects.filter(
@@ -147,11 +154,15 @@ class MoineForm(forms.ModelForm):
             'invalid': 'Date invalide.',
         }
     )
+    remarques = forms.CharField(
+        required=False,
+        widget=forms.Textarea
+    )
 
     class Meta:
         model = Moine
         fields = ['titre', 'nom_religieux', 'is_chauffeur',
-                  'prenom_civil', 'nom_civil', 'date_naissance', 'medecin_traitant', 'dentiste', 'date_vaccin', 'date_dentiste', 'date_ophtalmo', 'date_don_sang', 'date_prostate', 'date_hemocult']
+                  'prenom_civil', 'nom_civil', 'date_naissance', 'numero_secu', 'medecin_traitant', 'dentiste', 'date_vaccin', 'date_dentiste', 'date_ophtalmo', 'date_don_sang', 'date_prostate', 'date_hemocult', 'remarques']
 
     def clean_date_naissance(self):
         """ Check date naissance in the past. """

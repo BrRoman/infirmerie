@@ -137,8 +137,10 @@ class BilletPDFView(LoginRequiredMixin, View):
         pdf.setFont("Helvetica-Bold", 10)
         pdf.drawString(10 * mm, 33 * mm, 'Médecin')
         pdf.roundRect(7 * mm, 35 * mm, width - 2 * 7 * mm, 30 * mm, 3 * mm)
-        pdf.drawString(10 * mm, 40 * mm, billet.toubib.__str__() + (' (Tél. ' +
-                                                                    billet.toubib.telephone + ')') if billet.toubib.telephone else '')
+        toubib = billet.toubib.__str__()
+        toubib += (' (Tél. ' + billet.toubib.telephone +
+                   ')') if billet.toubib.telephone else ''
+        pdf.drawString(10 * mm, 40 * mm, toubib)
         pdf.restoreState()
         if billet.toubib.adresse_1:
             pdf.drawString(15 * mm, 45 * mm, billet.toubib.adresse_1)
@@ -169,9 +171,6 @@ class BilletPDFView(LoginRequiredMixin, View):
         if billet.moine4:
             pdf.rect(10 * mm, 93 * mm, 2 * mm, 2 * mm)
             pdf.drawString(15 * mm, 95 * mm, billet.moine4.__str__())
-        # if billet.moine5:
-        #     pdf.rect(10 * mm, 98 * mm, 2 * mm, 2 * mm)
-        #     pdf.drawString(15 * mm, 100 * mm, billet.moine5.__str__())
         pdf.saveState()
 
         # Divers (prix, chauffeur, remarques):
@@ -189,12 +188,14 @@ class BilletPDFView(LoginRequiredMixin, View):
         prix += ' - Apporter la carte vitale' if billet.vitale else ''
         pdf.drawString(10 * mm, 113 * mm, prix)
         # Chauffeur :
+        add = 0
         if billet.chauffeur:
             pdf.drawString(10 * mm, 118 * mm, 'Chauffeur : ' +
                            billet.chauffeur.__str__())
+            add = 15
         # Remarques :
         if billet.remarque:
-            pdf.drawString(10 * mm, 123 * mm, billet.remarque)
+            pdf.drawString(10 * mm, (118 + add) * mm, billet.remarque)
 
         pdf.showPage()
         pdf.save()

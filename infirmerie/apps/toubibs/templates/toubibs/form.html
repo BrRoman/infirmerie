@@ -293,6 +293,30 @@
                 {% endif %}
             </div>
 
+            <!-- Remarques -->
+            <div class="form-group">
+                {{ form.remarques.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.remarques.errors %}
+                        {% render_field form.remarques class="form-control is-invalid" %}
+                        {% for error in form.remarques.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.remarques class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.remarques class="form-control" %}
+                {% endif %}
+                {% if form.remarques.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.remarques.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
         </div>
 
         <div class="d-flex justify-content-center">

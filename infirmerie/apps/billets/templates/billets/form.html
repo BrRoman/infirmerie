@@ -201,30 +201,6 @@
                         {% endif %}
                     </div>
 
-                    <!-- Moine5 -->
-                    <div class="form-group">
-                        {{ form.moine5.label_tag }}
-                        {% if form.is_bound %}
-                            {% if form.moine5.errors %}
-                                {% render_field form.moine5 class="custom-select form-control is-invalid" %}
-                                {% for error in form.moine5.errors %}
-                                    <div class="invalid-feedback" style="display: block;">
-                                        {{ error }}
-                                    </div>
-                                {% endfor %}
-                            {% else %}
-                                {% render_field form.moine5 class="custom-select form-control is-valid" %}
-                            {% endif %}
-                        {% else %}
-                            {% render_field form.moine5 class="custom-select form-control" %}
-                        {% endif %}
-                        {% if form.moine5.help_text %}
-                            <small class="form-text text-muted">
-                                {{ form.moine5.help_text }}
-                            </small>
-                        {% endif %}
-                    </div>
-
                     <!-- Chauffeur -->
                     <div class="form-group">
                         {{ form.chauffeur.label_tag }}
