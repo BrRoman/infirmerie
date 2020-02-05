@@ -67,11 +67,6 @@ class BilletForm(forms.ModelForm):
         queryset=Moine.objects.all().order_by('nom_religieux'),
         label='Moine 4 :',
     )
-    moine5 = forms.ModelChoiceField(
-        required=False,
-        queryset=Moine.objects.all().order_by('nom_religieux'),
-        label='Moine 5 :',
-    )
     chauffeur = forms.ModelChoiceField(
         required=False,
         queryset=Moine.objects.filter(
@@ -115,7 +110,7 @@ class BilletForm(forms.ModelForm):
     class Meta:
         model = Billet
         fields = ('titre', 'when', 'where', 'moine1', 'moine2', 'moine3',
-                  'moine4', 'moine5', 'chauffeur', 'prix', 'facture', 'gratis', 'vitale', 'toubib', 'remarque')
+                  'moine4', 'chauffeur', 'prix', 'facture', 'gratis', 'vitale', 'toubib', 'remarque')
 
     def send_email(self):
         """ Send email to courses. """

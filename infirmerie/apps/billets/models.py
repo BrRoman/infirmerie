@@ -34,12 +34,6 @@ class Billet(models.Model):
         on_delete=models.CASCADE,
         null=True,
     )
-    moine5 = models.ForeignKey(
-        Moine,
-        related_name='billets_moine5',
-        on_delete=models.CASCADE,
-        null=True,
-    )
     chauffeur = models.ForeignKey(
         Moine,
         related_name='billets_chauffeur',
@@ -83,7 +77,6 @@ class Billet(models.Model):
         moines += (', ' + self.moine2.__str__()) if self.moine2 else ''
         moines += (', ' + self.moine3.__str__()) if self.moine3 else ''
         moines += (', ' + self.moine4.__str__()) if self.moine4 else ''
-        moines += (', ' + self.moine5.__str__()) if self.moine5 else ''
         return moines
 
     def date_time(self):

@@ -169,9 +169,6 @@ class BilletPDFView(LoginRequiredMixin, View):
         if billet.moine4:
             pdf.rect(10 * mm, 93 * mm, 2 * mm, 2 * mm)
             pdf.drawString(15 * mm, 95 * mm, billet.moine4.__str__())
-        # if billet.moine5:
-        #     pdf.rect(10 * mm, 98 * mm, 2 * mm, 2 * mm)
-        #     pdf.drawString(15 * mm, 100 * mm, billet.moine5.__str__())
         pdf.saveState()
 
         # Divers (prix, chauffeur, remarques):
