@@ -26,6 +26,7 @@ class MoineForm(forms.ModelForm):
         help_text='NB : "Marie" sera ajouté automatiquement.'
     )
     is_chauffeur = forms.BooleanField(
+        required=False,
         label='Peut conduire',
         label_suffix='',
     )
