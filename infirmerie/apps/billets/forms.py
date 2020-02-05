@@ -96,7 +96,7 @@ class BilletForm(forms.ModelForm):
     )
     toubib = forms.ModelChoiceField(
         queryset=Toubib.objects.all().order_by('nom'),
-        label='Toubib :',
+        label='Médecin :',
         error_messages={
             'required': 'Ce champ est obligatoire',
         },

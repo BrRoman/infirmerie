@@ -1,14 +1,14 @@
 {% extends 'main.html' %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item active">Toubibs</li>
+    <li class="breadcrumb-item active">Médecins</li>
 {% endblock breadcrumbs %}
 
 {% block content %}
     <div class="d-flex align-self-stretch">
         <div id="title" class="form-inline">
-            <h1>Toubibs</h1>
-            <a href={% url 'toubibs:create' %}><p class="mr-auto" title="Ajouter un toubib"><span class="fas fa-plus-circle"></p></a>
+            <h1>Médecins</h1>
+            <a href={% url 'toubibs:create' %}><p class="mr-auto" title="Ajouter un médecin"><span class="fas fa-plus-circle"></p></a>
         </div>
         <div class="ml-auto">{% include 'pagination.html' %}</div>
     </div>
@@ -16,7 +16,7 @@
     <table class="table table-striped table-bordered table-sm">
         <thead>
             <tr>
-                <th>Toubib</th>
+                <th>Médecin</th>
                 <th>Spécialité</th>
                 <th>Adresse</th>
                 <th>Téléphone</th>
