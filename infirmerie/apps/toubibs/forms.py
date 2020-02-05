@@ -87,8 +87,13 @@ class ToubibForm(forms.ModelForm):
             'invalid': 'Adresse mail invalide.',
         }
     )
+    remarques = forms.CharField(
+        required=False,
+        label='Remarques',
+        widget=forms.Textarea,
+    )
 
     class Meta:
         model = Toubib
         fields = ['titre', 'nom', 'prenom', 'specialite', 'adresse_1', 'adresse_2',
-                  'adresse_3', 'code_postal', 'ville', 'telephone', 'email']
+                  'adresse_3', 'code_postal', 'ville', 'telephone', 'email', 'remarques']

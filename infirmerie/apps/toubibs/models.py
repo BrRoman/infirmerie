@@ -17,6 +17,7 @@ class Toubib(models.Model):
     ville = models.CharField(max_length=255, null=True, blank=True)
     telephone = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
+    remarques = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
