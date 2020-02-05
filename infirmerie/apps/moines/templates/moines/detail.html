@@ -39,6 +39,9 @@
                 <td><label>Date de naissance :</label></td><td>{{ moine.date_naissance|date:"d/m/Y" }}</td>
             </tr>
             <tr>
+                <td><label>Numéro de sécu :</label></td><td>{{ moine.numero_secu|default_if_none:'' }}</td>
+            </tr>
+            <tr>
                 <td><label>Vaccin :</label></td><td>{{ moine.date_vaccin|date:"d/m/Y" }}</td>
             </tr>
             <tr>

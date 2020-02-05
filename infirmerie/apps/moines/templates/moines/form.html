@@ -176,6 +176,30 @@
                 {% endif %}
             </div>
 
+            <!-- Numéro de sécu -->
+            <div class="form-group">
+                {{ form.numero_secu.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.numero_secu.errors %}
+                        {% render_field form.numero_secu class="form-control is-invalid" %}
+                        {% for error in form.numero_secu.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.numero_secu class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.numero_secu class="form-control" %}
+                {% endif %}
+                {% if form.numero_secu.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.numero_secu.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
             <!-- Médecin traitant -->
             <div class="form-group">
                 {{ form.medecin_traitant.label_tag }}
@@ -364,6 +388,30 @@
                 {% if form.date_hemocult.help_text %}
                     <small class="form-text text-muted">
                         {{ form.date_hemocult.help_text }}
+                    </small>
+                {% endif %}
+            </div>
+
+            <!-- Remarques -->
+            <div class="form-group">
+                {{ form.remarques.label_tag }}
+                {% if form.is_bound %}
+                    {% if form.remarques.errors %}
+                        {% render_field form.remarques class="form-control is-invalid" %}
+                        {% for error in form.remarques.errors %}
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field form.remarques class="form-control is-valid" %}
+                    {% endif %}
+                {% else %}
+                    {% render_field form.remarques class="form-control" %}
+                {% endif %}
+                {% if form.remarques.help_text %}
+                    <small class="form-text text-muted">
+                        {{ form.remarques.help_text }}
                     </small>
                 {% endif %}
             </div>
