@@ -115,20 +115,23 @@ class BilletForm(forms.ModelForm):
     def send_email(self):
         """ Send email to courses. """
         # Subject:
-        mail_subject = 'TEST --- RV médical (' + self.instance.titre + ')'
+        mail_subject = 'RV médical (' + self.instance.titre + ')'
         # Message:
         mail_message = ''
         mail_message += 'Date et heure : ' + self.instance.date_time()
         mail_message += '\nMoines : ' + self.instance.moines()
         mail_message += '\nMédecin : ' + self.instance.toubib.__str__()
-        mail_message += '\nChauffeur : ' + self.instance.chauffeur.__str__()
+        mail_message += ('\nChauffeur : ' + self.instance.chauffeur.__str__()
+                         ) if self.instance.chauffeur else ''
         if self.instance.gratis:
             mail_message += '\nGratis pro Deo'
         elif self.instance.prix:
             mail_message += '\nPrix : ' + str(self.instance.prix)
         mail_message += '\nFacture' if self.instance.facture else ''
+        mail_message += '\n---------------------'
+        mail_message += '\nMessage envoyé depuis http://python.asj.com:8001'
         # From:
-        mail_from = 'editeur@traditions-monastiques.com'
+        mail_from = 'infirmier@clairval.com'
         # To:
         mail_to = [
             'editeur@traditions-monastiques.com',
