@@ -50,4 +50,8 @@ $(document).ready(function () {
         year = date.getYear() + 1900;
         window.location.href = '/billets/agenda/' + day + '/' + month + '/' + year;
     });
+    // List of toubibs: search:
+    $('#search_input').keyup(function () {
+        console.log($(this).val());
+    });
 });

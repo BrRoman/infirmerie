@@ -6,11 +6,23 @@
 
 {% block content %}
     <div class="d-flex align-self-stretch">
+        <!-- Title -->
         <div id="title" class="form-inline">
             <h1>Médecins</h1>
             <a href={% url 'toubibs:create' %}><p class="mr-auto" title="Ajouter un médecin"><span class="fas fa-plus-circle"></p></a>
         </div>
-        <div class="ml-auto">{% include 'pagination.html' %}</div>
+
+        <!-- Tools -->
+        <div id="tools" class="d-flex align-items-center ml-auto">
+            <!-- Search -->
+            <div id="search" class="input-group">
+                <input type="text" id="search_input" class="form-control" placeholder="Rechercher">
+                <span class="fas fa-search mt-1" style="cursor: default;"></span>
+            </div>
+
+            <!-- Pagination --><!-- TODO: Formatting bug. -->
+            <div class="ml-auto">{% include 'pagination.html' %}</div>
+        </div>
     </div>
 
     <table class="table table-striped table-bordered table-sm">
