@@ -3,7 +3,7 @@
 {% load tz %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href={% url 'toubibs:list' 1 %}>Toubibs</a></li>
+    <li class="breadcrumb-item"><a href={% url 'toubibs:list' 1 %}>Médecins</a></li>
     <li class="breadcrumb-item active">{{ toubib }}</li>
 {% endblock breadcrumbs %}
 
@@ -21,8 +21,8 @@
 
     <div id="logos_detail" class="d-flex justify-content-center">
         <a href={% url 'toubibs:list' 1 %}><span class="fas fa-reply" title="Retour à la liste"></span></a>
-        <a href={% url 'toubibs:update' toubib.id %}><span class="fas fa-edit" title="Modifier ce toubib"></span></a>
-        <a href={% url 'toubibs:delete' toubib.id %}><span class="fas fa-trash-alt" title="Supprimer ce toubib"></span></a>
+        <a href={% url 'toubibs:update' toubib.id %}><span class="fas fa-edit" title="Modifier ce médecin"></span></a>
+        <a href={% url 'toubibs:delete' toubib.id %}><span class="fas fa-trash-alt" title="Supprimer ce médecin"></span></a>
     </div>
 
     <div class="block row justify-content-center mt-3 mb-2">

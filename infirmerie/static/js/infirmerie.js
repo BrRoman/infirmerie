@@ -53,4 +53,17 @@ $(document).ready(function () {
         year = date.getYear() + 1900;
         window.location.href = '/billets/agenda/' + day + '/' + month + '/' + year;
     });
+
+
+    // List of toubibs: search (fired on "Enter" or on click on logo "Search"):
+    $('#search_input').keyup(function (key) {
+        if (key.keyCode == 13) {
+            search = $('#search_input').val();
+            window.location.href = '/toubibs/search=' + search + '/page=1';
+        }
+    });
+    $('#search_toubibs_go').click(function () {
+        search = $('#search_input').val();
+        window.location.href = '/toubibs/search=' + search + '/page=1';
+    });
 });
