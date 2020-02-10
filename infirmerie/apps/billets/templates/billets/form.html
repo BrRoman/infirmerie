@@ -351,30 +351,32 @@
                         {% endif %}
                         {{ form.vitale.label_tag }}
                     </div>
+                </div>
+            </div>
 
-                    <!-- Remarque -->
-                    <div class="form-group">
-                        {{ form.remarque.label_tag }}
-                        {% if form.is_bound %}
-                            {% if form.remarque.errors %}
-                                {% render_field form.remarque class="form-control is-invalid" %}
-                                {% for error in form.remarque.errors %}
-                                    <div class="invalid-feedback" style="display: block;">
-                                        {{ error }}
-                                    </div>
-                                {% endfor %}
-                            {% else %}
-                                {% render_field form.remarque class="form-control is-valid" %}
-                            {% endif %}
+            <!-- Remarque -->
+            <div class="form row mx-1 mb-4">
+                <div class="col-12 form-group">
+                    {{ form.remarque.label_tag }}
+                    {% if form.is_bound %}
+                        {% if form.remarque.errors %}
+                            {% render_field form.remarque class="form-control is-invalid" %}
+                            {% for error in form.remarque.errors %}
+                                <div class="invalid-feedback" style="display: block;">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
                         {% else %}
-                            {% render_field form.remarque class="form-control" %}
+                            {% render_field form.remarque class="form-control is-valid" %}
                         {% endif %}
-                        {% if form.remarque.help_text %}
-                            <small class="form-text text-muted">
-                                {{ form.remarque.help_text }}
-                            </small>
-                        {% endif %}
-                    </div>
+                    {% else %}
+                        {% render_field form.remarque class="form-control" %}
+                    {% endif %}
+                    {% if form.remarque.help_text %}
+                        <small class="form-text text-muted">
+                            {{ form.remarque.help_text }}
+                        </small>
+                    {% endif %}
                 </div>
             </div>
         </div>

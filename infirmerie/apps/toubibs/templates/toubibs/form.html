@@ -8,7 +8,7 @@
 {% endblock css %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href={% url 'toubibs:list' 1 %}>Toubibs</a></li>
+    <li class="breadcrumb-item"><a href={% url 'toubibs:list' 1 %}>Médecins</a></li>
     {% if object %}
         <li class="breadcrumb-item"><a href={% url 'toubibs:detail' toubib.id %}>{{ toubib }}</a></li>
         <li class="breadcrumb-item active">Modifier</li>
@@ -21,7 +21,7 @@
     {% if object %}
         <h1>Modifier {{ toubib }}</h1>
     {% else %}
-        <h1>Créer un nouveau toubib</h1>
+        <h1>Créer un nouveau médecin</h1>
     {% endif %}
 
     <form method="post" novalidate>

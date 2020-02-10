@@ -10,11 +10,19 @@ from .forms import ToubibForm
 from .models import Toubib
 
 
-class ToubibListView(LoginRequiredMixin, ListView):  # pylint: disable=too-many-ancestors
+class ToubibListView(LoginRequiredMixin, ListView):
     """ List of Toubibs. """
     template_name = 'toubibs/list.html'
-    paginate_by = 20
-    queryset = Toubib.objects.order_by('nom', 'prenom')
+    paginate_by = 50
+
+    def get_queryset(self):
+        if 'search' in self.kwargs:
+            search = self.kwargs['search']
+            queryset = (Toubib.objects.filter(nom__icontains=search)
+                        | Toubib.objects.filter(specialite__icontains=search))
+        else:
+            queryset = Toubib.objects
+        return queryset.order_by('nom', 'prenom')
 
 
 class ToubibCreateView(LoginRequiredMixin, CreateView):
