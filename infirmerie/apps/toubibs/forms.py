@@ -32,7 +32,9 @@ class ToubibForm(forms.ModelForm):
         label='Spécialité :',
         choices=[
             ('Généraliste', 'Généraliste'),
+            ('Allergologue', 'Allergologue'),
             ('Acupuncteur', 'Acupuncteur'),
+            ('Cardiologue', 'Cardiologue'),
             ('Chirurgien', 'Chirurgien'),
             ('Dentiste', 'Dentiste'),
             ('Gérontologue ', 'Gérontologue'),
