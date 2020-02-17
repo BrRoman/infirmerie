@@ -12,4 +12,6 @@ urlpatterns = [
     path('id=<int:pk>/detail', views.ToubibDetailView.as_view(), name='detail'),
     path('id=<int:pk>/update', views.ToubibUpdateView.as_view(), name='update'),
     path('id=<int:pk>/delete', views.ToubibDeleteView.as_view(), name='delete'),
+    path('autocomplete/',
+         views.ToubibAutocompleteView.as_view(), name='autocomplete'),
 ]

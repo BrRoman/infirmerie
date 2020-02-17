@@ -3,10 +3,6 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block css %}
-    <link rel="stylesheet" href={% static "css/tempusdominus-bootstrap-4.min.css" %}>
-{% endblock css %}
-
 {% block breadcrumbs %}
     {% if object %}
         <li class="breadcrumb-item"><a href={% url 'billets:detail' billet.id %}>{{ billet }}</a></li>
@@ -232,17 +228,17 @@
                         {{ form.toubib.label_tag }}
                         {% if form.is_bound %}
                             {% if form.toubib.errors %}
-                                {% render_field form.toubib class="custom-select form-control is-invalid" %}
+                                {% render_field form.toubib class="form-control is-invalid" %}
                                 {% for error in form.toubib.errors %}
                                     <div class="invalid-feedback" style="display: block;">
                                         {{ error }}
                                     </div>
                                 {% endfor %}
                             {% else %}
-                                {% render_field form.toubib class="custom-select form-control is-valid" %}
+                                {% render_field form.toubib class="form-control is-valid" %}
                             {% endif %}
                         {% else %}
-                            {% render_field form.toubib class="custom-select form-control" %}
+                            {% render_field form.toubib class="form-control" %}
                         {% endif %}
                         {% if form.toubib.help_text %}
                             <small class="form-text text-muted">
@@ -389,7 +385,5 @@
 {% endblock content %}
 
 {% block javascript %}
-    <script src="{% static "js/moment.min.js" %}"></script>
-    <script src="{% static "js/moment-locale-fr.js" %}"></script>
-    <script src="{% static "js/tempusdominus-bootstrap-4.min.js" %}"></script>
+    {{ form.media }}
 {% endblock javascript %}
