@@ -71,7 +71,7 @@ class BilletCreateView(LoginRequiredMixin, CreateView):
     model = Billet
     form_class = BilletForm
     template_name = 'billets/form.html'
-    success_url = reverse_lazy('root')
+    success_url = reverse_lazy('billets:home')
 
     def form_valid(self, form):
         form.send_email()
@@ -90,7 +90,7 @@ class BilletUpdateView(LoginRequiredMixin, UpdateView):
     model = Billet
     form_class = BilletForm
     template_name = 'billets/form.html'
-    success_url = reverse_lazy('root')
+    success_url = reverse_lazy('billets:home')
 
     def form_valid(self, form):
         form.send_email()
@@ -100,7 +100,7 @@ class BilletUpdateView(LoginRequiredMixin, UpdateView):
 class BilletDeleteView(LoginRequiredMixin, DeleteView):
     """ Delete billet. """
     model = Billet
-    success_url = reverse_lazy('root')
+    success_url = reverse_lazy('billets:home')
     template_name = "billets/delete.html"
 
 
