@@ -6,6 +6,7 @@ from . import views
 
 app_name = 'billets'
 urlpatterns = [
+    path('', views.HomeView.as_view(), name='home'),
     re_path(r'^agenda/(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})/$',
             views.AgendaView.as_view(), name='agenda'),
     path('create', views.BilletCreateView.as_view(), name='create'),
