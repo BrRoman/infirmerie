@@ -1,5 +1,7 @@
 """ apps/billets/forms.py """
 
+from dal import autocomplete
+
 from django import forms
 from django.core.mail import send_mail
 
@@ -95,11 +97,13 @@ class BilletForm(forms.ModelForm):
         label_suffix='',
     )
     toubib = forms.ModelChoiceField(
-        queryset=Toubib.objects.all().order_by('nom'),
         label='Médecin :',
         error_messages={
             'required': 'Ce champ est obligatoire',
         },
+        help_text='Entrez les premières lettres du nom du médecin.',
+        queryset=Toubib.objects.all(),
+        widget=autocomplete.ModelSelect2(url='toubibs:autocomplete'),
     )
     remarque = forms.CharField(
         required=False,
@@ -109,8 +113,7 @@ class BilletForm(forms.ModelForm):
 
     class Meta:
         model = Billet
-        fields = ('titre', 'when', 'where', 'moine1', 'moine2', 'moine3',
-                  'moine4', 'chauffeur', 'prix', 'facture', 'gratis', 'vitale', 'toubib', 'remarque')
+        fields = ('__all__')
 
     def send_email(self):
         """ Send email to courses. """

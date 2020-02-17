@@ -77,6 +77,18 @@ body {
         }
     }
 
+    // Home:
+    #notifications {
+        border: 1px solid @darkgrey;
+        border-radius: 4px;
+        margin: 50px 0px 0px 0px;
+        padding: 10px 40px 10px 40px;
+
+        .notifications {
+            color: @full-red;
+        }
+    }
+
     // Agenda:
     #agenda {
         text-align: center;
@@ -178,5 +190,10 @@ body {
         .fa-trash-alt {
             color: @full-red;
         }
+    }
+
+    // Billet: autocomplete toubib:
+    .select2-selection--single {
+        height: 40px !important;
     }
 }

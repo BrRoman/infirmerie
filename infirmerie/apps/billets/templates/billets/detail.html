@@ -18,7 +18,7 @@
     </div>
 
     <div id="logos_detail" class="d-flex justify-content-center">
-        <a href={% url 'root' %}><span class="fas fa-reply" title="Retour à l'agenda"></span></a>
+        <a href={% url 'billets:home' %}><span class="fas fa-reply" title="Retour à l'agenda"></span></a>
         <a href={% url 'billets:update' billet.id %}><span class="fas fa-edit" title="Modifier ce billet"></span></a>
         <a href={% url 'billets:pdf' billet.id %}><span class="fas fa-file-pdf" title="Voir le pdf"></span></a>
         <a href={% url 'billets:delete' billet.id %}><span class="fas fa-trash-alt" title="Supprimer ce billet"></span></a>
