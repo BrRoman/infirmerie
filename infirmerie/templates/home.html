@@ -1,5 +1,19 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    Home page.
+    <div id="notifications">
+        <h1 class="text-center">Notifications</h1>
+
+        <!-- Notifications dentiste -->
+        <h4 class="text-left">Rendez-vous dentiste :</h4>
+        <div class="notifications">
+            <ul>
+                {% for moine in moines_dentiste %}
+                    <li>
+                        {{ moine }} (dernier rendez-vous : {{ moine.date_dentiste }})
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock content %}
