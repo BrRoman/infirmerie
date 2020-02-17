@@ -1,5 +1,7 @@
 """ apps/toubibs/views.py """
 
+from dal import autocomplete
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
@@ -53,3 +55,16 @@ class ToubibDeleteView(LoginRequiredMixin, DeleteView):
     model = Toubib
     success_url = reverse_lazy('toubibs:list', args=[1])
     template_name = "toubibs/delete.html"
+
+
+class ToubibAutocompleteView(autocomplete.Select2QuerySetView):
+    """ Return a set of Toubibs according to the user search value. """
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return Toubib.objects.none()
+
+        toubibs = Toubib.objects.all()
+        if self.q:
+            toubibs = toubibs.filter(nom__istartswith=self.q)
+        return toubibs
