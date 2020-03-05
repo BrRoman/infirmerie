@@ -14,6 +14,9 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['moines_dentiste'] = Moine.objects.filter(
+        context['data'] = {}
+        dentistes = Moine.objects.filter(
             date_dentiste__lt=datetime.datetime.today() - datetime.timedelta(days=365))
+        if dentistes:
+            context['data']['moines_dentiste'] = dentistes
         return context
