@@ -1,7 +1,6 @@
 $(document).ready(function () {
     url = new URL(window.location);
 
-
     // Agenda: click on 'previous week':
     $('#previous_week').click(function () {
         regex = /agenda\/(\d{2})\/(\d{2})\/(\d{4})/;
@@ -17,7 +16,7 @@ $(document).ready(function () {
 
         previous_year = previous_date.getYear() + 1900;
 
-        window.location.href = '/billets/agenda/' + previous_day + '/' + previous_month + '/' + previous_year;
+        window.location.href = '/infirmerie/billets/agenda/' + previous_day + '/' + previous_month + '/' + previous_year;
     });
 
 
@@ -36,7 +35,7 @@ $(document).ready(function () {
 
         next_year = next_date.getYear() + 1900;
 
-        window.location.href = '/billets/agenda/' + next_day + '/' + next_month + '/' + next_year;
+        window.location.href = '/infirmerie/billets/agenda/' + next_day + '/' + next_month + '/' + next_year;
     });
 
 
@@ -51,7 +50,7 @@ $(document).ready(function () {
         month = date.getMonth() + 1;
         month = month < 10 ? '0' + month : month;
         year = date.getYear() + 1900;
-        window.location.href = '/billets/agenda/' + day + '/' + month + '/' + year;
+        window.location.href = '/infirmerie/billets/agenda/' + day + '/' + month + '/' + year;
     });
 
 
@@ -59,11 +58,12 @@ $(document).ready(function () {
     $('#search_input').keyup(function (key) {
         if (key.keyCode == 13) {
             search = $('#search_input').val();
-            window.location.href = '/toubibs/search=' + search + '/page=1';
+            window.location.href = '/infirmerie/toubibs/search=' + search + '/page=1';
         }
     });
     $('#search_toubibs_go').click(function () {
+        // TODO: Bug if empty string.
         search = $('#search_input').val();
-        window.location.href = '/toubibs/search=' + search + '/page=1';
+        window.location.href = '/infirmerie/toubibs/search=' + search + '/page=1';
     });
 });
