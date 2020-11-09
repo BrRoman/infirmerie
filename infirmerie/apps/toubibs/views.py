@@ -15,7 +15,7 @@ from .models import Toubib
 class ToubibListView(LoginRequiredMixin, ListView):
     """ List of Toubibs. """
     template_name = 'toubibs/list.html'
-    paginate_by = 50
+    paginate_by = 20
 
     def get_queryset(self):
         if 'search' in self.kwargs:

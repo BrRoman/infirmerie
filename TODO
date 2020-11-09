@@ -1,5 +1,4 @@
 - Liste des moines :
-noms civils, date de naissance, numéro de sécurité sociale
 gestion chronologique des soins dentaires par année en 12 colonnes (1 colonne par mois) pour organiser les voyages et grouper les moines et les 7 dentistes
 idem prostate (tous les 2 ans)
 idem ophtalmo (à la demande)
@@ -7,21 +6,20 @@ idem hémocult (2 ans)
 don du sang (ad libitum, mais limiter)
 vaccinations (dtp) : vaccin, date, vaccinateur, numéro du lot
 Liste chronologique de tous ces rendez-vous pour chaque moine.
-Médecin traitant du moine + généraliste.
 
 - Liste des infirmiers monastiques.
 
 - Rendez-vous:
-date, heure, médecin, moine 1, 2, 3 etc.
-lieu (infirmerie, travail, chambre, porterie) et adresse
-prix: gratuit, facture, carte vitale
-chauffeur (liste)
-remarques (5 lignes)
 Couleur différente selon état (prospection blanc/jaune, rv pris, moine prévenu +)
 Couleur différente selon type de rv (médecins rouge, paramédicaux bleu, dentistes vert)
 
-- Calendrier avec retraites (Flavigny orange, extérieur jaune), jours de promenade, solennités, don du sang etc.
+- Calendrier :
+    - retraites (Flavigny orange, extérieur jaune), jours de promenade, solennités, don du sang etc.
+    - "semaine du… au…" à indiquer.
 
-- Imprimer le papier (1 A6).
+- Bug : annuler la suppression d'un élément (billet, moine…) n'annule pas : l'élément est quand même supprimé.
 
-- Envoyer un mail à courses@clairval.com.
+- Dentiste : alerte si pas de rendez-vous depuis + d'1 an. Idem ophtalmo.
+
+- Case à cocher "est médecin".
+- Tri médecin / pas médecin.
