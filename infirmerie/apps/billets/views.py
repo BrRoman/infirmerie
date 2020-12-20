@@ -122,9 +122,18 @@ class BilletPDFView(LoginRequiredMixin, View):
         # Header:
         pdf.drawCentredString(width/2.0, 8 * mm, '+')
         pdf.drawCentredString(width/2.0, 13 * mm, 'PAX')
-        pdf.setFont("Helvetica-Bold", 12)
+        pdf.setFont("Helvetica-Bold", 11)
         pdf.drawCentredString(width/2.0, 55, 'Rendez-vous médical')
-        pdf.drawCentredString(width/2.0, 70, billet.date_time())
+        if billet.where == 'Porterie':
+            where = ' (à la porterie)'
+        elif billet.where == 'Infirmerie':
+            where = ' (à l\'infirmerie)'
+        else:
+            where = ''
+        pdf.drawCentredString(width/2.0, 70, '{}{}'.format(
+            billet.date_time(),
+            where)
+        )
         pdf.restoreState()
         pdf.saveState()
 
