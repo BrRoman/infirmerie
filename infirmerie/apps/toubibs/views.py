@@ -3,13 +3,14 @@
 from dal import autocomplete
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
 from .forms import ToubibForm
-from .models import Toubib
+from .models import Specialities, Toubib
 
 
 class ToubibListView(LoginRequiredMixin, ListView):
@@ -68,3 +69,15 @@ class ToubibAutocompleteView(autocomplete.Select2QuerySetView):
         if self.q:
             toubibs = toubibs.filter(nom__istartswith=self.q)
         return toubibs
+
+
+def specialities_list(request):
+    """ List of specialities. """
+    specialities = Specialities.objects.all().order_by('speciality')
+    return render(
+        request,
+        'specialities/list.html',
+        {
+            'specialities': specialities
+        }
+    )

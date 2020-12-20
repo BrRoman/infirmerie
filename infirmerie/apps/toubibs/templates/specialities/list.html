@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <ul>
+        {% for spe in specialities %}
+            <li>{{ spe }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
