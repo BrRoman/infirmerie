@@ -137,7 +137,7 @@ class BilletForm(forms.ModelForm):
         mail_from = 'infirmier@clairval.com'
         # To:
         mail_to = [
-            'infirmerie@traditions-monastiques.com',
+            'infirmier@traditions-monastiques.com',
             'courses@clairval.com'
         ]
 
