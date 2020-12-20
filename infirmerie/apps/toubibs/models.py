@@ -4,12 +4,24 @@ from django.db import models
 from django.urls import reverse
 
 
+class Specialities(models.Model):
+    """ Speciality model. """
+    speciality = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.speciality
+
+
 class Toubib(models.Model):
     """ Toubib model. """
     titre = models.CharField(max_length=25)
     prenom = models.CharField(max_length=50, null=True, blank=True)
     nom = models.CharField(max_length=50)
     specialite = models.CharField(max_length=25)
+    speciality = models.ForeignKey(
+        to=Specialities,
+        on_delete=models.CASCADE,
+    )
     adresse_1 = models.CharField(max_length=255, null=True, blank=True)
     adresse_2 = models.CharField(max_length=255, null=True, blank=True)
     adresse_3 = models.CharField(max_length=255, null=True, blank=True)

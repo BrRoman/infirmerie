@@ -2,7 +2,7 @@
 
 from django import forms
 
-from .models import Toubib
+from .models import Specialities, Toubib
 
 
 class ToubibForm(forms.ModelForm):
@@ -28,39 +28,9 @@ class ToubibForm(forms.ModelForm):
         required=False,
         label='Prénom :',
     )
-    specialite = forms.ChoiceField(
+    specialite = forms.ModelChoiceField(
         label='Spécialité :',
-        choices=[
-            ('Généraliste', 'Généraliste'),
-            ('Allergologue', 'Allergologue'),
-            ('Acupuncteur', 'Acupuncteur'),
-            ('Anesthésiste', 'Anesthésiste'),
-            ('Cardiologue', 'Cardiologue'),
-            ('Chirurgien', 'Chirurgien'),
-            ('Dentiste', 'Dentiste'),
-            ('Gastro', 'Gastro'),
-            ('Gérontologue ', 'Gérontologue'),
-            ('Homéopathe', 'Homéopathe'),
-            ('Infirmier(ère)', 'Infirmier(ère)'),
-            ('IRM', 'IRM'),
-            ('Kiné', 'Kiné'),
-            ('Médecin du sport', 'Médecin du sport'),
-            ('Naturopathe', 'Naturopathe'),
-            ('Neurologue', 'Neurologue'),
-            ('Ophtalmo', 'Ophtalmo'),
-            ('Opticien', 'Opticien'),
-            ('ORL', 'ORL'),
-            ('Orthopédiste', 'Orthopédiste'),
-            ('Ostéopathe', 'Ostéopathe'),
-            ('Pharmacie', 'Pharmacie'),
-            ('Phlébologue', 'Phlébologue'),
-            ('Podologue', 'Podologue'),
-            ('Psychiatre', 'Psychiatre'),
-            ('Psychothérapeute', 'Psychothérapeute'),
-            ('Radiologue', 'Radiologue'),
-            ('Rhumato', 'Rhumato'),
-            ('Urologue', 'Urologue'),
-        ],
+        queryset=Specialities.objects.all().order_by('speciality'),
         error_messages={
             'required': 'Ce champ est obligatoire',
         },
