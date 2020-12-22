@@ -76,3 +76,19 @@ class ToubibForm(forms.ModelForm):
         model = Toubib
         fields = ['titre', 'nom', 'prenom', 'specialite', 'adresse_1', 'adresse_2',
                   'adresse_3', 'code_postal', 'ville', 'telephone', 'email', 'remarques']
+
+
+class SpecialityForm(forms.ModelForm):
+    """ Form for speciality. """
+    speciality = forms.CharField(
+        label='Nom de la spécialité :',
+        label_suffix='',
+        max_length=255,
+        error_messages={
+            'required': 'Ce champ est obligatoire',
+        },
+    )
+
+    class Meta:
+        model = Speciality
+        fields = ['speciality']

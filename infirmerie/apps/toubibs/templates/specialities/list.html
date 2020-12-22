@@ -13,11 +13,11 @@
 
     <a href={% url 'toubibs:specialities_create' %}>Créer une spécialité</a>
 
-    <div class="col-5 mt-3">
+    <div class="col-3 mt-3">
         <table class='table table-sm table-bordered'>
             {% for spe in specialities %}
                 <tr>
-                    <td class="text-center"><a href={% url 'toubibs:specialities_update' spe.id %} title="Modifier cette spécialité">{{ spe }}</a></td>
+                    <td><a href={% url 'toubibs:specialities_update' spe.id %} title="Modifier cette spécialité">{{ spe }}</a></td>
                     <td class="text-center"><a href={% url 'toubibs:specialities_delete' spe.id %} title="Supprimer cette spécialité"><span class="fas fa-trash-alt red"></span></a></td>
                 </tr>
             {% endfor %}

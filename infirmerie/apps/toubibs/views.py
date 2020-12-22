@@ -4,13 +4,14 @@ from dal import autocomplete
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse, reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
-from .forms import ToubibForm
+from .forms import SpecialityForm, ToubibForm
 from .models import Speciality, Toubib
 
 
@@ -88,16 +89,60 @@ def specialities_list(request):
 @login_required
 def specialities_create(request):
     """ Create a speciality. """
-    pass
+    if request.method == 'POST':
+        form = SpecialityForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('toubibs:specialities_list'))
+
+    else:
+        form = SpecialityForm()
+
+    return render(
+        request,
+        'specialities/form.html',
+        {'form': form}
+    )
 
 
 @login_required
-def specialities_update(request):
+def specialities_update(request, **kwargs):
     """ Update a speciality. """
-    pass
+    spe = get_object_or_404(Speciality, pk=kwargs['pk'])
+
+    if request.method == 'POST':
+        form = SpecialityForm(request.POST, instance=spe)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('toubibs:specialities_list'))
+
+    else:
+        form = SpecialityForm(instance=spe)
+
+    return render(
+        request,
+        'specialities/form.html',
+        {
+            'form': form,
+            'spe': spe,
+        }
+    )
 
 
 @login_required
-def specialities_delete(request):
+def specialities_delete(request, **kwargs):
     """ Delete a speciality. """
-    pass
+    spe = get_object_or_404(Speciality, pk=kwargs['pk'])
+
+    if request.method == 'POST':
+        form = SpecialityForm(request.POST)
+        spe.delete()
+        return HttpResponseRedirect(reverse('toubibs:specialities_list'))
+
+    else:
+        form = SpecialityForm()
+
+    return render(request, 'specialities/delete.html', {
+        'form': form,
+        'spe': spe,
+    })
