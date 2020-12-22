@@ -41,7 +41,7 @@
             {% for toubib in object_list %}
                 <tr>
                     <td><a href={% url 'toubibs:detail' toubib.id %}><b>{{ toubib }}<b></a></td>
-                    <td>{{ toubib.specialite }}</td>
+                    <td>{{ toubib.speciality }}</td>
                     <td>{{ toubib.adresse_complete }}</td>
                     <td>{{ toubib.telephone }}</td>
                     <td>{{ toubib.email }}</td>

@@ -28,7 +28,7 @@ class ToubibForm(forms.ModelForm):
         required=False,
         label='Prénom :',
     )
-    specialite = forms.ModelChoiceField(
+    speciality = forms.ModelChoiceField(
         label='Spécialité :',
         queryset=Speciality.objects.all().order_by('speciality'),
         error_messages={
@@ -74,7 +74,7 @@ class ToubibForm(forms.ModelForm):
 
     class Meta:
         model = Toubib
-        fields = ['titre', 'nom', 'prenom', 'specialite', 'adresse_1', 'adresse_2',
+        fields = ['titre', 'nom', 'prenom', 'speciality', 'adresse_1', 'adresse_2',
                   'adresse_3', 'code_postal', 'ville', 'telephone', 'email', 'remarques']
 
 

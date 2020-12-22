@@ -103,24 +103,24 @@
 
             <!-- Spécialité -->
             <div class="form-group">
-                {{ form.specialite.label_tag }}
+                {{ form.speciality.label_tag }}
                 {% if form.is_bound %}
-                    {% if form.specialite.errors %}
-                        {% render_field form.specialite class="custom-select form-control is-invalid" %}
-                        {% for error in form.specialite.errors %}
+                    {% if form.speciality.errors %}
+                        {% render_field form.speciality class="custom-select form-control is-invalid" %}
+                        {% for error in form.speciality.errors %}
                             <div class="invalid-feedback" style="display: block;">
                                 {{ error }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {% render_field form.specialite class="custom-select form-control is-valid" %}
+                        {% render_field form.speciality class="custom-select form-control is-valid" %}
                     {% endif %}
                 {% else %}
-                    {% render_field form.specialite class="custom-select form-control" %}
+                    {% render_field form.speciality class="custom-select form-control" %}
                 {% endif %}
-                {% if form.specialite.help_text %}
+                {% if form.speciality.help_text %}
                     <small class="form-text text-muted">
-                        {{ form.specialite.help_text }}
+                        {{ form.speciality.help_text }}
                     </small>
                 {% endif %}
             </div>
