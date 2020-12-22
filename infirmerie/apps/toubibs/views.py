@@ -2,6 +2,7 @@
 
 from dal import autocomplete
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -10,7 +11,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
 from .forms import ToubibForm
-from .models import Specialities, Toubib
+from .models import Speciality, Toubib
 
 
 class ToubibListView(LoginRequiredMixin, ListView):
@@ -71,9 +72,10 @@ class ToubibAutocompleteView(autocomplete.Select2QuerySetView):
         return toubibs
 
 
+@login_required
 def specialities_list(request):
     """ List of specialities. """
-    specialities = Specialities.objects.all().order_by('speciality')
+    specialities = Speciality.objects.all().order_by('speciality')
     return render(
         request,
         'specialities/list.html',
@@ -81,3 +83,21 @@ def specialities_list(request):
             'specialities': specialities
         }
     )
+
+
+@login_required
+def specialities_create(request):
+    """ Create a speciality. """
+    pass
+
+
+@login_required
+def specialities_update(request):
+    """ Update a speciality. """
+    pass
+
+
+@login_required
+def specialities_delete(request):
+    """ Delete a speciality. """
+    pass

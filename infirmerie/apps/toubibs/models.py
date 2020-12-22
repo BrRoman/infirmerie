@@ -4,12 +4,15 @@ from django.db import models
 from django.urls import reverse
 
 
-class Specialities(models.Model):
+class Speciality(models.Model):
     """ Speciality model. """
     speciality = models.CharField(max_length=50)
 
     def __str__(self):
         return self.speciality
+
+    class Meta:
+        verbose_name_plural = 'specialities'
 
 
 class Toubib(models.Model):
@@ -19,7 +22,7 @@ class Toubib(models.Model):
     nom = models.CharField(max_length=50)
     specialite = models.CharField(max_length=25)
     speciality = models.ForeignKey(
-        to=Specialities,
+        to=Speciality,
         on_delete=models.CASCADE,
     )
     adresse_1 = models.CharField(max_length=255, null=True, blank=True)

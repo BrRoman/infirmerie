@@ -15,4 +15,10 @@ urlpatterns = [
     path('autocomplete/',
          views.ToubibAutocompleteView.as_view(), name='autocomplete'),
     path('specialities/list', views.specialities_list, name='specialities_list'),
+    path('specialities/create', views.specialities_create,
+         name='specialities_create'),
+    path('specialities/<int:pk>/update',
+         views.specialities_update, name='specialities_update'),
+    path('specialities/<int:pk>/delete',
+         views.specialities_delete, name='specialities_delete'),
 ]

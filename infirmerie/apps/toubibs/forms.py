@@ -2,7 +2,7 @@
 
 from django import forms
 
-from .models import Specialities, Toubib
+from .models import Speciality, Toubib
 
 
 class ToubibForm(forms.ModelForm):
@@ -30,7 +30,7 @@ class ToubibForm(forms.ModelForm):
     )
     specialite = forms.ModelChoiceField(
         label='Spécialité :',
-        queryset=Specialities.objects.all().order_by('speciality'),
+        queryset=Speciality.objects.all().order_by('speciality'),
         error_messages={
             'required': 'Ce champ est obligatoire',
         },
