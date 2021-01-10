@@ -5,6 +5,7 @@ import io
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic.base import RedirectView
@@ -64,6 +65,11 @@ class AgendaView(LoginRequiredMixin, ListView):
         context['days'] = days
 
         return context
+
+
+def billets_list_view(request):
+    """ Billets as list. """
+    return render(request, 'billets/list.html')
 
 
 class BilletCreateView(LoginRequiredMixin, CreateView):
