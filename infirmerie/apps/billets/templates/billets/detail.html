@@ -35,7 +35,7 @@
                 <td><label>Lieu :</label></td><td>{{ billet.where }}</td>
             </tr>
             <tr>
-                <td><label>Prix :</label></td><td>{{ billet.prix|default_if_none:'0' }} €</td>
+                <td><label>Prix :</label></td><td>{{ billet.prix|default_if_none:'?' }} €</td>
             </tr>
                 <td><label>Facture :</label></td><td>{{ billet.facture|yesno:'oui,non' }}</td>
             </tr>
@@ -44,7 +44,7 @@
                 <td><label>Carte vitale :</label></td><td>{{ billet.vitale|yesno:'oui,non' }}</td>
             </tr>
             </tr>
-                <td><label>Remarques :</label></td><td>{{ billet.remarque }}</td>
+                <td><label>Remarques :</label></td><td>{{ billet.remarque|linebreaks }}</td>
             </tr>
         </table>
     </div>
