@@ -183,13 +183,16 @@ class BilletPDFView(LoginRequiredMixin, View):
         pdf.drawString(10 * mm, 106 * mm, 'Remarques')
         pdf.roundRect(7 * mm, 108 * mm, width - 2 * 7 * mm, 35 * mm, 3 * mm)
         pdf.restoreState()
+        pdf.setFont("Helvetica", 8)
         # Prix :
         prix = 'Prix :'
-        if billet.gratis:
-            prix += ' - Gratis pro Deo.'
+        if billet.gratis or billet.prix == 0:
+            prix += ' gratis pro Deo'
         elif billet.prix:
             prix += str(billet.prix) + ' €'
             prix += ' (facture)' if billet.facture else ''
+        else:
+            prix += ' ?'
         prix += ' - Apporter la carte vitale' if billet.vitale else ''
         pdf.drawString(10 * mm, 113 * mm, prix)
         # Chauffeur :
@@ -197,10 +200,14 @@ class BilletPDFView(LoginRequiredMixin, View):
         if billet.chauffeur:
             pdf.drawString(10 * mm, 118 * mm, 'Chauffeur : ' +
                            billet.chauffeur.__str__())
-            add = 15
+            add = 5
         # Remarques :
         if billet.remarque:
-            pdf.drawString(10 * mm, (118 + add) * mm, billet.remarque)
+            for index, line in enumerate(billet.remarque.splitlines()):
+                remarque = pdf.beginText(
+                    10 * mm, (118 + add + (5 * index)) * mm)
+                remarque.textLine(line)
+                pdf.drawText(remarque)
 
         pdf.showPage()
         pdf.save()
