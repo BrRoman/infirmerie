@@ -4,6 +4,7 @@
 {% load widget_tweaks %}
 
 {% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href={% url 'billets:home' %}>Agenda</a></li>
     {% if object %}
         <li class="breadcrumb-item"><a href={% url 'billets:detail' billet.id %}>{{ billet }}</a></li>
         <li class="breadcrumb-item active">Modifier</li>
