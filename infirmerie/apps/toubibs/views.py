@@ -30,6 +30,22 @@ class ToubibListView(LoginRequiredMixin, ListView):
         return queryset.order_by('nom', 'prenom')
 
 
+@login_required
+def toubibs_repertoire(request, **kwargs):
+    """ Toubibs as repertoire. """
+    toubibs = Toubib.objects.filter(
+        nom__startswith=kwargs['letter']).order_by('nom', 'prenom')
+    return render(
+        request,
+        'toubibs/repertoire.html',
+        {
+            'letters': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-'],
+            'toubibs': toubibs,
+            'current': kwargs['letter'],
+        }
+    )
+
+
 class ToubibCreateView(LoginRequiredMixin, CreateView):
     """ Create Toubib. """
     model = Toubib
