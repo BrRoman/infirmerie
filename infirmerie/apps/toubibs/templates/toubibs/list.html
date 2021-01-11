@@ -10,6 +10,7 @@
         <div id="title" class="form-inline">
             <h1>Médecins</h1>
             <a href={% url 'toubibs:create' %}><p class="mr-auto" title="Ajouter un médecin"><span class="fas fa-plus-circle"></p></a>
+            <a href={% url 'toubibs:specialities_list' %} title="Gérer les spécialités des médecins"><span class="fas fa-user-md ml-2"></span></a>
             <a href={% url 'toubibs:repertoire' 'A' %} title="Switch to répertoire view" class="ml-2">A</a>
         </div>
 
