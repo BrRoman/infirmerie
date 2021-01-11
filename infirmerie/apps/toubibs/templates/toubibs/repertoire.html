@@ -16,8 +16,8 @@
     <div id="tools">
         <ul id="letters" class="list-inline row mx-5 my-0">
             {% for letter in letters %}
-                {% if letter == current or letter == 'D' and current == 'd' %}
-                    <li class="mx-1 red">{{ letter }}</li>
+                {% if letter == current %}
+                    <span><li class="mx-1 red li-letter">{{ letter }}</li></span>
                 {% else %}
                     <li class="mx-1"><a href={% url 'toubibs:repertoire' letter %}>{{ letter }}</a></li>
                 {% endif %}
