@@ -3,7 +3,9 @@
 import datetime
 import io
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.http import FileResponse
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
@@ -67,9 +69,13 @@ class AgendaView(LoginRequiredMixin, ListView):
         return context
 
 
-def billets_list_view(request):
+@login_required
+def billets_list_view(request, page=1):
     """ Billets as list. """
-    return render(request, 'billets/list.html')
+    billets = Billet.objects.all().order_by('-when', 'titre')
+    paginator = Paginator(billets, 20)
+    page = paginator.page(page)
+    return render(request, 'billets/list.html', {'billets': page})
 
 
 class BilletCreateView(LoginRequiredMixin, CreateView):
