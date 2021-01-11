@@ -9,7 +9,7 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     re_path(r'^agenda/(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})/$',
             views.AgendaView.as_view(), name='agenda'),
-    path('list', views.billets_list_view, name='list'),
+    path('list/', views.billets_list_view, name='list'),
     path('list/page=<int:page>', views.billets_list_view, name='list_page'),
     path('create', views.BilletCreateView.as_view(), name='create'),
     path('id=<int:pk>/detail', views.BilletDetailView.as_view(), name='detail'),

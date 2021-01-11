@@ -70,12 +70,24 @@ class AgendaView(LoginRequiredMixin, ListView):
 
 
 @login_required
-def billets_list_view(request, page=1):
+def billets_list_view(request, page=0):
     """ Billets as list. """
-    billets = Billet.objects.all().order_by('-when', 'titre')
+    billets = Billet.objects.all().order_by('when', 'titre')
     paginator = Paginator(billets, 20)
-    page = paginator.page(page)
-    return render(request, 'billets/list.html', {'billets': page})
+    if page == 0:
+        page = paginator.num_pages
+    page_obj = paginator.page(page)
+    billets = page_obj.object_list
+    return render(
+        request,
+        'billets/list.html',
+        {
+            'is_paginated': True,
+            'billets': billets,
+            'paginator': paginator,
+            'page_obj': page_obj,
+        }
+    )
 
 
 class BilletCreateView(LoginRequiredMixin, CreateView):

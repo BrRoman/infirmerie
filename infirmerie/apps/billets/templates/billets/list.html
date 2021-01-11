@@ -11,9 +11,13 @@
             <a href={% url 'billets:create' %}><p class="mr-auto" title="Ajouter un billet"><span class="fas fa-plus-circle"></span></p></a>
             <a href={% url 'billets:home' %} title="Switch to agenda view"><span class="fas fa-calendar-week ml-2"></span></a>
         </div>
+
+        <div>
+            <div class="ml-auto">{% include 'pagination.html' %}</div>
+        </div>
     </div>
 
-    <table class="table table-bordered w-50">
+    <table class="table table-bordered table-sm w-50">
         {% for billet in billets %}
             <tr>
                 <td>{{ billet }}</td>
