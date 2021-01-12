@@ -54,16 +54,16 @@ $(document).ready(function () {
     });
 
 
-    // List of toubibs: search (fired on "Enter" or on click on logo "Search"):
+    // List of toubibs: search (fired on "Enter"):
     $('#search_input').keyup(function (key) {
         if (key.keyCode == 13) {
             search = $('#search_input').val();
-            window.location.href = '/infirmerie/toubibs/search=' + search + '/page=1';
+            if (search == ''){
+                window.location.href = '/infirmerie/toubibs/page=1';
+            }
+            else{
+                window.location.href = '/infirmerie/toubibs/search=' + search + '/page=1';
+            }
         }
-    });
-    $('#search_toubibs_go').click(function () {
-        // TODO: Bug if empty string.
-        search = $('#search_input').val();
-        window.location.href = '/infirmerie/toubibs/search=' + search + '/page=1';
     });
 });
