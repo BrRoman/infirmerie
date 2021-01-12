@@ -15,15 +15,11 @@
         </div>
 
         <!-- Tools -->
-        <div id="tools" class="d-flex align-items-center ml-auto">
+        <div id="tools" class="d-flex ml-auto">
             <!-- Search -->
-            <div id="search" class="input-group">
-                <input type="text" id="search_input" class="form-control" placeholder="Rechercher" autofocus>
-                <span id="search_toubibs_go" class="fas fa-search mt-1"></span>
-            </div>
+            <input type="text" id="search_input" class="form-control form-control-sm mr-4 mt-1" placeholder="Rechercher" autofocus>
 
-            <!-- Pagination --><!-- TODO: Formatting bug. -->
-            <div class="ml-auto">{% include 'pagination.html' %}</div>
+            <div>{% include 'pagination.html' %}</div>
         </div>
     </div>
 
