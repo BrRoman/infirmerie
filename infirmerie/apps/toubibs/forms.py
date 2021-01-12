@@ -35,6 +35,11 @@ class ToubibForm(forms.ModelForm):
             'required': 'Ce champ est obligatoire',
         },
     )
+    is_medecin = forms.BooleanField(
+        required=False,
+        label='Est médecin',
+        label_suffix='',
+    )
     adresse_1 = forms.CharField(
         required=False,
         label='Adresse 1 :',
@@ -74,7 +79,7 @@ class ToubibForm(forms.ModelForm):
 
     class Meta:
         model = Toubib
-        fields = ['titre', 'nom', 'prenom', 'speciality', 'adresse_1', 'adresse_2',
+        fields = ['titre', 'nom', 'prenom', 'speciality', 'is_medecin', 'adresse_1', 'adresse_2',
                   'adresse_3', 'code_postal', 'ville', 'telephone', 'email', 'remarques']
 
 

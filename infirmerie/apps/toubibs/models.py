@@ -25,6 +25,7 @@ class Toubib(models.Model):
         to=Speciality,
         on_delete=models.CASCADE,
     )
+    is_medecin = models.BooleanField()
     adresse_1 = models.CharField(max_length=255, null=True, blank=True)
     adresse_2 = models.CharField(max_length=255, null=True, blank=True)
     adresse_3 = models.CharField(max_length=255, null=True, blank=True)
