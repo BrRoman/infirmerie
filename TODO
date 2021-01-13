@@ -5,30 +5,16 @@ idem ophtalmo (à la demande)
 idem hémocult (2 ans)
 don du sang (ad libitum, mais limiter)
 vaccinations (dtp) : vaccin, date, vaccinateur, numéro du lot
-
-- Liste chronologique de tous ces rendez-vous pour chaque moine.
-
 - Liste des infirmiers monastiques.
 
+
+- Liste chronologique de tous les rendez-vous de chaque moine.
 - Rendez-vous:
-Couleur différente selon état (prospection blanc/jaune, rv pris, moine prévenu +)
-
-- Couleur différente selon type de rv (médecins rouge, paramédicaux bleu, dentistes vert)
-
+    - couleur différente selon état (prospection blanc/jaune, rv pris, moine prévenu +)
+    - couleur différente selon type de rv (médecins rouge, paramédicaux bleu, dentistes vert)
 - Calendrier :
     - retraites (Flavigny orange, extérieur jaune), jours de promenade, solennités, don du sang etc.
     - "semaine du… au…" à indiquer.
-
 - Bug : annuler la suppression d'un élément (billet, moine…) n'annule pas : l'élément est quand même supprimé.
-
 - Dentiste : alerte si pas de rendez-vous depuis + d'1 an. Idem ophtalmo.
-
-- Case à cocher "est médecin".
-- Tri médecin / paramédical / dentiste : couleur différente, qui apparaîtra dans les rendez-vous.
-
-- Médecins: répertoire alphabétique.
-- Agenda: faire une option "présentation par liste" (avec couleur).
-
-(- Pb technique propre aux Mac ? vider le cache après suppression d'un rendez-vous.)
-
-- Table "spécialités" pour permettre à l'U de les gérer.
+- Pb technique propre aux Mac ? vider le cache après suppression d'un rendez-vous.
