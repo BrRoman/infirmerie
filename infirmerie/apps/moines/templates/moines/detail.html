@@ -24,6 +24,7 @@
         <a href={% url 'moines:delete' moine.id %}><span class="fas fa-trash-alt" title="Supprimer ce moine"></span></a>
     </div>
 
+    <!-- Caractéristiques du moine -->
     <div class="block row justify-content-center mt-3 mb-2">
         <table class="table table-borderless my-0">
             <tr>
@@ -41,6 +42,26 @@
             <tr>
                 <td><label>Numéro de sécu :</label></td><td>{{ moine.numero_secu|default_if_none:'' }}</td>
             </tr>
+        </table>
+    </div>
+
+    <!-- Historique de ses rendez-vous -->
+    <div class="col-5 border border-success rounded px-3 pt-3 my-3">
+        <h6 class="text-center font-weight-bold">Historique des rendez-vous</h6>
+        <table class="table table-bordered col-5">
+            {% for billet in rendez_vous %}
+                <tr>
+                    <td>{{ billet }}</td>
+                    <td>{{ billet.when }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- Derniers examens -->
+    <div class="col-5 border border-success rounded px-3 pt-3 my-3">
+        <h6 class="text-center font-weight-bold">Derniers examens</h6>
+        <table class="table table-bordered col-5">
             <tr>
                 <td><label>Vaccin :</label></td><td>{{ moine.date_vaccin|date:"d/m/Y" }}</td>
             </tr>

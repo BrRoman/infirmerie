@@ -1,11 +1,12 @@
 """ apps/moines/views.py """
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
+from apps.billets.models import Billet
 from .forms import MoineForm
 from .models import Moine
 
@@ -26,11 +27,20 @@ class MoineCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('moines:list')
 
 
-class MoineDetailView(LoginRequiredMixin, DetailView):
+def moine_detail_view(request, **kwargs):
     """ Detail of Moine. """
-    fields = ('__all__')
-    model = Moine
-    template_name = 'moines/detail.html'
+    moine = Moine.objects.get(id=kwargs['pk'])
+    rendez_vous_1 = Billet.objects.filter(moine1=moine)
+    rendez_vous_2 = Billet.objects.filter(moine2=moine)
+    rendez_vous = rendez_vous_1.union(rendez_vous_2)
+    return render(
+        request,
+        'moines/detail.html',
+        {
+            'moine': moine,
+            'rendez_vous': rendez_vous,
+        }
+    )
 
 
 class MoineUpdateView(LoginRequiredMixin, UpdateView):
