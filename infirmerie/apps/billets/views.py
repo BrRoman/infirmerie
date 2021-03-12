@@ -154,9 +154,12 @@ class BilletPDFView(LoginRequiredMixin, View):
             where = ' (à l\'infirmerie)'
         else:
             where = ''
-        pdf.drawCentredString(width/2.0, 70, '{}{}'.format(
-            billet.date_time(),
-            where)
+        pdf.drawCentredString(
+            width/2.0, 70,
+            '{}{}'.format(
+                billet.date_time(),
+                where
+            )
         )
         pdf.restoreState()
         pdf.saveState()
