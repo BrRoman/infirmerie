@@ -122,6 +122,7 @@ class BilletForm(forms.ModelForm):
         # Message:
         mail_message = ''
         mail_message += 'Date et heure : ' + self.instance.date_time()
+        mail_message += '\nVille : ' + self.instance.toubib.ville
         mail_message += '\nMoines : ' + self.instance.moines()
         mail_message += '\nMédecin : ' + self.instance.toubib.__str__()
         mail_message += ('\nChauffeur : ' + self.instance.chauffeur.__str__()
@@ -129,7 +130,10 @@ class BilletForm(forms.ModelForm):
         if self.instance.gratis:
             mail_message += '\nGratis pro Deo'
         elif self.instance.prix:
-            mail_message += '\nPrix : ' + str(self.instance.prix)
+            mail_message += '\nPrix : ' + \
+                (' {:.2f} €'.format(self.instance.prix)
+                 if str(self.instance.prix - int(self.instance.prix))[1:] != '.0'
+                 else ' {:.0f} €'.format(self.instance.prix))
         mail_message += '\nFacture' if self.instance.facture else ''
         mail_message += '\n---------------------'
         mail_message += '\nMessage envoyé depuis http://python.asj.com:8001'
