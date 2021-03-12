@@ -213,7 +213,11 @@ class BilletPDFView(LoginRequiredMixin, View):
         if billet.gratis or billet.prix == 0:
             prix += ' gratis pro Deo'
         elif billet.prix:
-            prix += str(billet.prix) + ' €'
+            """ Prix avec la partie décimale
+            le cas échéant, sinon entier. """
+            prix += ' {:.2f} €'.format(billet.prix) \
+                if str(billet.prix - int(billet.prix))[1:] != '.0' \
+                else ' {:.0f} €'.format(billet.prix)
             prix += ' (facture)' if billet.facture else ''
         else:
             prix += ' ?'

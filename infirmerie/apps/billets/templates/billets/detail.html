@@ -35,7 +35,7 @@
                 <td><label>Lieu :</label></td><td>{{ billet.where }}</td>
             </tr>
             <tr>
-                <td><label>Prix :</label></td><td>{{ billet.prix|default_if_none:'?' }} €</td>
+                <td><label>Prix :</label></td><td>{{ billet.prix|floatformat:"-2"|default_if_none:'?' }} €</td>
             </tr>
                 <td><label>Facture :</label></td><td>{{ billet.facture|yesno:'oui,non' }}</td>
             </tr>
