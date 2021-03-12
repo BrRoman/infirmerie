@@ -66,4 +66,11 @@ $(document).ready(function () {
             }
         }
     });
+
+    // Form billet: price: replace ',' by '.':
+    $('.price_num').keyup(function () {
+        var price = $(this).val();
+        price = price.replace(',', '.');
+        $(this).val(price);
+    });
 });

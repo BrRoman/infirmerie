@@ -49,8 +49,10 @@ class Billet(models.Model):
     where = models.CharField(
         max_length=25,
     )
-    prix = models.FloatField(
+    prix = models.DecimalField(
         null=True,
+        max_digits=10,
+        decimal_places=2,
     )
     facture = models.BooleanField(
         default=False,
